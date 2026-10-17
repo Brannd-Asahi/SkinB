@@ -1,0 +1,1611 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0b4f86">
+<title>Plan de piel · 12 semanas</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%A2%3C/text%3E%3C/svg%3E">
+<style>
+:root{--bg:#eef6fb;--card:#ffffff;--ink:#12283b;--muted:#587186;--line:#d2e2ee;--accent:#1a6db0;--ok:#1f9a86;--gel:#cf5a43;--pool:#1597c0;--rest:#8a9aa8;--warn:#fff3ee;--warnline:#efbfb2}
+@media (prefers-color-scheme:dark){:root{--bg:#0a1620;--card:#112130;--ink:#e6f1f8;--muted:#93aabc;--line:#223b51;--accent:#6ab7ee;--ok:#4fc8ae;--gel:#f08b74;--pool:#5cc9e8;--rest:#9aa8b4;--warn:#2b1d1a;--warnline:#6b3a30}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:640px;margin:0 auto;padding:16px 16px 56px}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+h1{font-size:1.35rem;margin:4px 0 2px;color:var(--accent)}
+.sub{color:var(--muted);font-size:.9rem;margin:0 0 12px}
+.icon{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;width:44px;height:44px;font-size:1.2rem;cursor:pointer}
+.banner{background:var(--warn);border:1px solid var(--warnline);border-radius:12px;padding:10px 12px;margin:0 0 12px;font-size:.95rem}
+.wgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:0 0 12px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:6px 2px;font:inherit;font-weight:600;text-align:center;cursor:pointer;min-height:48px;touch-action:manipulation}
+.chip small{display:block;color:var(--muted);font-size:.66rem;font-weight:400}
+.chip[aria-current=true]{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent) inset}
+.chip.done{background:color-mix(in srgb,var(--ok) 14%,var(--card))}
+.chip.prize{background:color-mix(in srgb,#f3c64d 28%,var(--card))}
+.chip.locked{background:transparent;border-style:dashed;color:var(--muted);font-weight:500}
+.weeknote{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px 14px;margin:0 0 10px}
+.weeknote h3{margin:0 0 4px;font-size:1.02rem;color:var(--accent)}
+.weeknote .lead{margin:0 0 10px;font-size:.95rem}
+.wrows{display:grid;gap:6px}
+.wrow{display:flex;gap:10px;align-items:flex-start;background:color-mix(in srgb,var(--accent) 7%,var(--card));border-radius:12px;padding:8px 10px;font-size:.9rem}
+.wrow .ic{font-size:1.15rem;line-height:1.25}
+.wrow .lb{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700}
+.pill{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:1px 9px;margin:2px 2px 2px 0;font-size:.84rem}
+.arw{color:var(--muted);margin-right:2px}
+.nw{white-space:nowrap}
+.lockbox{text-align:center;padding:10px 6px 4px}
+.lockbox .big{font-size:2.2rem}
+.daytabs{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:0 0 12px}
+.daytabs[hidden]{display:none}
+.dt{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:6px 0;font:inherit;text-align:center;cursor:pointer;position:relative;touch-action:manipulation}
+.dt small{display:block;font-size:.68rem;color:var(--muted)}
+.dt i{display:block;width:8px;height:8px;border-radius:50%;margin:3px auto 0}
+.dt[aria-current=true]{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent) inset}
+.dt.today small::after{content:" ·hoy";color:var(--accent)}
+.dt.closed{background:color-mix(in srgb,var(--ok) 12%,var(--card))}
+.dt.closed small::before{content:"✓ ";color:var(--ok)}
+.t-gel{background:var(--gel)}.t-pool{background:var(--pool)}.t-rest{background:var(--rest)}.t-poolgel{background:linear-gradient(90deg,var(--pool) 50%,var(--gel) 50%)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 14px 10px;margin:0 0 12px}
+.card h2{font-size:1.15rem;margin:0}
+.meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:.85rem;margin:4px 0 10px}
+.badge{display:inline-block;padding:2px 10px;border-radius:999px;color:#fff;font-size:.8rem;font-weight:600}
+.dayinfo{border-radius:12px;padding:8px 12px;margin:0 0 8px;font-size:.9rem;background:color-mix(in srgb,var(--accent) 9%,var(--card))}
+.dayinfo.lock{background:color-mix(in srgb,var(--ok) 13%,var(--card))}
+.block{border-top:1px solid var(--line);padding-top:8px;margin-top:8px}
+.block h3{font-size:1rem;margin:0 0 4px;display:flex;justify-content:space-between;gap:8px}
+.block h3 span{font-weight:400;color:var(--muted);font-size:.85rem}
+.sh{font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;color:var(--accent);margin:10px 0 2px;font-weight:700}
+.step label{display:flex;gap:12px;align-items:flex-start;padding:10px 2px;min-height:48px;cursor:pointer}
+.step input{flex:0 0 auto;width:26px;height:26px;margin:0;accent-color:var(--ok)}
+.step input:checked+span{color:var(--muted);text-decoration:line-through}
+.step input:disabled{cursor:not-allowed}
+.step input:disabled+span{opacity:.8}
+.step+.step{border-top:1px dashed var(--line)}
+.finish{margin-top:12px;border-top:1px solid var(--line);padding-top:12px}
+.finish p{margin:6px 0 0;color:var(--muted);font-size:.82rem}
+.btn{border:0;background:var(--accent);color:#fff;border-radius:12px;padding:12px 16px;font:inherit;font-weight:700;cursor:pointer;min-height:48px;touch-action:manipulation}
+.btn.alt{background:color-mix(in srgb,var(--accent) 14%,var(--card));color:var(--accent)}
+.btn.block{display:block;width:100%}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:0 0 10px}
+summary{cursor:pointer;font-weight:600}
+details ul,details ol{padding-left:20px;margin:8px 0 0}
+details li{margin:4px 0}
+details p{margin:8px 0 0}
+details.safe{background:var(--warn);border-color:var(--warnline)}
+.wk{border-top:1px solid var(--line);padding:10px 0}
+.wk:first-child{border-top:0}
+.wk h4{margin:0 0 2px;font-size:.95rem}
+.wk p{margin:0 0 6px;color:var(--muted);font-size:.82rem}
+.wk.locked{opacity:.55}
+.strip{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cell{border:0;border-radius:8px;color:#fff;font:inherit;font-size:.66rem;line-height:1.1;padding:6px 1px;cursor:pointer;min-height:48px}
+.cell b{display:block;font-size:.72rem;margin-bottom:2px}
+.cell small{display:block;font-size:.58rem;opacity:.95;margin-top:2px}
+.cell.t-poolgel{background:linear-gradient(135deg,var(--pool) 50%,var(--gel) 50%)}
+.legend{font-size:.8rem;color:var(--muted);margin:6px 0 4px}
+.foot{color:var(--muted);font-size:.8rem;margin-top:16px;-webkit-user-select:none;user-select:none}
+.tbl{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:8px}
+.tbl td,.tbl th{border-top:1px solid var(--line);padding:5px 4px;text-align:left;vertical-align:top}
+/* ---- galería de premios ---- */
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px}
+.gc{border:1px solid var(--line);border-radius:14px;padding:8px 10px;display:flex;gap:10px;align-items:center;background:color-mix(in srgb,var(--accent) 6%,var(--card))}
+.gc .ic{font-size:1.6rem;flex:0 0 auto;width:38px;text-align:center}
+.gc b{display:block;font-size:.84rem;line-height:1.15}
+.gc small{display:block;color:var(--muted);font-size:.72rem;line-height:1.25;margin-top:2px}
+.gc.lock{opacity:.55}.gc.lock .ic{filter:grayscale(1)}
+.gc.won{background:color-mix(in srgb,#f3c64d 22%,var(--card));border-color:#e8c25a}
+.gc.nxt{border-style:dashed;border-color:var(--accent);opacity:1}
+.gifts{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.gf{display:flex;align-items:center;gap:6px;background:color-mix(in srgb,var(--accent) 8%,var(--card));border-radius:999px;padding:3px 12px 3px 6px;font-size:.85rem}
+.gf svg{width:24px;height:24px}
+/* ---- estanque y tira fija ---- */
+.pet{padding:0;overflow:hidden}
+.pondslot{position:relative;aspect-ratio:2/1;background:#0b4f86}
+.pondbox{position:absolute;inset:0;overflow:hidden}
+.pondbox svg{display:block;width:100%;height:100%}
+.stripinfo{display:none;position:absolute;left:12px;right:12px;bottom:7px;color:#fff;font-size:.8rem;font-weight:700;text-shadow:0 1px 3px rgba(0,0,0,.7);pointer-events:none;justify-content:space-between}
+.pondbox.stuck{position:fixed;top:0;left:0;right:0;margin:0 auto;width:100%;max-width:640px;bottom:auto;height:var(--sh,110px);z-index:30;border-radius:0 0 20px 20px;box-shadow:0 8px 20px rgba(0,30,60,.38)}
+.pondbox.stuck .stripinfo{display:flex}
+.petinfo{padding:10px 14px 12px}
+.petmsg{margin:0 0 8px;font-size:.95rem;min-height:2.9em}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 8px}
+.tile{background:color-mix(in srgb,var(--accent) 9%,var(--card));border-radius:12px;padding:6px 4px;text-align:center}
+.tile b{display:block;font-size:1.1rem;color:var(--accent)}
+.tile small{color:var(--muted);font-size:.72rem}
+.bar{height:10px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#46bdf0,#1a6db0);border-radius:99px;transition:width .6s}
+.next{font-size:.82rem;color:var(--muted);margin:6px 0 0}
+/* ---------- estanque ---------- */
+.pond{cursor:pointer;touch-action:manipulation;
+ --w0:#46bdf0;--w1:#1f86c4;--w2:#0b4f86;--ray:.07;
+ --grass:#38b878;--clam:#f2a7c3;--pearlc:#ffffff;--starf:#ff9f5a;--weed1:#2fa56b;--weed2:#3cbf80;--fishc:#ffb347;
+ --coral1:#ff7a8a;--coral2:#ffb36b;--coral3:#c987ff;--anem:#ff9ec7;--silver:#e3eef6;--jelly:#ffd1f0;--kelp:#1b7f66;--pearl2:#bfe6ff;--tipglow:0}
+.pond.sleep{--grass:#6e8a86;--clam:#8f9fa6;--pearlc:#c4ccd1;--starf:#9a9889;--weed1:#5d7b78;--weed2:#6c8986;--fishc:#8ea0a8;
+ --coral1:#8d9aa3;--coral2:#a0a79f;--coral3:#8f93a6;--anem:#a0a2ad;--silver:#a9b7c1;--jelly:#b9bfd0;--kelp:#4b6f69;--pearl2:#aab8c0}
+.bob{animation:bob 3.2s ease-in-out infinite;transform-origin:0 0}
+@keyframes bob{50%{transform:translateY(5px) rotate(2deg)}}
+.pond.sleep .bob{animation-duration:6.5s}
+.fl{transform-origin:0 0}
+.tail{animation:wag 2s ease-in-out infinite;transform-origin:0 0}
+@keyframes wag{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+.head{animation:nod 3.2s ease-in-out infinite;transform-origin:0 0}
+@keyframes nod{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+.pond.cheer .head{animation-duration:.7s}
+.pond.cheer .tail{animation-duration:.5s}
+.c-shell{fill:url(#sg)}.c-shell2{fill:var(--shell2)}.c-skin{fill:var(--skin)}.c-skin2{fill:var(--skin2)}
+.scute{fill:none;stroke:var(--scute);stroke-width:2.2;stroke-linecap:round;opacity:.55}
+.fin{stroke:var(--fin);stroke-width:var(--finw,0);stroke-linejoin:round}
+.eye-closed,.zzz,.hearts,#workbub{display:none}
+.pond.sleep .eye-open,.pond.sleep .smile{display:none}
+.pond.sleep .eye-closed,.pond.sleep .zzz{display:block}
+.pond.done .hearts,.pond.awake #workbub,.pond.done #workbub{display:block}
+.pond.sleep .trail{display:none}
+.zzz text{font:700 16px system-ui,sans-serif;fill:#cfeeff;animation:zz 3s ease-in-out infinite}
+.zzz text:nth-child(2){animation-delay:-1s}.zzz text:nth-child(3){animation-delay:-2s}
+@keyframes zz{0%{opacity:0;transform:translateY(8px)}30%{opacity:1}100%{opacity:0;transform:translateY(-14px)}}
+.hearts text{font:700 15px system-ui,sans-serif;fill:#ff8fa8;animation:hrt 3.4s ease-in infinite;opacity:0}
+.hearts text:nth-child(2){animation-delay:-1.1s}.hearts text:nth-child(3){animation-delay:-2.2s}
+@keyframes hrt{0%{opacity:0;transform:translateY(0)}20%{opacity:1}100%{opacity:0;transform:translateY(-46px)}}
+.jump{transform-origin:0 0}
+#dim{opacity:0;transition:opacity .8s}
+.pond.sleep #dim{opacity:.24}
+.tb{animation:tb 3.2s ease-out infinite;opacity:0}
+@keyframes tb{0%{transform:translate(0,0) scale(.4);opacity:0}15%{opacity:.8}100%{transform:translate(-26px,-30px) scale(1.1);opacity:0}}
+.wb{animation:wbr 2.4s ease-in infinite;opacity:0}
+@keyframes wbr{0%{transform:translateY(0) scale(.5);opacity:0}20%{opacity:.9}100%{transform:translateY(-70px) scale(1.1);opacity:0}}
+
+/* movimientos suaves y más naturales */
+.pond.wake .jump{animation:wk .8s cubic-bezier(.3,.7,.3,1) 1}
+.pond.poke .jump{animation:pk .6s cubic-bezier(.3,.7,.3,1) 1}
+@keyframes wk{0%{transform:scale(1)}30%{transform:scale(1.14,.94) translateY(4px)}60%{transform:scale(.97,1.08) translateY(-10px)}100%{transform:scale(1)}}
+@keyframes pk{0%{transform:scale(1)}35%{transform:scale(1.08,.93)}65%{transform:scale(.97,1.05) translateY(-5px)}100%{transform:scale(1)}}
+.pond.cheer.dance-0 .jump{animation:d0 2.6s cubic-bezier(.4,.05,.3,1) 1}
+.pond.cheer.dance-1 .jump{animation:d1 2.6s ease-out 1}
+.pond.cheer.dance-2 .jump{animation:d2 2.8s ease-in-out 1}
+.pond.cheer.dance-3 .jump{animation:d3 2.6s cubic-bezier(.4,.05,.3,1) 1}
+.pond.cheer.dance-4 .jump{animation:d4 2.6s ease-in-out 1}
+.pond.cheer.dance-5 .jump{animation:d5 2.8s ease-in-out 1}
+.pond.cheer.dance-6 .jump{animation:d6 2.8s ease-in-out 1}
+.pond.cheer.dance-w .jump{animation:dw 1.5s ease-in-out 1}
+.pond.cheer.dance-p .jump{animation:dp 4s ease-in-out 1}
+@keyframes d0{0%{transform:translateY(0) rotate(0) scale(1)}12%{transform:translateY(6px) rotate(0) scale(1.06,.93)}45%{transform:translateY(-42px) rotate(-200deg) scale(1.1)}72%{transform:translateY(-30px) rotate(-340deg) scale(1.06)}88%{transform:translateY(4px) rotate(-372deg) scale(1.05,.94)}100%{transform:translateY(0) rotate(-360deg) scale(1)}}
+@keyframes d1{0%{transform:translateY(0) scale(1)}8%{transform:translateY(4px) scale(1.08,.92)}22%{transform:translateY(-36px) rotate(-5deg) scale(.96,1.06)}36%{transform:translateY(2px) rotate(0) scale(1.1,.9)}46%{transform:translateY(-26px) rotate(4deg) scale(.97,1.05)}58%{transform:translateY(2px) scale(1.08,.92)}67%{transform:translateY(-16px) rotate(-3deg)}77%{transform:translateY(1px) scale(1.05,.95)}100%{transform:translateY(0) scale(1)}}
+@keyframes d2{0%{transform:translate(0,0) rotate(0)}15%{transform:translate(-18px,-8px) rotate(-10deg)}30%{transform:translate(0,-14px) rotate(0)}45%{transform:translate(18px,-8px) rotate(10deg)}60%{transform:translate(0,0) rotate(0)}75%{transform:translate(-12px,-6px) rotate(-7deg)}90%{transform:translate(5px,-2px) rotate(3deg)}100%{transform:translate(0,0) rotate(0)}}
+@keyframes d3{0%{transform:translateY(0) rotate(0) scale(1)}14%{transform:translateY(8px) rotate(-6deg) scale(1.06,.94)}55%{transform:translateY(-48px) rotate(200deg) scale(1.08)}86%{transform:translateY(-6px) rotate(350deg) scale(1.03)}100%{transform:translateY(0) rotate(360deg) scale(1)}}
+@keyframes d4{0%,100%{transform:translateX(0) rotate(0)}10%{transform:translateX(-14px) rotate(-7deg)}20%{transform:translateX(14px) rotate(7deg)}30%{transform:translateX(-12px) rotate(-6deg)}40%{transform:translateX(11px) rotate(5deg)}50%{transform:translateX(-8px) rotate(-4deg)}60%{transform:translateX(7px) rotate(3deg)}70%{transform:translateX(-4px) rotate(-2deg)}80%{transform:translateX(2px) rotate(1deg)}90%{transform:translateX(0) rotate(0)}}
+@keyframes d5{0%{transform:translate(0,0) rotate(0) scale(1)}20%{transform:translate(22px,-18px) rotate(90deg) scale(1.05)}40%{transform:translate(0,-38px) rotate(180deg) scale(1.1)}60%{transform:translate(-22px,-18px) rotate(270deg) scale(1.05)}82%{transform:translate(0,-4px) rotate(348deg) scale(1.02)}100%{transform:translate(0,0) rotate(360deg) scale(1)}}
+@keyframes d6{0%{transform:scale(1) rotate(0)}8%{transform:scale(1.17)}15%{transform:scale(1.02)}23%{transform:scale(1.21)}32%{transform:scale(1)}40%{transform:scale(1.14)}47%{transform:scale(1.02)}55%{transform:scale(1.17)}63%{transform:scale(1)}78%{transform:scale(1) rotate(11deg) translateY(5px)}90%{transform:rotate(-3deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes dw{0%,100%{transform:rotate(0)}15%{transform:rotate(-7deg)}35%{transform:rotate(6deg)}55%{transform:rotate(-4deg)}75%{transform:rotate(2deg)}}
+@keyframes dp{0%{transform:rotate(0) scale(1)}20%{transform:translateY(-30px) rotate(-120deg) scale(1.15)}45%{transform:translateY(-44px) rotate(-420deg) scale(1.25)}70%{transform:translateY(-24px) rotate(-690deg) scale(1.15)}90%{transform:translateY(-4px) rotate(-725deg) scale(1.04)}100%{transform:rotate(-720deg) scale(1)}}
+.tw{animation:tw 2.2s ease-in-out infinite;transform-origin:0 0}
+.pond.sleep .tw{animation:none;opacity:.25;transform:scale(.5)}
+@keyframes tw{0%,100%{transform:scale(.3);opacity:.3}50%{transform:scale(1);opacity:1}}
+.fxp{animation:fxp 2s ease-out forwards;opacity:0}
+@keyframes fxp{0%{opacity:0;transform:translate(0,0) scale(.2) rotate(0)}12%{opacity:1}70%{opacity:1;transform:translate(calc(var(--dx)*.9),calc(var(--dy)*.9)) scale(1) rotate(calc(var(--r)*.8))}100%{opacity:0;transform:translate(var(--dx),calc(var(--dy) + var(--g))) scale(.9) rotate(var(--r))}}
+
+/* escenario */
+.sw{animation:sway 4s ease-in-out infinite;transform-origin:0 0}
+@keyframes sway{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+.sw2{animation:sway2 5s ease-in-out infinite;transform-origin:0 0}
+@keyframes sway2{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+.pond.sleep .sw,.pond.sleep .sw2,.pond.sleep .gr{animation:none}
+.pond.sleep .sw{transform:scaleY(.85)}
+.gr{animation:sway 3.6s ease-in-out infinite;transform-origin:0 0}
+.pond.sleep .gr{transform:scaleY(.7) rotate(8deg)}
+.it.new{animation:itpop .9s ease-out 1;transform-origin:0 0}
+@keyframes itpop{0%{transform:scale(0)}60%{transform:scale(1.4)}100%{transform:scale(1)}}
+.fish{animation:fish 13s linear infinite}
+.pond.sleep .fish{animation:none;transform:translateX(255px)}
+.pond.sleep .fishin{transform:translateY(112px) rotate(10deg)}
+@keyframes fish{from{transform:translateX(-30px)}to{transform:translateX(400px)}}
+.school{animation:school 22s linear infinite}
+.pond.sleep .school{animation:none;transform:translate(150px,40px)}
+@keyframes school{from{transform:translate(-60px,0)}to{transform:translate(430px,0)}}
+.sf{animation:sf 1.4s ease-in-out infinite}
+.pond.sleep .sf{animation:none}
+@keyframes sf{50%{transform:translateY(-2px)}}
+.jel{animation:jel 9s ease-in-out infinite}
+.pond.sleep .jel{animation:none;transform:translateY(42px)}
+@keyframes jel{0%,100%{transform:translate(0,0)}50%{transform:translate(-24px,-18px)}}
+.jp{animation:jp 2.6s ease-in-out infinite;transform-origin:0 0}
+.pond.sleep .jp{animation:none}
+@keyframes jp{0%,100%{transform:scale(1,1)}50%{transform:scale(1.08,.9)}}
+.pl{animation:pl 7s ease-in-out infinite}
+@keyframes pl{0%,100%{transform:translate(0,0);opacity:.2}50%{transform:translate(6px,-12px);opacity:.95}}
+.pond.sleep .pl{animation:none;opacity:.15}
+.glowtip{animation:gt 2.6s ease-in-out infinite}
+@keyframes gt{0%,100%{opacity:.15}50%{opacity:.85}}
+.pond.sleep .glowtip{animation:none;opacity:0}
+.wave{animation:wave 7s linear infinite}
+@keyframes wave{to{transform:translateX(-60px)}}
+.ray{animation:ray 6s ease-in-out infinite;opacity:var(--ray)}
+@keyframes ray{50%{opacity:calc(var(--ray) + .08)}}
+.pearl{animation:pearl 2.6s ease-in-out infinite;transform-origin:0 0}
+@keyframes pearl{50%{transform:scale(1.25)}}
+
+@media (prefers-reduced-motion:reduce){.pond *{animation:none!important}}
+/* ---- ventanas ---- */
+.modal{position:fixed;inset:0;background:rgba(4,18,32,.66);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50;animation:mfade .25s ease}
+.modal[hidden]{display:none}
+@keyframes mfade{from{opacity:0}}
+.mbox{background:var(--card);color:var(--ink);border-radius:26px;max-width:420px;width:100%;max-height:92vh;overflow:auto;box-shadow:0 22px 60px rgba(0,0,0,.45);animation:mpop .5s cubic-bezier(.2,1.25,.3,1)}
+@keyframes mpop{from{opacity:0;transform:translateY(22px) scale(.92)}}
+.mhead{padding:22px 18px 16px;text-align:center;color:#fff;background:linear-gradient(160deg,#35afe6,#1a6db0 62%,#124a7c);position:relative;overflow:hidden}
+.mhead::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 18% 18%,rgba(255,255,255,.3),transparent 42%),radial-gradient(circle at 88% 78%,rgba(255,255,255,.18),transparent 48%)}
+.mhead.gold{background:linear-gradient(160deg,#ffdf86,#f1ab3c 60%,#c47a1c)}
+.mhead.teal{background:linear-gradient(160deg,#86dccb,#1f9a86 68%,#157263)}
+.mhead.soft{background:linear-gradient(160deg,#a5bdcf,#6b8aa3 70%,#4f6e88)}
+.mhead.night{background:linear-gradient(160deg,#4b6fb0,#273f78 70%,#17284f)}
+.mhead>*{position:relative}
+.mico{width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.24);display:flex;align-items:center;justify-content:center;font-size:2.2rem;margin:0 auto 8px;box-shadow:0 0 0 7px rgba(255,255,255,.12);animation:mico 3s ease-in-out infinite}
+@keyframes mico{50%{transform:translateY(-4px) scale(1.04)}}
+.mhead h2{margin:0;font-size:1.28rem;color:#fff;line-height:1.2}
+.mhead .msub{margin:5px 0 0;opacity:.95;font-size:.9rem}
+.spk{position:absolute;color:#fff;opacity:0;font-size:.9rem;animation:spk 2.6s ease-in-out infinite}
+@keyframes spk{0%,100%{opacity:0;transform:scale(.4) rotate(0)}50%{opacity:.95;transform:scale(1.1) rotate(25deg)}}
+.mbody{padding:14px 20px 4px;font-size:.96rem}
+.mbody p{margin:7px 0}
+.mbody ul,.mbody ol{padding-left:20px;margin:6px 0}
+.mbody li{margin:5px 0}
+.mstats{display:flex;gap:8px;margin:10px 0 4px}
+.mstat{flex:1;background:color-mix(in srgb,var(--accent) 9%,var(--card));border-radius:14px;padding:8px 4px;text-align:center}
+.mstat b{display:block;font-size:1.25rem;color:var(--accent)}
+.mstat small{color:var(--muted);font-size:.72rem}
+.mgift{display:flex;gap:12px;align-items:center;background:color-mix(in srgb,#f3c64d 22%,var(--card));border:1px solid #e8c25a;border-radius:16px;padding:10px 12px;margin:10px 0}
+.mgift .gi{flex:0 0 auto;width:46px;height:46px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.mgift .gi svg{width:34px;height:34px}
+.mgift b{display:block}
+.mgift small{color:var(--muted);display:block;font-size:.8rem;line-height:1.3}
+.mnote{font-size:.84rem;color:var(--muted)}
+.mdots{display:flex;gap:6px;justify-content:center;margin:8px 0 0}
+.mdots i{width:7px;height:7px;border-radius:50%;background:var(--line);transition:all .25s}
+.mdots i.on{background:var(--accent);width:20px;border-radius:99px}
+.mdots:empty{display:none}
+.mbtns{display:flex;gap:8px;padding:12px 20px 20px;flex-wrap:wrap}
+.mbtns .btn{flex:1 1 auto;border-radius:14px}
+.mbody input.pw{font:inherit;font-size:1.4rem;letter-spacing:.3em;text-align:center;width:100%;padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink)}
+.toast{position:fixed;width:max-content;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);background:rgba(14,34,52,.96);color:#fff;padding:10px 16px 10px 12px;border-radius:16px;font-size:.92rem;z-index:60;max-width:92vw;display:flex;gap:10px;align-items:center;box-shadow:0 8px 24px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.12);animation:tin .4s cubic-bezier(.2,1.2,.3,1)}
+.toast[hidden]{display:none}
+.toast .ti{font-size:1.25rem}
+@keyframes tin{from{opacity:0;transform:translate(-50%,16px)}}
+.demo{border:2px dashed var(--accent)}
+.demo label{display:block;font-size:.82rem;color:var(--muted);margin-top:8px}
+.demo label.chk{background:color-mix(in srgb,var(--accent) 8%,var(--card));border-radius:10px;padding:8px 10px}
+.demo input,.demo select{font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
+.demo .row{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;align-items:center}
+.demo .btn{padding:8px 10px;min-height:40px;font-size:.85rem}
+</style>
+</head>
+<body>
+<main>
+<div class="top">
+  <div>
+    <h1>Plan de piel · 12 semanas</h1>
+    <p class="sub" id="status">Cargando…</p>
+  </div>
+  <button class="icon" id="snd" aria-label="Activar o silenciar el sonido" title="Sonido">🔊</button>
+</div>
+
+<section class="card pet" aria-label="Tu tortuga">
+ <div class="pondslot" id="slot">
+  <div class="pondbox" id="box">
+<svg class="pond" id="pond" viewBox="0 0 360 180" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Tu tortuga en el estanque. Tócala para saludarla.">
+<defs>
+ <linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--w0)"/><stop offset=".55" style="stop-color:var(--w1)"/><stop offset="1" style="stop-color:var(--w2)"/></linearGradient>
+ <linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--shell)"/><stop offset="1" style="stop-color:var(--shell3)"/></linearGradient>
+ <linearGradient id="irg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7be8d6" stop-opacity="0"/><stop offset=".5" stop-color="#9fd6ff" stop-opacity=".55"/><stop offset="1" stop-color="#c9a8ff" stop-opacity=".5"/></linearGradient>
+ <radialGradient id="pg"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#bfe6ff"/></radialGradient>
+ <clipPath id="shellclip"><path d="M-90,14 C-92,-44 92,-44 90,14Z"/></clipPath>
+ <linearGradient id="nsh" gradientUnits="userSpaceOnUse" x1="0" y1="-1" x2="0" y2="11"><stop offset="0" stop-color="#06303a" stop-opacity="0"/><stop offset=".45" stop-color="#06303a" stop-opacity=".1"/><stop offset="1" stop-color="#06303a" stop-opacity=".24"/></linearGradient>
+ <clipPath id="nclip"><path d="M-24,-4 C-10,-4 0,-4 4,-9.5 L21,9 C15,10.5 8,11 -2,11 L-24,11 Z"/></clipPath>
+ <clipPath id="hclip"><ellipse cx="20" cy="-4" rx="17" ry="14"/></clipPath>
+ <filter id="blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter>
+ <filter id="blur3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
+</defs>
+<rect width="360" height="180" fill="url(#wg)"/>
+<ellipse data-min="11" cx="300" cy="-6" rx="120" ry="64" fill="#ffd9a0" opacity=".3" filter="url(#blur)"/>
+<g fill="#fff"><polygon class="ray" points="40,0 80,0 150,180 70,180"/><polygon class="ray" style="animation-delay:-2s" points="170,0 200,0 270,180 200,180"/><polygon class="ray" style="animation-delay:-4s" points="270,0 300,0 360,180 300,180"/></g>
+<g id="sc10" data-min="10"></g>
+<g id="sc4" data-min="4"></g>
+<path d="M0,170 Q90,152 180,166 T360,160 V180 H0Z" fill="#d9c58f"/>
+<path d="M0,176 Q120,166 220,174 T360,170 V180 H0Z" fill="#c4ae74"/>
+<g fill="#b9a574" opacity=".7"><ellipse cx="46" cy="176" rx="4" ry="2"/><ellipse cx="120" cy="172" rx="3" ry="1.6"/><ellipse cx="236" cy="177" rx="4.5" ry="2"/><ellipse cx="322" cy="173" rx="3" ry="1.5"/></g>
+<g id="sc6" data-min="6"></g>
+<g id="sc7" data-min="7"></g>
+<g id="sc2" data-min="2"></g>
+<g id="items"></g>
+<g data-min="5"><g class="fish"><g transform="translate(0,48)"><g class="fishin"><ellipse rx="9" ry="5" style="fill:var(--fishc)"/><path d="M-8,0 L-17,-6 L-17,6Z" style="fill:var(--fishc)"/><circle cx="5" cy="-1" r="1.2" fill="#12283b"/></g></g></g></g>
+<g id="sc8" data-min="8"></g>
+<g id="sc9" data-min="9"></g>
+<g transform="translate(180,92)"><g id="cz"><g class="swim" id="swim"><g class="jump"><g id="tscale" transform="scale(.5)">
+ <ellipse data-min="8" id="aura" rx="122" ry="68" cy="-2" fill="#bff0ff" opacity="0" filter="url(#blur)"/>
+ <ellipse data-min="12" id="aura2" rx="112" ry="60" cy="-2" fill="#ffd978" opacity=".32" filter="url(#blur)"/>
+ <g data-min="1" class="trail"><circle class="tb" cx="-112" cy="4" r="3.6" fill="#e6f8ff"/><circle class="tb" style="animation-delay:-1.1s" cx="-106" cy="12" r="2.6" fill="#e6f8ff"/><circle class="tb" style="animation-delay:-2.1s" cx="-116" cy="-2" r="3" fill="#e6f8ff"/></g>
+ <g class="bob">
+  <g transform="translate(40,20)"><g class="fl far"><path class="c-skin2 fin" d="M0,-4 C22,-6 46,6 56,22 C34,22 10,12 -4,4Z"/></g></g>
+  <g transform="translate(-50,20)"><g class="fl far b"><path class="c-skin2 fin" d="M0,-3 C14,-4 30,4 38,16 C22,16 6,10 -3,3Z"/></g></g>
+  <g transform="translate(-88,8)"><g class="tail"><path class="c-skin" d="M2,-5 L-20,2 L2,7Z"/></g></g>
+  <g transform="translate(90,2)"><g class="head">
+    <path class="c-skin" d="M-24,-4 C-10,-4 0,-4 4,-9.5 L21,9 C15,10.5 8,11 -2,11 L-24,11 Z"/>
+    <g clip-path="url(#nclip)"><rect x="-24" y="-4" width="50" height="16" fill="url(#nsh)"/></g>
+    <ellipse class="c-skin" cx="20" cy="-4" rx="17" ry="14"/>
+    <path d="M21.5,9.2 C26,6.5 29,4.8 31,3.2" fill="none" stroke="#06303a" stroke-opacity=".16" stroke-width="1" stroke-linecap="round"/>
+    <g class="eye-open"><circle cx="27" cy="-8" r="3.4" fill="#12283b"/><circle cx="28.2" cy="-9.2" r="1.1" fill="#fff"/></g>
+    <path class="eye-closed" d="M23,-8 q4,3 8,0" fill="none" stroke="#12283b" stroke-width="1.8" stroke-linecap="round"/>
+    <path class="smile" d="M25.5,2.5 q4,3.6 8,0" fill="none" stroke="#12283b" stroke-width="1.6" stroke-linecap="round"/>
+    <circle cx="22" cy="1" r="2.8" fill="#ff9aa8" opacity=".5"/>
+    <g data-min="10" id="crown" transform="translate(20,-16.5) rotate(-8)"><path d="M-10.5,0 L-9,-8.5 L-4.2,-4 L0,-10.5 L4.2,-4 L9,-8.5 L10.5,0Z" fill="#9fe3f5" stroke="#1a6db0" stroke-width="1.2" stroke-linejoin="round"/><circle cx="0" cy="-10.5" r="1.5" fill="#fff"/></g>
+  </g></g>
+  <path class="c-shell2" d="M-94,12 H94 C92,26 -88,28 -94,12Z"/>
+  <path class="c-shell" d="M-90,14 C-92,-44 92,-44 90,14Z"/>
+  <g clip-path="url(#shellclip)">
+   <g data-min="6" fill="#fff" fill-opacity=".1" stroke-width="1.2" style="stroke:var(--scute)" stroke-opacity=".4"><ellipse cx="-50" cy="-2" rx="20" ry="16"/><ellipse cx="50" cy="-2" rx="20" ry="16"/><ellipse cx="0" cy="-12" rx="26" ry="19"/><ellipse cx="-78" cy="6" rx="14" ry="12"/><ellipse cx="78" cy="6" rx="14" ry="12"/></g>
+   <path data-min="4" id="gloss" d="M-70,-8 C-62,-24 -38,-31 -10,-31" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity="0"/>
+   <path data-min="9" d="M-90,14 C-92,-44 92,-44 90,14Z" fill="url(#irg)"/>
+  </g>
+  <path class="scute" d="M-58,-18 Q0,-32 58,-18 M0,-33 L0,13 M-45,-24 L-32,13 M45,-24 L32,13 M-70,-2 L-88,10 M70,-2 L88,10"/>
+  <g data-min="3" id="spots" fill="#fff" opacity=".42"><circle cx="-45" cy="-6" r="4.5"/><circle cx="0" cy="-20" r="4.5"/><circle cx="45" cy="-6" r="4.5"/><circle cx="-20" cy="3" r="3.4"/><circle cx="20" cy="3" r="3.4"/></g>
+    <path data-min="9" d="M-86,0 C-86,-38 86,-38 86,0" fill="none" stroke="#e8fbff" stroke-width="1.4" opacity=".55"/>
+  <g data-min="12" id="const"></g>
+  <g transform="translate(38,16)"><g class="fl"><path class="c-skin fin" d="M0,-4 C22,-6 46,6 56,22 C34,22 10,12 -4,4Z"/></g></g>
+  <g transform="translate(-52,16)"><g class="fl b"><path class="c-skin fin" d="M0,-3 C14,-4 30,4 38,16 C22,16 6,10 -3,3Z"/></g></g>
+ </g>
+</g></g></g></g></g>
+<g id="workbub"><circle class="wb" cx="150" cy="118" r="3.5" fill="#e6f8ff"/><circle class="wb" style="animation-delay:-.4s" cx="170" cy="124" r="2.5" fill="#e6f8ff"/><circle class="wb" style="animation-delay:-.9s" cx="196" cy="116" r="3" fill="#e6f8ff"/><circle class="wb" style="animation-delay:-1.3s" cx="214" cy="122" r="2.2" fill="#e6f8ff"/><circle class="wb" style="animation-delay:-1.8s" cx="132" cy="124" r="2" fill="#e6f8ff"/><circle class="wb" style="animation-delay:-2s" cx="232" cy="118" r="3" fill="#e6f8ff"/></g>
+<g id="sc11" data-min="11"></g>
+<g id="fxlayer" transform="translate(180,92)"></g>
+<g class="zzz"><text x="212" y="118">z</text><text x="224" y="106">z</text><text x="238" y="92">Z</text></g>
+<g class="hearts"><text x="170" y="80">♥</text><text x="196" y="84">♥</text><text x="150" y="86">♥</text></g>
+<rect id="dim" width="360" height="180" fill="#04121f" pointer-events="none"/>
+<path class="wave" d="M-60 14 q15 -8 30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 V0 H-60Z" fill="#d8f1ff" opacity=".9"/>
+</svg>
+   <div class="stripinfo"><span id="sI1"></span><span id="sI2"></span></div>
+  </div>
+ </div>
+ <div class="petinfo">
+  <p class="petmsg" id="petmsg" aria-live="polite"></p>
+  <div class="tiles"><div class="tile"><b id="tStreak">0</b><small>días de racha</small></div><div class="tile"><b id="tDays">0</b><small>días perfectos</small></div><div class="tile"><b id="tStage">0/12</b><small>premios grandes</small></div></div>
+  <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="bar"><i id="barfill"></i></div>
+  <p class="next" id="petnext"></p>
+ </div>
+</section>
+
+<div id="banner" class="banner" hidden></div>
+
+<nav id="weeks" class="wgrid" aria-label="Semanas"></nav>
+<div id="weeknote" class="weeknote"></div>
+<nav id="days" class="daytabs" aria-label="Días"></nav>
+<article id="day" class="card"></article>
+
+<details id="safe" class="safe" open>
+  <summary>Pausas de seguridad</summary>
+  <ul>
+    <li>Si una noche la cara te arde fuerte, se pela mucho o queda muy roja: esa noche no uses el Gel de la EPS. Solo Limpiador Effaclar y Hydro Boost. A la mañana siguiente salta el Ácido azelaico y el Mela B3 (si ya los usas) y sigue con Limpiador, Hydro Boost y Heliocare. Después sigue el plan.</li>
+    <li>Si el Ácido azelaico te arde mucho por la mañana: ese día sáltalo y sigue con lo demás.</li>
+    <li>Si la irritación fuerte se repite 3 veces seguidas, o no mejora aunque descanses el gel, pide una consulta en la EPS.</li>
+    <li>Si el sol te dejó la cara roja o ardiendo: esa noche no uses el Gel de la EPS.</li>
+    <li>Si se te hincha la cara, los labios o la lengua, o te salen ronchas: suspende el Gel de la EPS y ve a urgencias.</li>
+    <li>Si la Doxiciclina te da dolor al tragar, ardor en el pecho o mucho malestar de estómago: tómala con más agua y con la comida; si sigue, consulta en la EPS.</li>
+    <li>El Gel de la EPS es máximo una vez al día. Más cantidad no da resultados más rápidos, solo más irritación.</li>
+    <li>Los granos no se revientan.</li>
+  </ul>
+</details>
+
+<details id="prods">
+  <summary>Lista de productos</summary>
+  <ol>
+    <li><b>Doxiciclina 100 mg</b>: 1 pastilla después del almuerzo, tal como viene en tu fórmula. Es un tratamiento de unos 3 meses, justo lo que dura este plan. No la tomes cerca de antiácidos, hierro, calcio, magnesio ni multivitaminas (2 horas antes o 6 horas después). Da sensibilidad al sol: por eso el Heliocare y la gorra.</li>
+    <li><b>Gel de la EPS</b>: adapaleno 0.3% + peróxido de benzoílo 2.5%, el de tu fórmula. Es el tratamiento principal y se usa como máximo una vez al día. Aquí empiezas con pocas noches y vas subiendo para que tu piel se acostumbre. Puede decolorar toallas, fundas y ropa. No lo cambies por otro de menor fuerza.</li>
+    <li><b>Limpiador Effaclar</b> (La Roche-Posay, botella <b>azul</b>, "Purifying Foaming Gel Cleanser"). No el de botella verde que dice "Micro-peeling".</li>
+    <li><b>Hydro Boost</b> (Neutrogena Hydro Boost Water Gel): la crema hidratante.</li>
+    <li><b>Heliocare 360</b>: el protector solar que ya tienes.</li>
+    <li><b>Ácido azelaico</b> (The Ordinary, Azelaic Acid Suspension 10%): desde la semana 3 (lunes, miércoles y viernes) y todos los días desde la semana 5. Calma los granos inflamados y ayuda con las manchas.</li>
+    <li><b>Mela B3</b> (sérum de La Roche-Posay): todas las mañanas desde la semana 7. Ayuda con las manchas que quedan.</li>
+  </ol>
+  <p><b>Cómo está repartido:</b> en la <b>noche</b> va el Gel de la EPS (tratamiento principal) y nada más que limpiar e hidratar. En la <b>mañana</b> van el Ácido azelaico y el Mela B3, que son suaves y se llevan bien con el sol y el Heliocare. Nunca se juntan el gel y los sérums en la misma rutina, y cada novedad entra sola para saber cómo la tolera tu piel. Las últimas semanas no cambian nada, para que tu piel se estabilice y el resultado se note.</p>
+  <p><b>Cuándo se ve el resultado:</b> lo normal es que las primeras mejoras lleguen entre la semana 4 y la 6, y los cambios más claros entre la 8 y la 12. Las primeras semanas la piel puede secarse o pelarse un poco: es esperable y mejora con la hidratación.</p>
+  <p><b>Al terminar las 12 semanas:</b> la Doxiciclina se suspende al terminar su ciclo, y lo normal es mantener el gel y el protector solar para conservar lo logrado.</p>
+  <p class="legend">Opcional: parches hidrocoloides para granos abiertos (nunca encima del Gel de la EPS).</p>
+</details>
+
+<details id="evo">
+  <summary>Cómo crece mi tortuga</summary>
+  <p><b>Cada día:</b> empieza dormida. Cuando marcas tu primer paso, se despierta. Mientras más pasos haces, más contenta nada. Al tocar «Terminar día», el día se guarda y ya no se puede cambiar.</p>
+  <table class="tbl">
+    <tr><th>Pasos del día</th><th>Qué pasa</th></tr>
+    <tr><td>100%</td><td><b>Día perfecto:</b> baile especial, un regalo nuevo para el estanque (una estrella de mar, un pasto marino, una almeja o una perla) y la tortuga crece.</td></tr>
+    <tr><td>70% a 99%</td><td><b>Buen día:</b> mueve un poco el cuerpo y crece, pero no gana regalo. La racha sigue.</td></tr>
+    <tr><td>Menos de 70%</td><td><b>Día incompleto:</b> sin baile. Crece un poco menos y la racha pierde un día.</td></tr>
+  </table>
+  <p><b>Cada semana:</b> si en la semana tuviste al menos 5 días buenos (70% o más), ganas un <b>premio grande</b> y todo el estanque cambia. Los 12 premios:</p>
+  <div class="gal" id="gal"></div>
+  <p><b>Regalos del estanque que llevas:</b></p>
+  <div class="gifts" id="giftsum"></div>
+  <p><b>Si fallas un día:</b> no pasa nada grave. El día se cierra con lo que marcaste y no se puede completar después. Tu tortuga nunca retrocede ni pierde lo que ya ganó. Solo crece más despacio. No hagas doble el siguiente día ni te pongas doble producto para compensar. Vuelve a la rutina que toca.</p>
+  <p><b>La racha</b> perdona un día fallado. Dos días seguidos sin llegar al 70% la reinician en cero, pero la tortuga conserva todo.</p>
+  <p><b>Si no tocas «Terminar día»:</b> el día se cierra solo a la 1:00 a.m. con lo que hayas marcado.</p>
+  <p><b>Las semanas</b> se van abriendo una por una, cada lunes. Mientras tanto aparecen con un candado.</p>
+</details>
+
+<details id="mapdet">
+  <summary>Mapa de las 12 semanas</summary>
+  <p class="legend">Gel = noche de Gel de la EPS · Piscina = noche de piscina, sin gel · Pisc.+Gel = piscina y gel · Reposo = noche de descanso. Az = mañana con Ácido azelaico · M = mañana con Mela B3. Toca un día para abrirlo.</p>
+  <div id="map"></div>
+</details>
+
+<details id="demo" class="demo" hidden>
+  <summary>Modo demo (solo para probar)</summary>
+  <p class="legend">Aquí puedes viajar en el tiempo y ver todas las etapas, bailes y sonidos. Nada de esto se guarda en la página real.</p>
+  <div class="row"><button class="btn alt" id="dExit">Salir del modo demo</button></div>
+  <label class="chk"><input type="checkbox" id="dFree" checked> <b>Modo libre</b>: todos los días y semanas abiertos y editables (no se cierran solos por fecha). Quítalo para probar el cierre automático con «Día simulado».</label>
+  <label for="dDay">Día simulado (1 a 84; 0 = antes de empezar)</label>
+  <div class="row"><input type="number" id="dDay" min="0" max="90" value="1" style="width:80px">
+   <select id="dHour"><option value="9">9:00 a.m.</option><option value="23.5">11:30 p.m.</option><option value="24.5">12:30 a.m. (sigue siendo el mismo día)</option><option value="24.98">12:59 a.m. (sigue siendo el mismo día)</option><option value="25.08">1:05 a.m. (ya es el día siguiente)</option></select>
+   <button class="btn alt" id="dGo">Ir</button></div>
+  <label>Rellenar todos los días anteriores al simulado</label>
+  <div class="row"><button class="btn alt" id="dPerfect">Todos perfectos</button><button class="btn alt" id="dMix">Mezcla realista</button><button class="btn alt" id="dBad">Muchos fallos</button><button class="btn alt" id="dReset">Reiniciar demo</button></div>
+  <label>Ver la tortuga en una etapa (0 a 12 premios) y estado</label>
+  <div class="row"><input type="range" id="dStage" min="0" max="12" value="0"><span id="dStageN">0</span>
+   <button class="btn alt" data-mood="sleep">Dormida</button><button class="btn alt" data-mood="awake">Despierta</button><button class="btn alt" data-mood="done">Contenta</button><button class="btn alt" id="dNoOv">Quitar</button></div>
+  <label>Probar un baile</label>
+  <div class="row"><select id="dDance"><option value="0">Baile 1 · giro elegante</option><option value="1">Baile 2 · saltitos</option><option value="2">Baile 3 · ola</option><option value="3">Baile 4 · voltereta</option><option value="4">Baile 5 · meneo</option><option value="5">Baile 6 · espiral</option><option value="6">Baile 7 · latido y reverencia</option><option value="w">Buen día · meneo suave</option><option value="p">Premio grande</option></select>
+   <select id="dFx"><option value="0">Estrellas</option><option value="1">Corazones</option><option value="2">Burbujas</option><option value="3">Confeti</option></select>
+   <button class="btn alt" id="dPlay">Bailar</button></div>
+  <label>Probar sonidos</label>
+  <div class="row"><button class="btn alt" data-snd="pop">Despertar</button><button class="btn alt" data-snd="blub">Tocar tortuga</button><button class="btn alt" data-snd="good">Buen día</button><button class="btn alt" data-snd="prize">Premio</button><button class="btn alt" data-snd="gift">Regalo</button><button class="btn alt" data-snd="notice">Aviso</button><button class="btn alt" data-snd="check">Marcar casilla</button><button class="btn alt" data-snd="uncheck">Desmarcar casilla</button></div>
+  <div class="row"><select id="dMel"><option value="0">Día perfecto · melodía 1</option><option value="1">melodía 2</option><option value="2">melodía 3</option><option value="3">melodía 4</option><option value="4">melodía 5</option><option value="5">melodía 6</option><option value="6">melodía 7</option></select><button class="btn alt" data-snd="day">Escuchar</button></div>
+  <label>Ventanas</label>
+  <div class="row"><button class="btn alt" id="dWelcome">Ver bienvenida</button><button class="btn alt" id="dPrizeM">Ver premio semanal</button><button class="btn alt" id="dDayM">Ver día perfecto</button><button class="btn alt" id="dWeekM">Ver semana nueva</button></div>
+</details>
+
+<p class="foot" id="foot">Esta página es una guía de cuidado personal y no reemplaza la atención médica. Si algo te preocupa o te hace daño, consulta en la EPS.</p>
+<noscript><p>Esta página necesita JavaScript activado para mostrar el plan.</p></noscript>
+</main>
+
+<div id="modal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="mt"><div class="mbox"><div class="mhead" id="mhead"><div class="mico" id="mico"></div><h2 id="mt"></h2><p class="msub" id="msub"></p></div><div class="mbody" id="mb"></div><div class="mdots" id="mdots"></div><div class="mbtns" id="mbtns"></div></div></div>
+<div id="toast" class="toast" hidden role="status"><span class="ti" id="ti"></span><span id="tt"></span></div>
+
+<script id="cfg">
+/* Después de crear tu hoja de Google (ver guia-paso-a-paso.md), pega aquí la dirección y la clave. */
+window.PP_CONFIG={
+  SERVER_URL:'https://script.google.com/macros/s/AKfycbz-xMq0IPmYEZ67XenO6aU_ole8_7ycTg_S_6H4mscej3Z_gYQJ979PSGaJX3NRlng9/exec',   
+  TOKEN:'tortuga17102026' 
+};
+</script>
+
+<script id="logic">
+(function(){
+'use strict';
+var S=function(t){return {t:t}}, H=function(h){return {h:h}};
+var DAYN=['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
+var W=12;
+
+var T={
+ limp:'Lava la cara con el Limpiador Effaclar durante 30 segundos y enjuaga con agua.',
+ seca:'Sécate la cara a toques con una toalla limpia.',
+ mela:'Pon 3 o 4 gotas de Mela B3 en la cara, masajea suave y espera 1 minuto.',
+ aze:'Pon una capa fina de Ácido azelaico en toda la cara y espera 1 minuto.',
+ hb:'Pon una capa fina de Hydro Boost en toda la cara.',
+ sol:'Pon Heliocare en cara y cuello (la cantidad de dos dedos: índice y corazón).',
+ d1:'Toma la Doxiciclina (1 pastilla) con un vaso lleno de agua.',
+ d2:'Quédate de pie o sentada 30 minutos. No te acuestes.',
+ d3:'No tomes leche, yogurt ni queso desde 2 horas antes hasta 2 horas después de la pastilla.',
+ s1:'12:00 m.: vuelve a ponerte Heliocare en cara y cuello.',
+ s2:'2:00 p.m.: vuelve a ponerte Heliocare en cara y cuello.',
+ s3:'Usa sombrero o gorra mientras estés al sol.',
+ p1:'Enjuaga la cara con agua dulce.',
+ p2:'Sécate a toques con una toalla limpia, antes de ponerte el casco.',
+ hbw:'Pon una capa fina de Hydro Boost en toda la cara, con la piel todavía un poco húmeda.',
+ hb2:'Espera 2 minutos y pon una segunda capa fina de Hydro Boost.',
+ wait20:'Espera 20 a 30 minutos sin tocarte la cara, hasta que esté completamente seca.',
+ wait30:'Espera 30 minutos sin tocarte la cara, hasta que esté completamente seca.',
+ hbThin:'Pon una capa muy fina de Hydro Boost en toda la cara.',
+ gel:'Pon el Gel de la EPS en capa delgada: una arveja pequeña en la frente, una en el mentón y una en cada mejilla, y extiéndelo. Evita ojos, labios y nariz.',
+ wait5:'Espera 5 a 10 minutos.',
+ hbEnd:'Pon otra capa fina de Hydro Boost encima.',
+ hands:'Lávate las manos con jabón.',
+ noGel:'Esta noche NO uses el Gel de la EPS.',
+ funda:'Cambia la funda de la almohada por una limpia (blanca).',
+ casco:'Lava las almohadillas del casco.'
+};
+
+function isPool(d){return d>=2&&d<=5}
+function gelNight(w,d){
+  if(w<=2) return d===1||d===6;
+  if(w<=8) return d===1||d===6||d===7;
+  return d===1||d===5||d===6||d===7;
+}
+function nightType(w,d){
+  var g=gelNight(w,d), p=isPool(d);
+  return p?(g?'poolgel':'pool'):(g?'gel':'rest');
+}
+function useAze(w,d){
+  if(w>=5) return true;
+  if(w>=3) return d===1||d===3||d===5;
+  return false;
+}
+function useMela(w){return w>=7}
+function sandwich(w,type){return type==='poolgel'||w<=5}
+
+function morning(w,d){
+  var o=[];
+  var photo=(w===1&&d===1)||((w===4||w===8||w===12)&&d===7);
+  if(photo){
+    if(w===1) o.push(S('Foto de inicio: tómate una foto de la cara con luz natural, sin maquillaje y siempre en el mismo lugar.'));
+    else if(w===12) o.push(S('Foto final: tómate una foto igual a la del primer día (luz natural, sin maquillaje, en el mismo lugar).'));
+    else o.push(S('Foto de progreso: tómate una foto de la cara con luz natural, sin maquillaje y en el mismo lugar, para compararla con la anterior.'));
+  }
+  o.push(S(T.limp),S(T.seca));
+  if(useMela(w)) o.push(S(T.mela));
+  if(useAze(w,d)) o.push(S(T.aze));
+  o.push(S(T.hb),S(T.sol));
+  var ex=[];
+  if(w===1&&d===1){
+    ex.push('Revisa que tienes todos los productos de la lista.');
+    ex.push('Guarda los sérums de Cyzone: durante estas 12 semanas no se usan.');
+    ex.push('Separa toallas y fundas blancas (el Gel de la EPS puede decolorar la tela de color).');
+  }
+  if(w===12&&d===7) ex.push('Pon la foto de inicio y la foto final lado a lado y míralas con calma. Mira todo lo que lograste.');
+  if(ex.length){o.push(H('Extra de hoy'));ex.forEach(function(x){o.push(S(x))});}
+  return o;
+}
+function midday(w,d){
+  var o=[S(T.d1),S(T.d2),S(T.d3)];
+  if(d===6) o.push(H('Sábado, sol'),S(T.s1),S(T.s2),S(T.s3));
+  return o;
+}
+function night(w,d,type){
+  var o=[];
+  if(type==='pool'||type==='poolgel'){
+    o.push(H('Al salir de la piscina'),S(T.p1),S(T.p2),H('Al llegar a casa'));
+  }
+  o.push(S(T.limp),S(T.seca));
+  if(type==='pool'){
+    o.push(S(T.hbw),S(T.hb2),S(T.noGel));
+  } else if(type==='rest'){
+    o.push(S(T.hb),S(T.noGel));
+  } else {
+    var sand=sandwich(w,type);
+    o.push(S(type==='poolgel'?T.wait30:T.wait20));
+    if(sand) o.push(S(T.hbThin));
+    o.push(S(T.gel),S(T.wait5),S(sand?T.hbEnd:T.hb),S(T.hands));
+  }
+  if(d===3||d===7){
+    o.push(H('Extra de hoy'),S(T.funda));
+    if(d===7) o.push(S(T.casco));
+  }
+  return o;
+}
+function buildDay(w,d){
+  var type=nightType(w,d);
+  return {type:type,blocks:[
+    {id:'am',name:'☀️ Mañana',short:'Mañana',sub:'al levantarte',steps:morning(w,d)},
+    {id:'md',name:'🍽️ Después del almuerzo',short:'Almuerzo',sub:'',steps:midday(w,d)},
+    {id:'nt',name:'🌙 Noche',short:'Noche',sub:isPool(d)?'después de la piscina':'antes de dormir',steps:night(w,d,type)}
+  ]};
+}
+
+/* Texto de cada semana: cercano y fácil de leer */
+var WEEKINTRO={
+ 1:'Empiezas despacio. El gel de la EPS entra solo dos noches para que tu piel se acostumbre; el resto de los días es limpiar, hidratar y proteger.',
+ 2:'Segunda semana, mismo ritmo. Repetir lo mismo es lo que la piel necesita para adaptarse.',
+ 3:'Semana de novedades: el gel sube a tres noches y entra el ácido azelaico por las mañanas. Un poco de ardor al principio es normal; si es fuerte, mira las Pausas de seguridad.',
+ 4:'Misma rutina que la semana 3, para afianzarla. El domingo toca foto de progreso.',
+ 5:'El ácido azelaico pasa a todas las mañanas. El gel sigue igual.',
+ 6:'Mitad del plan. Desde esta semana el gel ya no lleva la capa de Hydro Boost antes: tu piel ya lo tolera mejor.',
+ 7:'Entra el Mela B3 todas las mañanas, junto con el ácido azelaico. Ayuda con las manchas que van quedando.',
+ 8:'Misma rutina que la semana 7. El domingo toca foto de progreso; compárala con la primera.',
+ 9:'Último ajuste del plan: el viernes también es noche de gel, después de la piscina.',
+ 10:'Sin novedades. Toca mantener el ritmo.',
+ 11:'Casi terminas. Todo sigue igual.',
+ 12:'Última semana. Todo sigue igual. El domingo: foto final, para compararla con la del primer día.'
+};
+/* Qué es nuevo cada semana (para avisarlo en pantalla) */
+var WEEKNEW={
+ 1:['Gel de la EPS dos noches: lunes y sábado','Todos los días: limpiar, hidratar y proteger'],
+ 3:['El gel sube a tres noches: lunes, sábado y domingo','Entra el ácido azelaico por las mañanas (lunes, miércoles y viernes)'],
+ 5:['El ácido azelaico pasa a todas las mañanas'],
+ 6:['El gel ya no lleva la capa de Hydro Boost antes'],
+ 7:['Entra el Mela B3 todas las mañanas'],
+ 9:['El viernes también es noche de gel, después de la piscina'],
+ 4:['Foto de progreso el domingo'],
+ 8:['Foto de progreso el domingo'],
+ 12:['Foto final el domingo']
+};
+var TYPELABEL={gel:'Noche de Gel de la EPS',pool:'Noche de piscina',poolgel:'Piscina + Gel de la EPS',rest:'Noche de descanso'};
+function weekSummary(w){
+  var am=['Limpiador Effaclar'];
+  if(useMela(w)) am.push('Mela B3');
+  if(w>=3) am.push('Ácido azelaico'+(w>=5?'':' (lun, mié y vie)'));
+  am.push('Hydro Boost','Heliocare');
+  var gel=[];
+  for(var d=1;d<=7;d++) if(gelNight(w,d)) gel.push(DAYN[d-1].toLowerCase());
+  return {am:am,gel:gel};
+}
+
+window.__plan={buildDay:buildDay,nightType:nightType,gelNight:gelNight,useAze:useAze,useMela:useMela,sandwich:sandwich,weekSummary:weekSummary,T:T,WEEKINTRO:WEEKINTRO,WEEKNEW:WEEKNEW,TYPELABEL:TYPELABEL,DAYN:DAYN,W:W};
+})();
+</script>
+
+<script id="ui">
+(function(){
+'use strict';
+var CFG=window.PP_CONFIG||{}, P=window.__plan, W=P.W, ND=W*7, DAYN=P.DAYN;
+var NAME='Brenda';
+var DAYL=['L','M','M','J','V','S','D'];
+var MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+var MESL=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+var DEMO=(window.name==='pp-demo');
+var FREE=DEMO;   /* en la demo: todo abierto y editable */
+var PFX=DEMO?'ppd:':'pp:';
+var SERVER=!DEMO&&!!CFG.SERVER_URL;
+var START_UTC=Date.UTC(2026,9,26,5,0,0), DAY=864e5, GRACE=60*60000;
+var HASH=193436514;
+var $=function(id){return document.getElementById(id)};
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function rnd(s){var x=Math.sin(s*127.1+311.7)*43758.5453;return x-Math.floor(x)}
+function pick(a,seed){return a[Math.abs(Math.floor(seed))%a.length]}
+function lista(a){return a.length<2?a.join(''):a.slice(0,-1).join(', ')+' y '+a[a.length-1]}
+
+/* ---------- almacenamiento ---------- */
+var mem={};
+function lsGet(k){try{var v=localStorage.getItem(PFX+k);if(v!==null)return v}catch(e){} return mem[k]===undefined?null:mem[k]}
+function lsSet(k,v){mem[k]=v;try{localStorage.setItem(PFX+k,v)}catch(e){}}
+function lsDel(k){delete mem[k];try{localStorage.removeItem(PFX+k)}catch(e){}}
+var ST;
+try{ST=JSON.parse(lsGet('v2')||'null')}catch(e){ST=null}
+if(!ST||typeof ST!=='object') ST={};
+ST.days=ST.days||{};ST.dirty=ST.dirty||{};
+ST.seen=ST.seen||{};
+['closed'].forEach(function(k){if(typeof ST.seen[k]!=='number')ST.seen[k]=-1});
+['weeks','open','mil','sz'].forEach(function(k){if(typeof ST.seen[k]!=='number')ST.seen[k]=0});
+function save(){lsSet('v2',JSON.stringify(ST))}
+
+/* ---------- reloj (hora verificada) ---------- */
+var clock={off:+lsGet('off')||0,known:lsGet('off')!==null};
+var demoNow=null;
+function nowMs(){return DEMO?(demoNow!==null?demoNow:START_UTC+9*3600e3):Date.now()+clock.off}
+var EFF=0;
+function calcEff(){return Math.floor((nowMs()-GRACE-START_UTC)/DAY)}
+function dateOf(idx){return new Date(Date.UTC(2026,9,26+idx))}
+function fmt(idx){var d=dateOf(idx);return d.getUTCDate()+' '+MES[d.getUTCMonth()]}
+function fmtLong(idx){var d=dateOf(idx);return DAYN[(idx%7+7)%7].toLowerCase()+' '+d.getUTCDate()+' de '+MESL[d.getUTCMonth()]}
+function inPlan(i){return i>=0&&i<ND}
+function weekOpen(w){return FREE||w===1||EFF>=7*(w-1)}
+function curWeek(){return EFF<0?1:(EFF>=ND?W:Math.floor(EFF/7)+1)}
+
+/* ---------- datos de cada día ---------- */
+var DM={};
+function dayMeta(idx){
+  if(DM[idx]) return DM[idx];
+  var w=Math.floor(idx/7)+1,d=idx%7+1,info=P.buildDay(w,d),tot=0;
+  info.blocks.forEach(function(b){b.steps.forEach(function(s){if(s.t)tot++})});
+  return DM[idx]={w:w,d:d,info:info,tot:tot};
+}
+function pop(m){var n=0;while(m){n+=m&1;m=m>>>1}return n}
+function rec(idx){return ST.days[idx]||null}
+function cntOf(idx){var r=rec(idx);return r?pop(r.m):0}
+function isClosed(idx){if(!inPlan(idx))return false;var r=rec(idx);return !!(r&&r.c)||(!FREE&&idx<EFF)}
+function pct(idx){return cntOf(idx)/dayMeta(idx).tot}
+function canEdit(idx){return (FREE||idx===EFF)&&inPlan(idx)&&!(rec(idx)&&rec(idx).c)&&clock.known}
+function WD(){return FREE?(sel.w-1)*7+sel.d-1:EFF}
+function level(p){return p>=1?'perfect':(p>=0.7?'good':'low')}
+var LVL={perfect:'Día perfecto',good:'Buen día',low:'Día incompleto'};
+
+/* ---------- premios y regalos ---------- */
+var CAT=[
+ {i:'💧',n:'Burbujas viajeras',d:'Deja una estela de burbujas al nadar'},
+ {i:'🌱',n:'Primeras algas',d:'Brotan en el fondo del estanque'},
+ {i:'✨',n:'Caparazón con luz',d:'Manchas de luz y aletas con borde claro'},
+ {i:'🌿',n:'Pradera de algas',d:'Un bosque de algas ondula detrás'},
+ {i:'🐠',n:'Un pez amigo',d:'Nada por el estanque'},
+ {i:'🌸',n:'Primer coral',d:'Nace el primer coral'},
+ {i:'🐙',n:'Arrecife florecido',d:'Corales, abanicos y anémonas'},
+ {i:'🐟',n:'Cardumen plateado',d:'Un banco de peces la acompaña'},
+ {i:'🎐',n:'Medusa luminosa',d:'Flota despacio, con su brillo'},
+ {i:'🌊',n:'Bosque de kelp y corona',d:'Kelp alto, rayos de luz, caparazón iridiscente y su corona azul'},
+ {i:'🌅',n:'Atardecer luminoso',d:'El agua cambia de hora y aparece el plancton brillante'},
+ {i:'♋',n:'Constelación de Cáncer',d:'Corona dorada y la constelación de Cáncer en su caparazón'}
+];
+var STAGES=[null].concat(CAT.map(function(c){return c.n}));
+var GT=['grass','clam','pearl','star'], GN=['un pasto marino','una almeja','una perla','una estrella de mar'], GS=['Pasto marino','Almeja','Perla','Estrella de mar'];
+function giftSvg(ty){
+  var s='<svg viewBox="-12 -14 24 24" aria-hidden="true">';
+  if(ty==='grass') s+='<path d="M0,8 C-2,0 -6,-4 -7,-10 M0,8 C0,-1 2,-6 3,-12 M0,8 C2,1 6,-2 9,-6" fill="none" stroke-linecap="round" stroke="#38b878" stroke-width="2.4"/>';
+  else if(ty==='clam') s+='<path d="M-9,6 A9,8 0 0 1 9,6Z" fill="#f2a7c3"/><path d="M-4,6 L-5,0 M0,6 L0,-2 M4,6 L5,0" stroke="#fff" stroke-opacity=".7" stroke-width="1.1" fill="none"/>';
+  else if(ty==='pearl') s+='<circle cy="0" r="6" fill="#f4f8fb" stroke="#b9cfe0" stroke-width="1"/><circle cx="-2" cy="-2" r="1.6" fill="#fff"/>';
+  else s+='<path d="M0,-11 L2.8,-3.6 L10.4,-3.2 L4.4,1.4 L6.5,8.6 L0,4.4 L-6.5,8.6 L-4.4,1.4 L-10.4,-3.2 L-2.8,-3.6Z" fill="#ff9f5a"/>';
+  return s+'</svg>';
+}
+
+/* ---------- modelo derivado ---------- */
+function derive(){
+  var credits=0,perfect=[],closed=[],goodFlag=[],i;
+  for(i=0;i<ND;i++){
+    var c=isClosed(i);closed[i]=c;
+    if(c){var p=pct(i);credits+=p;if(p>=1)perfect.push(i);goodFlag[i]=p>=0.7}
+  }
+  var weeksClosed=0,prizes=0,wk=[],w;
+  for(w=1;w<=W;w++){
+    if(!closed[7*w-1]){break}
+    weeksClosed=w;
+    var g=0;for(i=7*(w-1);i<7*w;i++) if(goodFlag[i]) g++;
+    var earned=g>=5;if(earned)prizes++;
+    wk[w]={good:g,earned:earned,prizeNo:earned?prizes:0};
+  }
+  var last=-1;for(i=0;i<ND;i++) if(closed[i]) last=i;
+  var streak=0,gap=0;
+  for(i=last;i>=0;i--){
+    if(goodFlag[i]){streak++;gap=0}else{gap++;if(gap>=2)break}
+  }
+  var gifts=[0,0,0,0];for(i=0;i<perfect.length;i++)gifts[i%4]++;
+  return {credits:credits,perfect:perfect,closed:closed,weeksClosed:weeksClosed,prizes:prizes,wk:wk,streak:streak,f:Math.min(1,credits/ND),gifts:gifts};
+}
+var M=null;
+function goodSoFar(w){var g=0,from=7*(w-1);for(var i=from;i<from+7;i++) if(M.closed[i]&&pct(i)>=0.7) g++;return g}
+
+/* ---------- estado de la tortuga ---------- */
+function todayMood(){
+  if(WD()<0) return 'sleep';
+  if(WD()>=ND) return 'done';
+  var r=rec(WD());
+  if(r&&r.c) return 'done';
+  return cntOf(WD())>0?'awake':'sleep';
+}
+var OV=null, fxTimer=null, lastItems=-1, msgOverride=null, msgT=null, moodCls='sleep';
+function blade(x,h,i,c){var d='M0,0 C-5,'+(-h*.35)+' 5,'+(-h*.7)+' 0,'+(-h)+' C-3,'+(-h*.7)+' 3,'+(-h*.35)+' 3,0Z';return '<g transform="translate('+x+',172)"><g class="sw" style="animation-delay:-'+(i*0.7).toFixed(1)+'s"><path d="'+d+'" style="fill:var(--'+c+')"/></g></g>'}
+function meadow(){var h='',i=0;for(var x=6;x<360;x+=24){i++;var hh=26+rnd(i)*24;h+=blade(x+rnd(i+9)*10,hh,i,i%2?'weed1':'weed2')+blade(x+10,hh*.7,i+3,i%2?'weed2':'weed1')}return h}
+function sprouts(){var h='',xs=[24,88,176,262,334];for(var i=0;i<xs.length;i++)h+=blade(xs[i],12+rnd(i+4)*8,i,'weed2');return h}
+function kelp(){var h='',xs=[14,50,308,346],i;for(i=0;i<xs.length;i++){var p='M0,0',k;for(k=0;k<6;k++)p+=' q'+(k%2?-7:7)+',-14 0,-28';h+='<g transform="translate('+xs[i]+',174)"><g class="sw2" style="animation-delay:-'+(i*1.3)+'s"><path d="'+p+'" fill="none" style="stroke:var(--kelp)" stroke-width="3.4" stroke-linecap="round" opacity=".8"/><path d="'+p+'" fill="none" style="stroke:var(--kelp)" stroke-width="2" stroke-linecap="round" opacity=".5" transform="translate(7,0)"/></g></g>'}return h}
+function branch(x,y,s){return '<g transform="translate('+x+','+y+') scale('+s+')"><g class="sw2"><path d="M0,0 C0,-12 -3,-20 -9,-30 M0,-12 C2,-20 7,-26 12,-38 M-4,-22 C-4,-30 -2,-36 -6,-46 M7,-26 C9,-32 8,-38 10,-48" fill="none" style="stroke:var(--coral1)" stroke-width="4.6" stroke-linecap="round"/><g style="fill:var(--coral2)"><circle cx="-9" cy="-30" r="3"/><circle cx="12" cy="-38" r="3"/><circle cx="-6" cy="-46" r="3"/><circle cx="10" cy="-48" r="3"/></g><g class="glowtip" fill="#fff" filter="url(#blur3)"><circle cx="-6" cy="-46" r="4"/><circle cx="10" cy="-48" r="4"/></g></g></g>'}
+function fan(x,y,s){return '<g transform="translate('+x+','+y+') scale('+s+')"><g class="sw2"><path d="M0,0 L-27,-34 Q0,-54 27,-34Z" style="fill:var(--coral3)" opacity=".78"/><path d="M0,0 L-19,-37 M0,0 L-7,-44 M0,0 L7,-44 M0,0 L19,-37" stroke="#fff" stroke-opacity=".4" stroke-width="1.2" fill="none"/></g></g>'}
+function brain(x,y,s){return '<g transform="translate('+x+','+y+') scale('+s+')"><ellipse cy="-5" rx="17" ry="11" style="fill:var(--coral2)"/><path d="M-11,-8 q4,-5 8,0 t8,0 t6,-2 M-13,-1 q4,-5 8,0 t8,0 t8,-1" fill="none" stroke="#7a3b2a" stroke-opacity=".3" stroke-width="1.6" stroke-linecap="round"/></g>'}
+function anem(x,y,s){var t='',i;for(i=0;i<9;i++){var a=(-70+i*17.5)*Math.PI/180;t+='<path d="M0,0 L'+(Math.sin(a)*22).toFixed(1)+','+(-Math.cos(a)*22).toFixed(1)+'" style="stroke:var(--anem)" stroke-width="2.4" stroke-linecap="round"/><circle cx="'+(Math.sin(a)*22).toFixed(1)+'" cy="'+(-Math.cos(a)*22).toFixed(1)+'" r="2" style="fill:var(--anem)"/>'}return '<g transform="translate('+x+','+y+') scale('+s+')"><ellipse cy="-2" rx="9" ry="5" style="fill:var(--coral2)"/><g class="sw2">'+t+'</g></g>'}
+function sfish(x,y,s){return '<g transform="translate('+x+','+y+') scale('+s+')"><g class="sf" style="animation-delay:-'+(rnd(x+y)*1.4).toFixed(2)+'s"><ellipse rx="5.5" ry="2.8" style="fill:var(--silver)"/><path d="M-5,0 L-10,-3.4 L-10,3.4Z" style="fill:var(--silver)"/><circle cx="3" cy="-.7" r=".8" fill="#12283b"/></g></g>'}
+function school(){var p=[[0,0],[-12,-7],[-12,8],[-24,-13],[-24,0],[-24,13],[-38,-5],[-38,7]],h='';for(var i=0;i<p.length;i++)h+=sfish(p[i][0],p[i][1],.8);return '<g class="school"><g transform="translate(0,52)">'+h+'</g></g>'}
+function jelly(){return '<g transform="translate(300,62)"><g class="jel"><g class="jp"><path d="M-15,0 C-15,-22 15,-22 15,0 C9,4 -9,4 -15,0Z" style="fill:var(--jelly)" opacity=".62"/><path d="M-9,-6 C-8,-15 6,-15 9,-6" stroke="#fff" stroke-opacity=".6" stroke-width="1.8" fill="none" stroke-linecap="round"/></g><g class="sw2" style="animation-duration:3s"><path d="M-9,3 q-4,8 0,16 t0,16 M-3,4 q-4,9 0,18 t0,18 M4,4 q4,9 0,18 t0,18 M10,3 q4,8 0,16 t0,16" fill="none" style="stroke:var(--jelly)" stroke-width="1.6" stroke-linecap="round" opacity=".6"/></g></g></g>'}
+function plankton(){var h='';for(var i=0;i<16;i++){h+='<circle class="pl" style="animation-delay:-'+(rnd(i+2)*7).toFixed(1)+'s" cx="'+(10+rnd(i)*340).toFixed(0)+'" cy="'+(30+rnd(i+30)*120).toFixed(0)+'" r="'+(1+rnd(i+60)*1.6).toFixed(1)+'" fill="#bff6ff"/>'}return h}
+function starP(cx,cy,r){var p='',i;for(i=0;i<10;i++){var a=-Math.PI/2+i*Math.PI/5,rr=i%2?r*.46:r;p+=(i?'L':'M')+(cx+Math.cos(a)*rr).toFixed(2)+','+(cy+Math.sin(a)*rr).toFixed(2)}return p+'Z'}
+function buildConst(){
+ /* Cáncer: posiciones del dibujo de referencia, a escala del caparazón */
+ var ST=[[-19.1,-24.3,3.6],[-3.8,-13.9,2.4],[-.9,-6.6,3.2],[19.1,2.2,3.6],[1.2,8.3,3]],L=[[0,1],[1,2],[2,3],[2,4]],h='',i;
+ h+='<g fill="#fff" opacity=".5" filter="url(#blur3)">';for(i=0;i<5;i++)h+='<circle cx="'+ST[i][0]+'" cy="'+ST[i][1]+'" r="'+(ST[i][2]*1.5)+'"/>';h+='</g>';
+ L.forEach(function(l){var a=ST[l[0]],b=ST[l[1]],dx=b[0]-a[0],dy=b[1]-a[1],d=Math.sqrt(dx*dx+dy*dy),ux=dx/d,uy=dy/d,g1=a[2]+1,g2=b[2]+1;
+  h+='<path d="M'+(a[0]+ux*g1).toFixed(2)+','+(a[1]+uy*g1).toFixed(2)+' L'+(b[0]-ux*g2).toFixed(2)+','+(b[1]-uy*g2).toFixed(2)+'" stroke="#fff" stroke-opacity=".8" stroke-width="1.3" stroke-linecap="round" fill="none"/>'});
+ for(i=0;i<5;i++)h+='<path d="'+starP(ST[i][0],ST[i][1],ST[i][2])+'" fill="#fff" stroke="#fff" stroke-width=".6" stroke-linejoin="round"/>';
+ $('const').innerHTML=h;
+}
+function buildScene(){
+ $('sc4').innerHTML=meadow();$('sc2').innerHTML=sprouts();$('sc10').innerHTML=kelp()+'<g></g>';
+ $('sc6').innerHTML=branch(298,174,1);
+ $('sc7').innerHTML=branch(36,175,1.15)+brain(96,176,.95)+fan(262,174,1.05)+anem(206,176,1)+branch(338,175,.95);
+ $('sc8').innerHTML=school();$('sc9').innerHTML=jelly();$('sc11').innerHTML=plankton();
+}
+
+
+/* ---------- regalos del día: jardines por tipo ---------- */
+var PATCH={grass:[38,168,320],clam:[84,236,338],pearl:[120,270,18],star:[66,196,300]};
+function renderItems(n,animLast){
+  var arr=[],k;
+  for(k=0;k<n;k++){var ty=GT[k%4],j=Math.floor(k/4),cx=PATCH[ty][j%3];
+    var x=Math.max(10,Math.min(350,cx+(rnd(k*3.1)-.5)*58)),y=165+rnd(k*7.7)*11,s=.7+rnd(k*5.3)*.5;
+    arr.push({k:k,ty:ty,x:x,y:y,s:s});}
+  arr.sort(function(a,b){return a.y-b.y});
+  var h='';
+  arr.forEach(function(a){
+    var inner;
+    if(a.ty==='grass') inner='<g class="gr" style="animation-delay:-'+(rnd(a.k)*3).toFixed(1)+'s"><path d="M0,0 C-2,-8 -6,-12 -7,-18 M0,0 C0,-9 2,-14 3,-20 M0,0 C2,-7 6,-10 9,-14" fill="none" stroke-linecap="round" style="stroke:var(--grass)" stroke-width="2.4"/></g>';
+    else if(a.ty==='clam') inner='<path d="M-8,0 A8,7 0 0 1 8,0Z" style="fill:var(--clam)"/><path d="M-4,0 L-5,-5 M0,0 L0,-7 M4,0 L5,-5" stroke="#fff" stroke-opacity=".6" stroke-width="1" fill="none"/>';
+    else if(a.ty==='pearl') inner='<circle cy="-3" r="3.4" style="fill:var(--pearlc)"/><circle cx="-1" cy="-4" r="1" fill="#fff"/>';
+    else inner='<path d="M0,-9 L2.3,-3 L8.5,-2.6 L3.6,1.2 L5.3,7 L0,3.6 L-5.3,7 L-3.6,1.2 L-8.5,-2.6 L-2.3,-3Z" transform="translate(0,-2)" style="fill:var(--starf)"/>';
+    h+='<g transform="translate('+a.x.toFixed(1)+','+a.y.toFixed(1)+') scale('+a.s.toFixed(2)+')"><g class="it'+((animLast&&a.k===n-1)?' new':'')+'">'+inner+'</g></g>';
+  });
+  $('items').innerHTML=h;
+}
+
+
+/* ---------- efectos ---------- */
+var FXCOL=['#ffe27a','#ff9aa8','#9be3ff','#b6f0a8','#ffb86b','#d6a8ff'],FXN=['stars','hearts','bubbles','confetti'];
+function spawnFx(type,n){
+  var g=$('fxlayer'),i,h='';
+  for(i=0;i<n;i++){
+    var a=Math.random()*Math.PI*2,r=46+Math.random()*86,dx=Math.cos(a)*r,dy=Math.sin(a)*r*.75-12;
+    var grav=type==='confetti'?46:(type==='bubbles'?-28:(type==='hearts'?-18:10));
+    var st='--dx:'+dx.toFixed(0)+'px;--dy:'+dy.toFixed(0)+'px;--g:'+grav+'px;--r:'+((Math.random()*360-180)|0)+'deg;animation-delay:'+(Math.random()*.4).toFixed(2)+'s';
+    var col=FXCOL[i%FXCOL.length],sz=.7+Math.random()*.7,sh;
+    if(type==='stars') sh='<path transform="scale('+sz.toFixed(2)+')" d="M0,-8 L2.2,-2.2 L8,0 L2.2,2.2 L0,8 L-2.2,2.2 L-8,0 L-2.2,-2.2Z" fill="'+(i%2?'#fff':'#ffe27a')+'"/>';
+    else if(type==='hearts') sh='<text font-size="'+(11+Math.random()*9|0)+'" fill="'+(i%2?'#ff8fa8':'#ff5f86')+'" text-anchor="middle">♥</text>';
+    else if(type==='bubbles') sh='<circle r="'+(3+Math.random()*5).toFixed(1)+'" fill="#e6f8ff" fill-opacity=".12" stroke="#e6f8ff" stroke-width="1.5"/><circle cx="-1.2" cy="-1.4" r="1" fill="#fff"/>';
+    else sh=(i%3?'<rect x="-3" y="-5" width="6" height="10" rx="1" fill="'+col+'"/>':'<circle r="3.2" fill="'+col+'"/>');
+    h+='<g class="fxp" style="'+st+'">'+sh+'</g>';
+  }
+  g.innerHTML=h;setTimeout(function(){g.innerHTML=''},2800);
+}
+
+
+/* ---------- sonido: más suave y delicado ---------- */
+var AC=null,bus=null,master=null,vol=.7,muted=(lsGet('mute')==='1');
+function impulse(c,sec,decay){var n=Math.floor(c.sampleRate*sec),b=c.createBuffer(2,n,c.sampleRate);for(var ch=0;ch<2;ch++){var d=b.getChannelData(ch);for(var i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,decay)}return b}
+function ac(){
+  if(AC===null){
+    try{
+      AC=new (window.AudioContext||window.webkitAudioContext)();
+      var comp=AC.createDynamicsCompressor();comp.threshold.value=-20;comp.ratio.value=4;
+      master=AC.createGain();master.gain.value=vol;comp.connect(master);master.connect(AC.destination);
+      var lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.value=8500;lp.connect(comp);
+      var conv=AC.createConvolver();conv.buffer=impulse(AC,2.1,2.4);var wet=AC.createGain();wet.gain.value=.34;conv.connect(wet);wet.connect(lp);
+      bus=AC.createGain();bus.connect(lp);bus.connect(conv);
+    }catch(e){AC=false}
+  }
+  if(AC&&AC.state==='suspended'){try{AC.resume()}catch(e){}}
+  return AC||null;
+}
+function partial(f,t,dur,g,type){
+  var o=AC.createOscillator(),gn=AC.createGain();
+  o.type=type||'sine';o.frequency.setValueAtTime(f,t);
+  gn.gain.setValueAtTime(0.0001,t);gn.gain.exponentialRampToValueAtTime(Math.max(g,0.0002),t+.008);gn.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+  o.connect(gn);gn.connect(bus);o.start(t);o.stop(t+dur+.05);
+}
+var INST={
+ kalimba:[[1,1,1],[2.0,.16,.38],[5.4,.06,.14]],
+ box:[[1,1,1],[3,.14,.5],[4,.08,.3],[6,.04,.2]],
+ bell:[[1,1,1],[2.76,.45,.8],[5.4,.22,.55],[8.93,.1,.35]],
+ wood:[[1,1,.55],[3.9,.4,.22],[7.1,.14,.1]]
+};
+function voice(f,t0,dur,g,inst){
+  var c=ac();if(!c||muted)return;var t=c.currentTime+t0;
+  INST[inst].forEach(function(p){partial(f*p[0],t,dur*p[2],g*p[1])});
+}
+function drop(f0,f1,t0,g,d){
+  var c=ac();if(!c||muted)return;var t=c.currentTime+t0,o=c.createOscillator(),gn=c.createGain();
+  o.type='sine';o.frequency.setValueAtTime(f0,t);o.frequency.exponentialRampToValueAtTime(f1,t+.07);
+  gn.gain.setValueAtTime(0.0001,t);gn.gain.exponentialRampToValueAtTime(g,t+.01);gn.gain.exponentialRampToValueAtTime(0.0001,t+(d||.28));
+  o.connect(gn);gn.connect(bus);o.start(t);o.stop(t+(d||.28)+.05);
+}
+function pad(f,t0,dur,g){
+  var c=ac();if(!c||muted)return;var t=c.currentTime+t0,o=c.createOscillator(),gn=c.createGain();
+  o.type='sine';o.frequency.value=f;gn.gain.setValueAtTime(0.0001,t);gn.gain.linearRampToValueAtTime(g,t+.4);gn.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+  o.connect(gn);gn.connect(bus);o.start(t);o.stop(t+dur+.05);
+}
+var R=523.25;function F(s){return R*Math.pow(2,s/12)}
+var MEL=[[0,4,7,12,16],[7,4,9,7,12],[0,2,4,7,4,9],[4,7,11,9,12],[12,9,7,4,7,12],[0,7,4,9,7,14],[2,4,7,9,14,12]];
+var ROOT=[0,0,2,-2,3,0,-3];
+function sound(name,k){
+  if(muted)return;k=(k||0)%7;
+  if(name==='pop'){drop(620,1500,0,.2);drop(900,1900,.13,.12,.22)}
+  else if(name==='blub'){drop(330,760,0,.22,.3);drop(280,640,.11,.16,.26)}
+  else if(name==='day'){var m=MEL[k],r=ROOT[k];m.forEach(function(s,i){voice(F(s+r),i*.14,1.3,.2,'kalimba')});voice(F(m[m.length-1]+r+12),m.length*.14+.04,1.9,.07,'bell');pad(F(r-12),0,1.6,.03)}
+  else if(name==='good'){voice(F(4),0,1,.2,'box');voice(F(9),.17,1.3,.18,'box')}
+  else if(name==='gift'){voice(F(12),0,1.2,.16,'bell');voice(F(16),.13,1.4,.14,'bell');voice(F(19),.26,1.8,.12,'bell')}
+  else if(name==='check'){voice(F(9),0,.45,.2,'wood');voice(F(16),.075,.55,.17,'wood')}
+  else if(name==='uncheck'){voice(F(4),0,.4,.13,'wood');voice(F(-1),.08,.5,.12,'wood')}
+  else if(name==='notice'){voice(F(7),0,1,.12,'bell');voice(F(12),.14,1.4,.1,'bell')}
+  else if(name==='prize'){var n=[0,4,7,12,16,19,24];n.forEach(function(s,i){voice(F(s),i*.12,2.2,.17,'bell')});[28,31,33,36].forEach(function(s,i){voice(F(s),.9+i*.17,1.6,.05,'bell')});pad(F(-12),0,3,.05);pad(F(-8),.05,3,.035);pad(F(-5),.1,3,.035)}
+}
+
+
+var extra={},fxTimer=null,lastItems=-1,cheering=false;
+var S={th:0,om:.4,aw:0,sx:1,boost:0,fp:0,fo:3.7,amp:60,target:0,period:17,fper:1.7};
+var FLS=[];
+function loop(t){
+  var dt=S.last?Math.min(.05,(t-S.last)/1000):.016;S.last=t;
+  var sw=document.getElementById('swim');
+  if(sw){
+    if(!FLS.length){FLS=Array.prototype.map.call(document.querySelectorAll('#pond .fl'),function(e){var c=e.classList;return {e:e,ph:c.contains('far')?1.48:(c.contains('b')?Math.PI:0)}})}
+    var k=function(r){return 1-Math.exp(-dt*r)};
+    S.boost*=Math.exp(-dt/2.6);
+    S.aw+=(S.target-S.aw)*k(S.target?1.4:1.1);
+    var omT=2*Math.PI/S.period*(1+S.boost);
+    S.om+=(omT-S.om)*k(2.2);
+    S.th+=S.om*dt*S.aw;
+    var x=S.aw*S.amp*Math.sin(S.th),y=(1-S.aw)*48+S.aw*(-4.5*(1+Math.cos(2*S.th)));
+    var sxT=S.aw>.05?Math.max(-1,Math.min(1,Math.cos(S.th)*3)):1;
+    S.sx+=(sxT-S.sx)*k(9);
+    var sg=S.sx<0?-1:1;if(sg!==S.sg){S.sg=sg;document.getElementById('const').setAttribute('transform','scale('+sg+' 1)')}
+    sw.setAttribute('transform','translate('+x.toFixed(2)+' '+y.toFixed(2)+') scale('+S.sx.toFixed(3)+' 1)');
+    var fT=cheering?.55:S.fper/(1+S.boost*.7);
+    S.fo+=(2*Math.PI/fT-S.fo)*k(2.4);
+    S.fp+=S.fo*dt;
+    for(var i=0;i<FLS.length;i++){var a=-24+54*(.5-.5*Math.cos(S.fp+FLS[i].ph));FLS[i].e.style.transform='rotate('+a.toFixed(1)+'deg)'}
+  }
+  requestAnimationFrame(loop);
+}
+
+function applyClass(){
+  var c='pond '+moodCls;for(var k in extra) c+=' '+k;
+  $('pond').setAttribute('class',c);
+}
+function flash(cls,ms){extra[cls]=1;applyClass();setTimeout(function(){delete extra[cls];applyClass()},ms)}
+
+function renderPet(opts){
+  opts=opts||{};
+  var pond=$('pond'),sty=pond.style;
+  var mood=OV&&OV.mood?OV.mood:todayMood();
+  var f=OV?OV.f:M.f, wk=OV?OV.wk:Math.min(W,M.prizes), nItems=OV?OV.items:M.perfect.length;
+  var sc=.48+.5*f;
+  sty.setProperty('--shell','hsl(205,'+Math.round(20+52*f)+'%,'+Math.round(76-32*f)+'%)');
+  sty.setProperty('--shell3',wk>=9?'hsl(176,'+Math.round(40+18*f)+'%,'+Math.round(58-14*f)+'%)':'hsl(205,'+Math.round(24+50*f)+'%,'+Math.round(70-30*f)+'%)');
+  sty.setProperty('--shell2','hsl(205,'+Math.round(24+50*f)+'%,'+Math.round(62-30*f)+'%)');
+  sty.setProperty('--skin','hsl(165,'+Math.round(22+28*f)+'%,'+Math.round(72-20*f)+'%)');
+  sty.setProperty('--skin2','hsl(165,'+Math.round(22+28*f)+'%,'+Math.round(60-18*f)+'%)');
+  sty.setProperty('--scute','hsl(205,60%,'+Math.round(30-10*f)+'%)');
+  sty.setProperty('--fin',wk>=12?'#ffe9a8':'#bfeaff');
+  sty.setProperty('--finw',wk>=3?'2.2':'0');
+  if(wk>=11){sty.setProperty('--w0','#f2b27f');sty.setProperty('--w1','#2a8fb4');sty.setProperty('--w2',wk>=12?'#072f57':'#0a3f6e')}
+  else{sty.setProperty('--w0','#46bdf0');sty.setProperty('--w1','#1f86c4');sty.setProperty('--w2','#0b4f86')}
+  sty.setProperty('--ray',wk>=10?'.14':'.07');
+  var dayFrac=(!OV&&inPlan(WD())&&!rec(WD())?0:(!OV&&inPlan(WD())?cntOf(WD())/dayMeta(WD()).tot:(mood==='awake'?0.5:(mood==='done'?1:0))));
+  var fr=mood==='sleep'?0:(mood==='done'?1:dayFrac);
+  S.amp=Math.max(8,180-117*sc-8);
+  S.target=mood==='sleep'?0:1;S.period=17-4*f-(mood==='sleep'?0:7*fr);S.fper=mood==='sleep'?8:1.7-.8*fr;
+  $('tscale').setAttribute('transform','scale('+sc.toFixed(3)+')');
+  var els=pond.querySelectorAll('[data-min]');
+  for(var i=0;i<els.length;i++) els[i].style.display=wk>=+els[i].getAttribute('data-min')?'':'none';
+  $('spots').setAttribute('opacity',wk>=12?'.1':'.42');
+  pond.querySelector('.scute').style.opacity=wk>=12?'.3':'';
+  $('gloss').setAttribute('opacity',(.25+.5*f).toFixed(2));
+  $('aura').setAttribute('opacity',(.12+.38*Math.min(1,Math.max(0,(f-.6)/.4))).toFixed(2));
+  $('crown').firstElementChild.setAttribute('fill',wk>=12?'#f6d56a':'#9fe3f5');
+  if(nItems!==lastItems){renderItems(nItems,!!opts.newItem&&nItems>lastItems&&lastItems>=0);lastItems=nItems}
+  moodCls=mood;applyClass();
+  if(opts.wake){flash('wake',900);sound('pop')}
+  renderPetText(mood);
+  var s1,s2={sleep:'Dormida',awake:'Despierta',done:'Contenta'}[mood];
+  if(OV) s1='Etapa '+wk+' de '+W;
+  else if(WD()<0) s1='Empieza el 26 de octubre';
+  else if(WD()>=ND) s1='Plan terminado';
+  else s1=cntOf(WD())+' de '+dayMeta(WD()).tot+' pasos';
+  $('sI1').textContent=s1;$('sI2').textContent=s2;
+}
+
+/* ---------- mensajes de la tortuga ---------- */
+var MSG_SLEEP=[null,
+ 'Lunes, día de empezar. Tu tortuga duerme: marca tu primer paso y despierta.',
+ 'Martes de piscina 🏊 Tu tortuga duerme hasta que marques tu primer paso.',
+ 'Mitad de semana. Con un solo paso, tu tortuga abre los ojos.',
+ 'Jueves de piscina 🏊 Marca tu primer paso para despertar a tu tortuga.',
+ 'Viernes. Marca tu primer paso para despertar a tu tortuga.',
+ 'Sábado: hoy hay Heliocare extra. Tu tortuga duerme hasta tu primer paso.',
+ 'Domingo de funda limpia y de cerrar la semana. Tu tortuga duerme hasta tu primer paso.'];
+var MSG_AW=[
+ ['Se está desperezando.','Ya abrió los ojos y nada contigo.','Buen comienzo: ya está despierta.'],
+ ['Vas por la mitad y ella nada más rápido.','Nada más rápido a medida que avanzas.','Vas bien, sigue así.'],
+ ['Ya casi: falta poco para completar el día.','Un poco más y completas el día.','Falta poco para su baile.'],
+ ['Tienes todos los pasos. Cuando termines tu noche, toca «Terminar día».']
+];
+var MSG_REACT=['Listo.','Un paso más.','Muy bien.','Así.','Marcado.','Buen ritmo.','Va tomando velocidad.'];
+function renderPetText(mood){
+  var msg=msgOverride;
+  if(!msg){
+    if(OV) msg={sleep:'Dormida: así empieza cada día.',awake:'Despierta: nada más rápido.',done:'Contenta: día terminado.'}[mood];
+    else if(WD()<0) msg='Tu tortuga duerme hasta que empiece el plan: lunes 26 de octubre.';
+    else if(WD()>=ND) msg=NAME+', terminaste las 12 semanas. Tu tortuga llegó a su tamaño final.';
+    else {
+      var m=dayMeta(WD()),c=cntOf(WD()),p=c/m.tot;
+      if(mood==='sleep') msg=MSG_SLEEP[m.d];
+      else if(mood==='awake'){var b=p>=1?3:(p>=.67?2:(p>=.34?1:0));msg='Llevas '+c+' de '+m.tot+' pasos. '+pick(MSG_AW[b],WD()+c)}
+      else {
+        var lv=level(p);
+        if(lv==='perfect') msg=pick(['Día perfecto. Tu tortuga descansa.','Todos los pasos hechos. Tu tortuga está celebrando.','Día perfecto. Mañana seguimos.'],WD());
+        else if(lv==='good') msg='Buen día: '+c+' de '+m.tot+' pasos.';
+        else msg='Día cerrado con '+c+' de '+m.tot+' pasos. Mañana empieza uno nuevo.';
+      }
+    }
+  }
+  $('petmsg').textContent=msg;
+  $('tStreak').textContent=M.streak;
+  $('tDays').textContent=M.perfect.length;
+  $('tStage').textContent=Math.min(W,M.prizes)+'/'+W;
+  $('barfill').style.width=Math.round((OV?OV.f:M.f)*100)+'%';
+  $('bar').setAttribute('aria-valuenow',Math.round((OV?OV.f:M.f)*100));
+  var nx;
+  if(M.prizes>=W) nx='Completaste todos los premios grandes.';
+  else if(M.weeksClosed>=W) nx='Completaste todas las semanas.';
+  else if(WD()<0) nx='Tu primer premio grande: «'+STAGES[1]+'».';
+  else {
+    var w=M.weeksClosed+1,g=goodSoFar(w),nm=STAGES[Math.min(W,M.prizes+1)];
+    nx=g>=5?'Semana '+w+': ya aseguraste tu premio grande «'+nm+'». Se entrega al cerrar la semana.':'Semana '+w+': llevas '+g+' de 5 días buenos para el premio grande «'+nm+'».';
+  }
+  $('petnext').textContent=nx;
+}
+function reactMsg(c,tot){
+  clearTimeout(msgT);
+  msgOverride=pick(MSG_REACT,c+WD())+' '+c+' de '+tot+' pasos.';
+  renderPetText(todayMood());
+  msgT=setTimeout(function(){msgOverride=null;if(M)renderPetText(OV&&OV.mood?OV.mood:todayMood())},3600);
+}
+
+/* ---------- bailes ---------- */
+var FXN=['stars','hearts','bubbles','confetti'];
+function playDance(dance,fx,withSound,k){
+  if(fxTimer){clearTimeout(fxTimer.t);delete extra[fxTimer.cls]}
+  var cls='cheer dance-'+dance;fxTimer={cls:cls,t:null};extra[cls]=1;cheering=true;applyClass();
+  var big=dance==='p';
+  if(dance!=='w')spawnFx(FXN[fx],big?30:16);
+  if(big)setTimeout(function(){spawnFx('confetti',26)},1300);
+  if(withSound)sound(big?'prize':(dance==='w'?'good':'day'),k);
+  fxTimer.t=setTimeout(function(){delete extra[cls];fxTimer=null;cheering=false;applyClass()},big?4200:2900);
+}
+function renderSnd(){var b=$('snd');b.textContent=muted?'🔇':'🔊';b.setAttribute('aria-pressed',muted?'true':'false')}
+
+/* ---------- ventanas y avisos ---------- */
+var mq=[],mopen=false,curModal=null,curPage=0;
+function modal(o){mq.push(o);if(!mopen)nextModal()}
+function nextModal(){
+  var o=mq.shift();
+  if(!o){mopen=false;curModal=null;$('modal').hidden=true;return}
+  mopen=true;curModal=o;curPage=0;
+  if(!o.quiet) sound(o.snd||'notice');
+  showModal();
+  $('modal').hidden=false;
+}
+function closeModal(b){
+  var o=curModal;$('modal').hidden=true;mopen=false;
+  if(o&&o.onClose&&!o.closed){o.closed=1;o.onClose()}
+  if(b&&b.fn)b.fn();
+  if(o&&o.after){mopen=true;setTimeout(nextModal,o.after)}else nextModal();
+}
+function showModal(){
+  var o=curModal,pg=o.pages?o.pages[curPage]:o,kind=pg.kind||o.kind||'';
+  var head=$('mhead');head.className='mhead '+kind;
+  Array.prototype.forEach.call(head.querySelectorAll('.spk'),function(e){e.remove()});
+  if(kind==='gold'||o.sparks){for(var i=0;i<7;i++){var s=document.createElement('span');s.className='spk';s.textContent='✦';s.style.left=(8+rnd(i+3)*84)+'%';s.style.top=(8+rnd(i+11)*70)+'%';s.style.animationDelay=(-rnd(i+5)*2.6).toFixed(2)+'s';head.appendChild(s)}}
+  $('mico').textContent=pg.icon||o.icon||'';
+  $('mt').textContent=pg.title||o.title||'';
+  var sub=pg.sub||o.sub||'';$('msub').textContent=sub;$('msub').hidden=!sub;
+  $('mb').innerHTML=pg.html!==undefined?pg.html:(o.html||'');
+  var dots=$('mdots'),bt=$('mbtns');dots.innerHTML='';bt.innerHTML='';
+  var btns;
+  if(o.pages){
+    for(var d=0;d<o.pages.length;d++) dots.innerHTML+='<i'+(d===curPage?' class="on"':'')+'></i>';
+    btns=[];
+    if(curPage>0) btns.push({t:'Atrás',cls:'alt',keep:1,fn:function(){curPage--;showModal()}});
+    if(curPage<o.pages.length-1) btns.push({t:'Siguiente',keep:1,fn:function(){curPage++;showModal()}});
+    else btns=btns.concat(o.buttons||[{t:'Entendido'}]);
+  } else btns=o.buttons||[{t:'Entendido'}];
+  btns.forEach(function(b){
+    var e=document.createElement('button');e.className='btn'+(b.cls?' '+b.cls:'');e.textContent=b.t;
+    e.addEventListener('click',function(){ac();if(b.keep){b.fn();return}closeModal(b)});
+    bt.appendChild(e);
+  });
+  $('mb').scrollTop=0;
+  var f=bt.querySelector('button:last-child');if(f)try{f.focus({preventScroll:true})}catch(e){}
+}
+var toastT=null;
+function toast(t,icon,ms){
+  var e=$('toast');
+  $('ti').textContent=icon===undefined?'🐢':icon;$('tt').textContent=t;
+  e.hidden=false;e.style.animation='none';void e.offsetWidth;e.style.animation='';
+  clearTimeout(toastT);toastT=setTimeout(function(){e.hidden=true},ms||3300);
+}
+
+function welcome(){
+  modal({quiet:true,
+   pages:[
+    {icon:'👋',title:'Hola, '+NAME,sub:'Tu plan de 12 semanas',html:
+     '<p>Son <b>12 semanas de cuidado de la piel</b> para controlar los granos, evitar que vuelvan y aclarar poco a poco las manchas que dejan.</p>'+
+     '<p>Cada producto entra en su momento, de a poco, para que tu piel se adapte. Lo que más resultado da no es hacerlo perfecto, sino <b>hacerlo seguido</b>.</p>'+
+     '<p class="mnote">Lo normal es empezar a ver mejoría entre la semana 4 y la 6, y cambios más claros entre la 8 y la 12.</p>'},
+    {icon:'🐢',kind:'teal',title:'Tu tortuga',sub:'Te acompaña durante el plan',html:
+     '<p>Reacciona a lo que haces. No juzga ni regaña.</p>'+
+     '<ul><li>Empieza el día <b>dormida</b>. Con tu primer paso <b>despierta</b> y se pone a nadar.</li>'+
+     '<li>Mientras más pasos marcas, <b>más rápido</b> nada.</li>'+
+     '<li>Cuando completas el día, <b>baila</b>.</li>'+
+     '<li>Cada día que cumples, <b>crece</b> y cambia de color.</li>'+
+     '<li>Si un día no puedes, no pierde nada.</li></ul>'},
+    {icon:'🌟',kind:'gold',title:'Premios y regalos',sub:'Lo que ganas con la constancia',html:
+     '<ul><li><b>Día perfecto</b> (todos los pasos): baile especial y un <b>regalo</b> para el estanque: una estrella de mar, un pasto marino, una almeja o una perla.</li>'+
+     '<li><b>Buen día</b> (70% o más): la tortuga crece y tu racha sigue.</li>'+
+     '<li><b>Semana con 5 días buenos</b>: <b>premio grande</b>. El estanque cambia: amigos nuevos, corales, luz… y al final su caparazón lleva <b>la constelación de Cáncer</b>.</li>'+
+     '<li>La <b>racha</b> perdona un día fallado.</li></ul>'},
+    {icon:'☀️',kind:'night',title:'Cómo se usa',sub:'Cada día',html:
+     '<ol><li>Cada día tiene su lista: <b>mañana</b>, <b>después del almuerzo</b> y <b>noche</b>. Marca cada paso cuando lo hagas (puedes desmarcar si te equivocas).</li>'+
+     '<li>Al terminar tu noche, toca <b>«Terminar día»</b>. Ahí se guarda y ya no se puede cambiar. Si se te olvida, el día se cierra solo a la <b>1:00 a.m.</b></li>'+
+     '<li>Solo puedes marcar el <b>día de hoy</b>. Las semanas se abren una por una, cada lunes.</li>'+
+     '<li>Si fallas un día, no lo compenses al siguiente: sigue con lo que toque.</li></ol>'+
+     '<p class="mnote">Todo se guarda solo cuando hay internet. Si no hay señal, queda en el teléfono y se envía después.</p>'}
+   ],
+   buttons:[{t:'Empezar'}],
+   onClose:function(){lsSet('welcome','1');ST.seen.open=Math.max(ST.seen.open,1);save();toast('Marca tu primer paso para despertar a tu tortuga.','🐢')}});
+}
+function weekOpenModal(w){
+  var nw=P.WEEKNEW[w],h='<p>'+esc(P.WEEKINTRO[w])+'</p>';
+  if(nw&&nw.length){h+='<p><b>Novedades de esta semana</b></p><ul>';nw.forEach(function(x){h+='<li>'+esc(x)+'</li>'});h+='</ul>'}
+  else h+='<p class="mnote">Sin cambios en los productos: es la misma rutina de la semana anterior.</p>';
+  modal({icon:'🗓️',title:'Se abrió la semana '+w,sub:fmt((w-1)*7)+' al '+fmt(w*7-1),html:h,buttons:[{t:'Ver la semana',fn:function(){goToday();renderAll()}}]});
+}
+function dayModal(idx,c,tot,lv,giftType,prevStreak){
+  var p=c/tot,pc=Math.round(p*100),h='',o;
+  var stats='<div class="mstats"><div class="mstat"><b>'+c+'/'+tot+'</b><small>pasos</small></div><div class="mstat"><b>'+M.streak+'</b><small>racha</small></div><div class="mstat"><b>'+M.perfect.length+'</b><small>días perfectos</small></div></div>';
+  if(lv==='perfect'){
+    h+=stats+'<div class="mgift"><div class="gi">'+giftSvg(giftType)+'</div><div><b>Ganaste '+GN[GT.indexOf(giftType)]+'</b><small>Ya está en tu estanque. Tu tortuga creció un poco y bailó.</small></div></div>';
+    if(M.perfect.length%5===0) h+='<p>Llevas <b>'+M.perfect.length+' días perfectos</b>.</p>';
+    else h+='<p>'+pick(['Todos los pasos, sin saltarte ninguno.','Así se construye el resultado: un día a la vez.','Otro día completo.'],idx)+'</p>';
+    o={kind:'teal',icon:'🌟',title:'Día perfecto',sub:'Hiciste los '+tot+' pasos',snd:'gift'};
+  } else if(lv==='good'){
+    h+=stats+'<p>Pasaste el 70%: tu tortuga creció y la racha sigue. El regalo del estanque pide el 100%; mañana tienes otra oportunidad.</p>';
+    o={icon:'👍',title:'Buen día',sub:c+' de '+tot+' pasos ('+pc+'%)'};
+  } else {
+    h+=stats+'<p>Hoy no llegaste al 70%. Tu tortuga no pierde nada, solo crece más despacio. Mañana sigue con la rutina que toque, sin compensar.</p>';
+    if(M.streak>0) h+='<p>Tu racha sigue viva gracias al perdón de un día. Si mañana tampoco llegas al 70%, se reinicia.</p>';
+    else if(prevStreak>0) h+='<p>Tu racha volvió a cero, pero tu tortuga conserva lo que ganó.</p>';
+    o={kind:'soft',icon:'🌙',title:'Día cerrado',sub:c+' de '+tot+' pasos ('+pc+'%)'};
+  }
+  o.html=h;o.buttons=[{t:'Seguir'}];
+  modal(o);
+}
+function prizeModal(w,info,demoPrize){
+  var no=demoPrize||info.prizeNo,cat=CAT[no-1],perfect=true,i;
+  if(!demoPrize) for(i=7*(w-1);i<7*w;i++) if(pct(i)<1) perfect=false;
+  var h='<div class="mstats"><div class="mstat"><b>'+info.good+'/7</b><small>días buenos</small></div><div class="mstat"><b>'+no+'/12</b><small>premios grandes</small></div></div>';
+  h+='<div class="mgift"><div class="gi">'+cat.i+'</div><div><b>'+esc(cat.n)+'</b><small>'+esc(cat.d)+'</small></div></div>';
+  if(w>=W) h+='<p>'+NAME+', lo lograste: <b>12 semanas de constancia</b>. Tu tortuga lleva la constelación de Cáncer y una corona dorada.</p>';
+  else {
+    h+='<p>'+(w%4===0?NAME+', ':'')+(perfect&&!demoPrize?'Todos tus días fueron perfectos. ':'')+pick(['Eso es constancia.','Semana tras semana se nota.','Buen trabajo.'],w)+'</p>';
+    h+='<p class="mnote">Próximo premio: «'+esc(CAT[Math.min(12,no+1)-1].n)+'» (cuando tengas otra semana con 5 días buenos).</p>';
+  }
+  modal({kind:'gold',icon:cat.i,title:'Semana '+w+' completada',sub:'Ganaste un premio grande',html:h,snd:'prize',sparks:true,
+    buttons:[{t:'Continuar',fn:function(){renderAll();playDance('p',(w+1)%4,true,w)}}],after:4300});
+}
+var MILTXT={3:null,7:'Una semana entera de constancia.',14:'Dos semanas seguidas: ya es un ritmo.',21:'Tres semanas seguidas: ya es un hábito.'};
+var MIL=[3,7,14,21,30,45,60,84];
+
+/* ---------- pantalla ---------- */
+var sel={w:1,d:1};
+function renderWeeks(){
+  var h='';
+  for(var w=1;w<=W;w++){
+    var open=weekOpen(w),info=M.wk[w],cls='chip'+(info?(info.earned?' prize':' done'):'')+(open?'':' locked');
+    h+='<button class="'+cls+'" data-w="'+w+'" aria-current="'+(sel.w===w)+'">S'+w+(open&&info?(info.earned?' ★':' ✓'):'')+'<small>'+(open?'':'🔒 ')+fmt((w-1)*7)+'</small></button>';
+  }
+  $('weeks').innerHTML=h;
+}
+function renderWeekNote(){
+  var w=sel.w,el=$('weeknote');
+  if(!weekOpen(w)){
+    el.innerHTML='<div class="lockbox"><div class="big">🔒</div><h3>Semana '+w+' · se abre el '+esc(fmtLong(7*(w-1)))+'</h3><p class="lead">Se desbloquea sola cuando termines la semana '+(w-1)+'. Mientras tanto, sigue con la rutina de hoy.</p></div>';
+    $('days').hidden=true;$('day').hidden=true;return;
+  }
+  $('days').hidden=false;$('day').hidden=false;
+  var s=P.weekSummary(w),h='<h3>Semana '+w+' · '+fmt((w-1)*7)+' al '+fmt(w*7-1)+'</h3><p class="lead">'+esc(P.WEEKINTRO[w])+'</p><div class="wrows">';
+  h+='<div class="wrow"><span class="ic">☀️</span><div><span class="lb">Mañana</span>'+s.am.map(function(x,i){return '<span class="nw">'+(i?'<span class="arw">›</span> ':'')+'<span class="pill">'+esc(x)+'</span></span> '}).join('')+'</div></div>';
+  h+='<div class="wrow"><span class="ic">🌙</span><div><span class="lb">Gel de la EPS, por la noche</span>'+esc(lista(s.gel))+'</div></div>';
+  h+='<div class="wrow"><span class="ic">🏊</span><div><span class="lb">Piscina</span>martes a viernes</div></div>';
+  var nw=P.WEEKNEW[w];
+  if(nw&&nw.length) h+='<div class="wrow"><span class="ic">✨</span><div><span class="lb">Novedad</span>'+nw.map(esc).join('<br>')+'</div></div>';
+  el.innerHTML=h+'</div>';
+}
+function renderDays(){
+  var h='';
+  for(var d=1;d<=7;d++){
+    var idx=(sel.w-1)*7+d-1,type=P.nightType(sel.w,d);
+    h+='<button class="dt'+(idx===EFF?' today':'')+(isClosed(idx)?' closed':'')+'" data-d="'+d+'" aria-current="'+(sel.d===d)+'">'+DAYL[d-1]+'<small>'+dateOf(idx).getUTCDate()+'</small><i class="t-'+type+'"></i></button>';
+  }
+  $('days').innerHTML=h;
+}
+function renderDay(){
+  if(!weekOpen(sel.w)){$('day').innerHTML='';return}
+  var w=sel.w,d=sel.d,idx=(w-1)*7+d-1,m=dayMeta(idx),info=m.info,closed=isClosed(idx),edit=canEdit(idx),r=rec(idx),mask=r?r.m:0;
+  var h='<h2>'+DAYN[d-1]+' '+fmt(idx)+'</h2><div class="meta"><span class="badge t-'+info.type+'">'+P.TYPELABEL[info.type]+'</span><span>Semana '+w+'</span><span id="cnt">'+cntOf(idx)+' de '+m.tot+' pasos</span></div>';
+  if(closed){
+    var p=pct(idx);
+    h+='<div class="dayinfo lock">🔒 Día cerrado: <b>'+cntOf(idx)+' de '+m.tot+' pasos</b> ('+Math.round(p*100)+'%) · '+LVL[level(p)]+'. Ya no se puede cambiar.</div>';
+  } else if(idx===EFF&&!clock.known){
+    h+='<div class="dayinfo">Conéctate a internet una vez para verificar la fecha y poder marcar.</div>';
+  } else if(!FREE&&(idx>EFF||EFF<0)){
+    h+='<div class="dayinfo">Este día todavía no llega. Solo puedes mirarlo.</div>';
+  }
+  var bit=0;
+  info.blocks.forEach(function(b){
+    h+='<section class="block" data-name="'+esc(b.short)+'" data-ic="'+esc(b.name.split(' ')[0])+'"><h3>'+b.name+(b.sub?'<span>'+b.sub+'</span>':'')+'</h3>';
+    b.steps.forEach(function(s){
+      if(s.h){h+='<div class="sh">'+esc(s.h)+'</div>';return}
+      var on=(mask>>>bit)&1;
+      h+='<div class="step"><label><input type="checkbox" data-bit="'+bit+'"'+(on?' checked':'')+(edit?'':' disabled')+'><span>'+esc(s.t)+'</span></label></div>';
+      bit++;
+    });
+    h+='</section>';
+  });
+  if(edit){
+    h+='<div class="finish"><button class="btn block" id="finish">Terminar día</button><p>Toca aquí cuando termines tu noche. Después no podrás cambiar nada. Si no lo tocas, el día se cierra solo a la 1:00 a.m.</p></div>';
+  }
+  $('day').innerHTML=h;
+}
+function renderMap(){
+  var h='';
+  for(var w=1;w<=W;w++){
+    var open=weekOpen(w),s=P.weekSummary(w);
+    if(!open){h+='<div class="wk locked"><h4>🔒 Semana '+w+' · se abre el '+esc(fmtLong(7*(w-1)))+'</h4></div>';continue}
+    h+='<div class="wk"><h4>Semana '+w+' · '+fmt((w-1)*7)+' al '+fmt(w*7-1)+'</h4><p>Mañana: '+esc(s.am.join(' + '))+'</p><div class="strip">';
+    for(var d=1;d<=7;d++){
+      var t=P.nightType(w,d),tag=[];
+      if(P.useAze(w,d)) tag.push('Az');
+      if(P.useMela(w)) tag.push('M');
+      h+='<button class="cell t-'+t+'" data-w="'+w+'" data-d="'+d+'"><b>'+DAYL[d-1]+'</b>'+({gel:'Gel',pool:'Piscina',poolgel:'Pisc.+Gel',rest:'Reposo'})[t]+(tag.length?'<small>'+tag.join('+')+'</small>':'')+'</button>';
+    }
+    h+='</div></div>';
+  }
+  $('map').innerHTML=h;
+}
+function renderEvo(){
+  var earnedWeek={},w,i;
+  for(w=1;w<=W;w++) if(M.wk[w]&&M.wk[w].earned) earnedWeek[M.wk[w].prizeNo]=w;
+  var h='';
+  for(i=1;i<=W;i++){
+    var c=CAT[i-1],won=i<=M.prizes,nxt=i===M.prizes+1,cls='gc'+(won?' won':(nxt?' nxt':' lock')),sub;
+    if(won) sub='Semana '+earnedWeek[i]+' · '+c.d;
+    else if(nxt&&M.weeksClosed<W){var wk=M.weeksClosed+1,g=weekOpen(wk)?goodSoFar(wk):0;sub='Te faltan '+Math.max(0,5-g)+' día'+(5-g===1?'':'s')+' bueno'+(5-g===1?'':'s')+' en la semana '+wk}
+    else sub='Aún bloqueado';
+    h+='<div class="'+cls+'"><span class="ic">'+c.i+'</span><div><b>'+i+'. '+esc(c.n)+'</b><small>'+esc(sub)+'</small></div></div>';
+  }
+  $('gal').innerHTML=h;
+  var g='';
+  var GP=['pastos marinos','almejas','perlas','estrellas de mar'];
+  for(i=0;i<4;i++) g+='<span class="gf">'+giftSvg(GT[i])+(M.gifts[i])+' '+(M.gifts[i]===1?GS[i].toLowerCase():GP[i])+'</span>';
+  $('giftsum').innerHTML=g;
+}
+function renderBanner(){
+  var b=$('banner'),t='';
+  if(EFF<0) t='El plan empieza el lunes 26 de octubre. Mientras tanto puedes mirar cómo es la primera semana.';
+  else if(EFF>=ND) t='Terminaste las 12 semanas. Felicitaciones.';
+  else if(!clock.known&&SERVER) t='Conéctate a internet una vez para verificar la fecha y poder marcar.';
+  b.hidden=!t;b.textContent=t;
+}
+function renderStatus(){
+  var el=$('status'),t;
+  var dirty=Object.keys(ST.dirty).length;
+  if(DEMO) t='Modo demo: nada de esto se guarda de verdad.';
+  else if(!SERVER) t='Modo local: se guarda solo en este teléfono.';
+  else if(syncState==='offline') t=dirty?'Sin conexión: tus marcas se enviarán al volver el internet.':'Sin conexión.';
+  else if(dirty) t='Guardando…';
+  else t='Todo guardado ✓';
+  el.textContent=t+' '+'Marca cada paso cuando lo hagas.';
+}
+function renderAll(){
+  M=derive();
+  renderWeeks();renderWeekNote();renderDays();renderDay();renderPet({});renderBanner();renderStatus();renderEvo();renderMap();
+}
+function setSel(w,d,scroll){
+  sel.w=w;sel.d=d;renderWeeks();renderWeekNote();renderDays();renderDay();
+  if(FREE){msgOverride=null;if(M)renderPet({})}
+  if(scroll){try{window.scrollTo({top:0,behavior:'smooth'})}catch(e){window.scrollTo(0,0)}}
+}
+function goToday(){
+  var t=Math.max(0,Math.min(ND-1,EFF));
+  sel.w=Math.floor(t/7)+1;sel.d=t%7+1;
+}
+
+/* ---------- tira fija arriba (al bajar por la página) ---------- */
+var stuck=false;
+function setStuck(v){
+  stuck=v;
+  $('box').classList.toggle('stuck',stuck);
+  fit();
+}
+function fit(){
+  var b=$('box'),w=b.clientWidth||window.innerWidth;
+  if(stuck){
+    var h=Math.max(88,Math.min(140,Math.round(w*.31)));
+    b.style.setProperty('--sh',h+'px');
+    var vis=h/(w/360);
+    $('pond').setAttribute('viewBox','0 '+Math.max(0,Math.min(180-vis,50))+' 360 '+vis.toFixed(1));
+    $('cz').setAttribute('transform','scale('+Math.min(1,vis/118).toFixed(3)+')');
+  }else{$('pond').setAttribute('viewBox','0 0 360 180');$('cz').setAttribute('transform','scale(1)')}
+}
+var scrT=false;
+function onScroll(){
+  if(scrT)return;scrT=true;
+  requestAnimationFrame(function(){scrT=false;var r=$('slot').getBoundingClientRect();var want=r.bottom<40;if(want!==stuck)setStuck(want)});
+}
+
+/* ---------- registro de pasos ---------- */
+function onToggle(t){
+  var idx=(sel.w-1)*7+sel.d-1,bit=+t.getAttribute('data-bit');
+  if(!canEdit(idx)){t.checked=!t.checked;toast('Este día ya no se puede cambiar.','🔒');return}
+  var r=ST.days[idx]||(ST.days[idx]={m:0,c:0,u:0});
+  var had=pop(r.m)>0;
+  if(t.checked) r.m|=(1<<bit); else r.m&=~(1<<bit);
+  r.u=nowMs();ST.dirty[idx]=1;save();
+  var c=pop(r.m),tot=dayMeta(idx).tot;
+  $('cnt').textContent=c+' de '+tot+' pasos';
+  M=derive();
+  renderPet({wake:!had&&c>0});
+  renderStatus();
+  schedulePush(900);
+  if(!t.checked){S.boost=Math.max(0,S.boost-.3);sound('uncheck');clearTimeout(msgT);msgOverride=null;renderPetText(todayMood())}
+  if(t.checked){
+    sound('check');
+    S.boost=Math.min(S.boost+.4,.85);
+    if(had) spawnFx('bubbles',5);
+    reactMsg(c,tot);
+    var blk=t.closest('.block');
+    if(c===tot) toast('Todos los pasos de hoy. Toca «Terminar día» cuando acabes tu noche.','🌟',4200);
+    else if(!had) toast(pick(['Despertaste a tu tortuga.','Tu tortuga abrió los ojos.','Ya está despierta y nadando.'],idx),'🐢');
+    else if(blk){
+      var all=blk.querySelectorAll('input[type=checkbox]');
+      if(blk.querySelectorAll('input:checked').length===all.length) toast(blk.getAttribute('data-name')+' completa ✓',blk.getAttribute('data-ic'));
+    }
+  }
+}
+function askFinish(){
+  var idx=WD();if(!canEdit(idx))return;
+  var c=cntOf(idx),tot=dayMeta(idx).tot,p=c/tot;
+  var extra=p>=1?'Hiciste todos los pasos.':(p>=0.7?'Es un buen día.':'Te faltan varios pasos. Si todavía puedes hacerlos, vuelve y márcalos.');
+  modal({quiet:true,kind:'night',icon:'🌙',title:'¿Terminar el día?',sub:c+' de '+tot+' pasos ('+Math.round(p*100)+'%)',html:'<p>'+extra+'</p><p>Después de terminar, ya <b>no podrás cambiar nada</b> de este día.</p>',
+   buttons:[{t:'Seguir revisando',cls:'alt'},{t:'Terminar día',fn:doFinish}]});
+}
+function doFinish(){
+  var idx=WD();if(!canEdit(idx))return;
+  var r=ST.days[idx]||(ST.days[idx]={m:0,c:0,u:0});
+  var prevStreak=M.streak;
+  r.c=1;r.u=nowMs();ST.dirty[idx]=1;
+  var c=pop(r.m),tot=dayMeta(idx).tot,p=c/tot,lv=level(p);
+  ST.seen.closed=Math.max(ST.seen.closed,idx);save();
+  schedulePush(0);
+  try{window.scrollTo({top:0,behavior:'smooth'})}catch(e){window.scrollTo(0,0)}
+  M=derive();
+  msgOverride=null;
+  var giftType=GT[(M.perfect.length-1)%4];
+  renderWeeks();renderDays();renderDay();renderPet({newItem:lv==='perfect'});renderStatus();renderEvo();
+  var dance=lv==='perfect'?(idx%7):(lv==='good'?'w':null),fx=(idx+Math.floor(idx/7))%4;
+  setTimeout(function(){if(dance!==null)playDance(dance,fx,true,idx)},450);
+  setTimeout(function(){
+    dayModal(idx,c,tot,lv,giftType,prevStreak);
+    announce();
+  },lv==='low'?600:3100);
+}
+
+/* ---------- avisos (semanas cerradas, días que se cerraron solos, hitos) ---------- */
+function announce(){
+  var catchup=[],i;
+  for(i=ST.seen.closed+1;i<EFF&&i<ND;i++) if(i>=0) catchup.push(i);
+  if(catchup.length&&!Object.keys(ST.days).length){ST.seen.closed=Math.min(ND-1,EFF-1);catchup=[]}
+  if(catchup.length){
+    var show=catchup.slice(-5),h='<p>Mientras no estabas, se cerraron solos estos días (a la 1:00 a.m.):</p><ul>',np=0;
+    show.forEach(function(j){h+='<li>'+DAYN[j%7]+' '+fmt(j)+': '+cntOf(j)+' de '+dayMeta(j).tot+' pasos ('+Math.round(pct(j)*100)+'%)</li>'});
+    catchup.forEach(function(j){if(pct(j)>=1)np++});
+    h+='</ul>';
+    if(catchup.length>show.length) h+='<p>Y '+(catchup.length-show.length)+' día(s) anteriores.</p>';
+    if(np) h+='<p>🎁 Tuviste '+np+' día'+(np===1?'':'s')+' perfecto'+(np===1?'':'s')+': ya están sus regalos en el estanque.</p>';
+    h+='<p>Tu tortuga conserva todo lo que ganaste. No compenses: sigue con la rutina de hoy.'+''+'</p>';
+    modal({icon:'🌙',kind:'soft',title:'Resumen de días cerrados',sub:catchup.length+' día'+(catchup.length===1?'':'s')+' cerrado'+(catchup.length===1?'':'s')+' solo'+(catchup.length===1?'':'s'),html:h});
+    ST.seen.closed=Math.min(ND-1,EFF-1);
+  }
+  M=derive();
+  while(ST.seen.weeks<M.weeksClosed){
+    var w=++ST.seen.weeks,info=M.wk[w];
+    if(info.earned) prizeModal(w,info);
+    else modal({kind:'soft',icon:'🌊',title:'Semana '+w+' cerrada',sub:info.good+' de 7 días buenos',html:'<p>Para el premio grande se necesitan al menos 5 días buenos. Esta vez no llegó.</p><p>Tu tortuga conserva todo y la próxima semana tienes otra oportunidad.</p>'});
+  }
+  /* racha */
+  if(M.streak<ST.seen.mil) ST.seen.mil=0;
+  var ms=MIL.filter(function(x){return x<=M.streak&&x>ST.seen.mil});
+  if(ms.length){
+    var m=ms[ms.length-1];ST.seen.mil=m;
+    if(m===3) toast('3 días buenos seguidos','🔥');
+    else modal({kind:'gold',icon:'🔥',title:m+' días seguidos',sub:'Tu racha',sparks:true,html:'<p>'+(MILTXT[m]||'Buena constancia.')+'</p><p class="mnote">Recuerda: la racha perdona un día fallado.</p>'});
+  }
+  /* tamaño */
+  var szs=[.25,.5,.75,1],k=0;szs.forEach(function(x,j){if(M.f>=x-1e-9)k=j+1});
+  if(k>ST.seen.sz){
+    if(ST.seen.sz>0||k>1||M.f>.1) toast(k===4?'Tu tortuga alcanzó su tamaño máximo':'Tu tortuga ya tiene el '+(szs[k-1]*100)+'% de su tamaño final','🐢',4000);
+    ST.seen.sz=k;
+  }
+  /* semana nueva */
+  var cw=curWeek();
+  if(cw>ST.seen.open){
+    if(cw>1&&EFF>=0) weekOpenModal(cw);
+    ST.seen.open=cw;
+  }
+  save();
+}
+
+/* ---------- servidor ---------- */
+var syncState='ok', pushing=false, pushT=null;
+function api(params){
+  var q=Object.keys(params).map(function(k){return encodeURIComponent(k)+'='+encodeURIComponent(params[k])}).join('&');
+  var ctrl=window.AbortController?new AbortController():null;
+  var to=setTimeout(function(){if(ctrl)ctrl.abort()},9000);
+  return fetch(CFG.SERVER_URL+(CFG.SERVER_URL.indexOf('?')<0?'?':'&')+q,ctrl?{signal:ctrl.signal}:{}).then(function(r){clearTimeout(to);return r.json()});
+}
+function syncTime(){
+  var t0=Date.now();
+  return api({action:'time'}).then(function(r){
+    if(!r||!r.ok||!r.now) throw new Error('time');
+    var t1=Date.now();clock.off=Math.round(r.now-(t0+t1)/2);clock.known=true;lsSet('off',String(clock.off));
+  });
+}
+function mergeServer(sv){
+  if(!sv||!sv.days) return;
+  Object.keys(sv.days).forEach(function(k){
+    if(ST.dirty[k]) return;
+    var s=sv.days[k];
+    ST.days[k]={m:parseInt(s.m,36)||0,c:s.c?1:0,u:s.u||0};
+  });
+}
+function pull(){
+  return api({action:'state',token:CFG.TOKEN}).then(function(r){
+    if(!r||!r.ok){if(r&&r.error==='token')toast('La clave del servidor no coincide.','⚠️');throw new Error('state')}
+    mergeServer(r);save();
+  });
+}
+function pushOne(idx){
+  var r=ST.days[idx];if(!r){delete ST.dirty[idx];return Promise.resolve()}
+  var u=r.u;
+  return api({action:'save',token:CFG.TOKEN,day:idx,mask:r.m.toString(36),n:pop(r.m),t:dayMeta(idx).tot,c:r.c?1:0}).then(function(res){
+    if(res&&res.ok){
+      if(ST.days[idx]&&ST.days[idx].u===u) delete ST.dirty[idx];
+      mergeServer(res);
+    } else if(res&&res.error==='dia'){
+      delete ST.dirty[idx];mergeServer(res);
+      toast('No se pudo guardar el día '+(idx+1)+': ya pasó su plazo.','⚠️');
+    } else if(res&&res.error==='token'){
+      throw new Error('token');
+    } else throw new Error('save');
+  });
+}
+function pushAll(){
+  if(!SERVER||pushing) return Promise.resolve();
+  var ks=Object.keys(ST.dirty).map(Number).sort(function(a,b){return a-b});
+  if(!ks.length) return Promise.resolve();
+  pushing=true;
+  var p=Promise.resolve();
+  ks.forEach(function(i){p=p.then(function(){return pushOne(i)})});
+  return p.then(function(){syncState='ok'},function(){syncState='offline'}).then(function(){pushing=false;save();renderStatus()});
+}
+function schedulePush(ms){
+  if(!SERVER) return;
+  clearTimeout(pushT);
+  pushT=setTimeout(function(){pushAll()},ms);
+}
+function fullSync(){
+  if(!SERVER) return Promise.resolve();
+  return syncTime().then(function(){return pushAll()}).then(function(){return pull()}).then(function(){syncState='ok'},function(){syncState='offline'}).then(function(){
+    var e=calcEff(),changed=e!==EFF;EFF=e;
+    if(changed)goToday();
+    M=derive();announce();renderAll();
+  });
+}
+function localTime(){
+  return fetch(location.href.split('#')[0],{method:'HEAD',cache:'no-store'}).then(function(r){
+    var d=r.headers.get('date');if(d){var t=Date.parse(d);if(!isNaN(t)){clock.off=t-Date.now();}}
+  }).catch(function(){}).then(function(){clock.known=true});
+}
+
+/* ---------- eventos ---------- */
+document.addEventListener('click',function(e){
+  var t=e.target;if(!t.closest) return;
+  if(t.closest('#pond')){
+    ac();
+    flash('poke',700);sound('blub');
+    return;
+  }
+  var chip=t.closest('.chip');
+  if(chip){setSel(+chip.getAttribute('data-w'),sel.d,false);return}
+  var dt=t.closest('.dt');
+  if(dt){setSel(sel.w,+dt.getAttribute('data-d'),false);return}
+  var cell=t.closest('.cell');
+  if(cell){setSel(+cell.getAttribute('data-w'),+cell.getAttribute('data-d'),true);return}
+  if(t.closest('#finish')){ac();askFinish();return}
+  if(t.closest('#snd')){muted=!muted;lsSet('mute',muted?'1':'0');renderSnd();if(!muted){ac();sound('pop')}return}
+});
+document.addEventListener('change',function(e){
+  var t=e.target;
+  if(t&&t.matches&&t.matches('#day input[type=checkbox][data-bit]')){ac();onToggle(t)}
+});
+window.addEventListener('online',function(){fullSync()});
+document.addEventListener('visibilitychange',function(){if(!document.hidden)tick(true)});
+window.addEventListener('scroll',onScroll,{passive:true});
+window.addEventListener('resize',function(){onScroll();fit()});
+
+function tick(force){
+  var e=calcEff(),changed=e!==EFF;
+  if(changed||force){
+    EFF=e;
+    if(changed){goToday();}
+    M=derive();announce();renderAll();
+  }
+  if(SERVER&&(force||changed2())) fullSync();
+}
+var lastSync=0;
+function changed2(){if(Date.now()-lastSync>45000){lastSync=Date.now();return true}return false}
+
+/* ---------- acceso oculto al modo demo ---------- */
+function hh(s){var x=5381,i;for(i=0;i<s.length;i++)x=((x<<5)+x+s.charCodeAt(i))|0;return x}
+function askDemo(){
+  if(DEMO) return;
+  modal({quiet:true,kind:'night',icon:'🔐',title:'Acceso especial',sub:'Escribe la clave',
+   html:'<input class="pw" id="pw" type="password" inputmode="numeric" autocomplete="off" maxlength="12" aria-label="Clave">',
+   buttons:[{t:'Cancelar',cls:'alt'},{t:'Entrar',fn:function(){var v=($('pw')||{}).value||'';if(hh(v)===HASH){window.name='pp-demo';location.reload()}else toast('Clave incorrecta','🔒')}}]});
+}
+(function(){
+  var n=0,t0=0;
+  $('foot').addEventListener('click',function(){var now=Date.now();if(now-t0>4000)n=0;t0=now;n++;if(n>=7){n=0;askDemo()}});
+})();
+
+/* ---------- modo demo ---------- */
+function demoSetup(){
+  $('demo').hidden=false;
+  $('dExit').addEventListener('click',function(){window.name='';location.reload()});
+  $('dFree').addEventListener('change',function(){FREE=this.checked;if(!FREE)goToday();msgOverride=null;renderAll();toast(FREE?'Modo libre: todo abierto y editable.':'Modo libre desactivado: rige la fecha simulada.','🧪')});
+  function apply(){
+    var day=+$('dDay').value,hr=+$('dHour').value;
+    demoNow=START_UTC+(day-1)*DAY+hr*3600e3;
+    var e=calcEff();EFF=e;goToday();
+    if(e-1>ST.seen.closed) ST.seen.closed=Math.min(ND-1,e-1);
+    M=derive();if(M.weeksClosed>ST.seen.weeks) ST.seen.weeks=M.weeksClosed;
+    save();tick(true);
+  }
+  $('dGo').addEventListener('click',function(){ac();apply()});
+  function fill(mode){
+    var ed=calcEff(),seq=[1,1,.85,1,.6,1,.9,1,.5,1,1,.95];
+    for(var i=0;i<ed&&i<ND;i++){
+      var tot=dayMeta(i).tot,p=mode==='perfect'?1:(mode==='mix'?seq[(i*5)%seq.length]:(i%3===0?.9:.35));
+      var n=Math.round(tot*p),m=0;for(var b=0;b<n;b++)m|=(1<<b);
+      ST.days[i]={m:m,c:1,u:1};
+    }
+    ST.seen.closed=Math.min(ND-1,ed-1);
+    M=derive();ST.seen.weeks=M.weeksClosed;ST.seen.open=curWeek();ST.seen.mil=M.streak;save();
+    renderAll();toast('Días anteriores rellenados.','✅');
+  }
+  $('dPerfect').addEventListener('click',function(){fill('perfect')});
+  $('dMix').addEventListener('click',function(){fill('mix')});
+  $('dBad').addEventListener('click',function(){fill('bad')});
+  $('dReset').addEventListener('click',function(){
+    ST.days={};ST.dirty={};ST.seen={closed:-1,weeks:0,open:0,mil:0,sz:0};save();lsDel('welcome');lastItems=-1;msgOverride=null;OV=null;renderAll();toast('Demo reiniciada.','♻️');
+  });
+  $('dStage').addEventListener('input',function(){
+    var n=+this.value;$('dStageN').textContent=n;
+    OV=OV||{mood:'awake'};OV.wk=n;OV.f=n/12;OV.items=n*7;
+    renderPet({});
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-mood]'),function(b){
+    b.addEventListener('click',function(){
+      var n=+$('dStage').value,was=OV&&OV.mood;
+      OV={wk:n,f:n/12,items:n*7,mood:b.getAttribute('data-mood')};ac();renderPet({wake:was==='sleep'&&OV.mood!=='sleep'});
+    });
+  });
+  $('dNoOv').addEventListener('click',function(){OV=null;renderPet({})});
+  $('dPlay').addEventListener('click',function(){
+    var d=$('dDance').value;if(/^\d$/.test(d))d=+d;
+    ac();playDance(d,+$('dFx').value,true,typeof d==='number'?d:3);
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-snd]'),function(b){
+    b.addEventListener('click',function(){var n=b.getAttribute('data-snd');ac();sound(n,n==='day'?+$('dMel').value:3)});
+  });
+  $('dWelcome').addEventListener('click',function(){ac();welcome()});
+  $('dPrizeM').addEventListener('click',function(){ac();prizeModal(3,{good:7,prizeNo:3},3)});
+  $('dDayM').addEventListener('click',function(){ac();M=derive();dayModal(0,19,19,'perfect','clam',0)});
+  $('dWeekM').addEventListener('click',function(){ac();weekOpenModal(7)});
+}
+
+/* ---------- inicio ---------- */
+function init(){
+  renderSnd();buildScene();buildConst();
+  EFF=calcEff();goToday();M=derive();renderAll();fit();
+  if(DEMO) demoSetup();
+  requestAnimationFrame(loop);
+  var boot;
+  if(DEMO){clock.known=true;boot=Promise.resolve()}
+  else if(SERVER){boot=fullSync().catch(function(){})}
+  else boot=localTime();
+  boot.then(function(){
+    var e=calcEff();if(e!==EFF){EFF=e;goToday()}
+    M=derive();renderAll();
+    var any=Object.keys(ST.days).length>0;
+    if(lsGet('welcome')!=='1'&&!any) welcome();
+    else announce();
+    setInterval(function(){tick(false)},20000);
+    onScroll();
+  });
+}
+window.__ui={ST:ST,derive:derive,get M(){return M},get EFF(){return EFF},calcEff:calcEff,dayMeta:dayMeta,pct:pct,canEdit:canEdit,isClosed:isClosed,playDance:playDance,clock:clock,setDemoNow:function(t){demoNow=t;tick(true)},STAGES:STAGES,weekOpen:weekOpen,sel:sel,S:S};
+init();
+})();
+</script>
+</body>
+</html>
