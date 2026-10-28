@@ -45,6 +45,8 @@ h1{font-size:1.35rem;margin:4px 0 2px;color:var(--accent)}
 .dt i{display:block;width:8px;height:8px;border-radius:50%;margin:3px auto 0}
 .dt[aria-current=true]{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent) inset}
 .dt.today small::after{content:" ·hoy";color:var(--accent)}
+.dt.off{opacity:.38}
+.cell.t-off{opacity:.4;background:transparent;border-style:dashed}
 .dt.closed{background:color-mix(in srgb,var(--ok) 12%,var(--card))}
 .dt.closed small::before{content:"✓ ";color:var(--ok)}
 .t-gel{background:var(--gel)}.t-pool{background:var(--pool)}.t-rest{background:var(--rest)}.t-poolgel{background:linear-gradient(90deg,var(--pool) 50%,var(--gel) 50%)}
@@ -421,7 +423,7 @@ details.safe{background:var(--warn);border-color:var(--warnline)}
     <tr><td>70% a 99%</td><td><b>Buen día:</b> mueve un poco el cuerpo y crece, pero no gana regalo. La racha sigue.</td></tr>
     <tr><td>Menos de 70%</td><td><b>Día incompleto:</b> sin baile. Crece un poco menos y la racha pierde un día.</td></tr>
   </table>
-  <p><b>Cada semana:</b> si en la semana tuviste al menos 5 días buenos (70% o más), ganas un <b>premio grande</b> y todo el estanque cambia. Los 12 premios:</p>
+  <p><b>Cada semana:</b> si en la semana tuviste al menos 5 días buenos (70% o más; en la semana 1, que es más corta, 4), ganas un <b>premio grande</b> y todo el estanque cambia. Los 12 premios:</p>
   <div class="gal" id="gal"></div>
   <p><b>Regalos del estanque que llevas:</b></p>
   <div class="gifts" id="giftsum"></div>
@@ -442,8 +444,8 @@ details.safe{background:var(--warn);border-color:var(--warnline)}
   <p class="legend">Aquí puedes viajar en el tiempo y ver todas las etapas, bailes y sonidos. Nada de esto se guarda en la página real.</p>
   <div class="row"><button class="btn alt" id="dExit">Salir del modo demo</button></div>
   <label class="chk"><input type="checkbox" id="dFree" checked> <b>Modo libre</b>: todos los días y semanas abiertos y editables (no se cierran solos por fecha). Quítalo para probar el cierre automático con «Día simulado».</label>
-  <label for="dDay">Día simulado (1 a 84; 0 = antes de empezar)</label>
-  <div class="row"><input type="number" id="dDay" min="0" max="90" value="1" style="width:80px">
+  <label for="dDay">Día simulado (1 a 84; el 3 es el miércoles 28 oct, primer día del plan; 1 y 2 = antes de empezar)</label>
+  <div class="row"><input type="number" id="dDay" min="0" max="90" value="3" style="width:80px">
    <select id="dHour"><option value="9">9:00 a.m.</option><option value="23.5">11:30 p.m.</option><option value="24.5">12:30 a.m. (sigue siendo el mismo día)</option><option value="24.98">12:59 a.m. (sigue siendo el mismo día)</option><option value="25.08">1:05 a.m. (ya es el día siguiente)</option></select>
    <button class="btn alt" id="dGo">Ir</button></div>
   <label>Rellenar todos los días anteriores al simulado</label>
@@ -483,6 +485,7 @@ window.PP_CONFIG={
 var S=function(t){return {t:t}}, H=function(h){return {h:h}};
 var DAYN=['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
 var W=12;
+var SK=2;   /* el plan empieza el miércoles 28 oct: los días 0 y 1 (lun 26 y mar 27) no tienen plan */
 
 var T={
  limp:'Lava la cara con el Limpiador Effaclar durante 30 segundos y enjuaga con agua.',
@@ -515,11 +518,13 @@ var T={
 
 function isPool(d){return d>=2&&d<=5}
 function gelNight(w,d){
+  if(w===1) return d===6;
   if(w<=2) return d===1||d===6;
   if(w<=8) return d===1||d===6||d===7;
   return d===1||d===5||d===6||d===7;
 }
 function nightType(w,d){
+  if(w===1&&d<=SK) return 'off';
   var g=gelNight(w,d), p=isPool(d);
   return p?(g?'poolgel':'pool'):(g?'gel':'rest');
 }
@@ -533,7 +538,7 @@ function sandwich(w,type){return type==='poolgel'||w<=5}
 
 function morning(w,d){
   var o=[];
-  var photo=(w===1&&d===1)||((w===4||w===8||w===12)&&d===7);
+  var photo=(w===1&&d===SK+1)||((w===4||w===8||w===12)&&d===7);
   if(photo){
     if(w===1) o.push(S('Foto de inicio: tómate una foto de la cara con luz natural, sin maquillaje y siempre en el mismo lugar.'));
     else if(w===12) o.push(S('Foto final: tómate una foto igual a la del primer día (luz natural, sin maquillaje, en el mismo lugar).'));
@@ -544,7 +549,7 @@ function morning(w,d){
   if(useAze(w,d)) o.push(S(T.aze));
   o.push(S(T.hb),S(T.sol));
   var ex=[];
-  if(w===1&&d===1){
+  if(w===1&&d===SK+1){
     ex.push('Revisa que tienes todos los productos de la lista.');
     ex.push('Guarda los sérums de Cyzone: durante estas 12 semanas no se usan.');
     ex.push('Separa toallas y fundas blancas (el Gel de la EPS puede decolorar la tela de color).');
@@ -582,6 +587,7 @@ function night(w,d,type){
 }
 function buildDay(w,d){
   var type=nightType(w,d);
+  if(type==='off') return {type:'off',blocks:[]};
   return {type:type,blocks:[
     {id:'am',name:'☀️ Mañana',short:'Mañana',sub:'al levantarte',steps:morning(w,d)},
     {id:'md',name:'🍽️ Después del almuerzo',short:'Almuerzo',sub:'',steps:midday(w,d)},
@@ -591,7 +597,7 @@ function buildDay(w,d){
 
 /* Texto de cada semana: cercano y fácil de leer */
 var WEEKINTRO={
- 1:'Empiezas despacio. El gel de la EPS entra solo dos noches para que tu piel se acostumbre; el resto de los días es limpiar, hidratar y proteger.',
+ 1:'Esta primera semana es más corta: empieza el miércoles 28. El gel de la EPS entra solo una noche, el sábado, para que tu piel se acostumbre; el resto de los días es limpiar, hidratar y proteger.',
  2:'Segunda semana, mismo ritmo. Repetir lo mismo es lo que la piel necesita para adaptarse.',
  3:'Semana de novedades: el gel sube a tres noches y entra el ácido azelaico por las mañanas. Un poco de ardor al principio es normal; si es fuerte, mira las Pausas de seguridad.',
  4:'Misma rutina que la semana 3, para afianzarla. El domingo toca foto de progreso.',
@@ -606,7 +612,7 @@ var WEEKINTRO={
 };
 /* Qué es nuevo cada semana (para avisarlo en pantalla) */
 var WEEKNEW={
- 1:['Gel de la EPS dos noches: lunes y sábado','Todos los días: limpiar, hidratar y proteger'],
+ 1:['Gel de la EPS una sola noche: el sábado','Todos los días: limpiar, hidratar y proteger'],
  3:['El gel sube a tres noches: lunes, sábado y domingo','Entra el ácido azelaico por las mañanas (lunes, miércoles y viernes)'],
  5:['El ácido azelaico pasa a todas las mañanas'],
  6:['El gel ya no lleva la capa de Hydro Boost antes'],
@@ -616,7 +622,7 @@ var WEEKNEW={
  8:['Foto de progreso el domingo'],
  12:['Foto final el domingo']
 };
-var TYPELABEL={gel:'Noche de Gel de la EPS',pool:'Noche de piscina',poolgel:'Piscina + Gel de la EPS',rest:'Noche de descanso'};
+var TYPELABEL={off:'Sin plan',gel:'Noche de Gel de la EPS',pool:'Noche de piscina',poolgel:'Piscina + Gel de la EPS',rest:'Noche de descanso'};
 function weekSummary(w){
   var am=['Limpiador Effaclar'];
   if(useMela(w)) am.push('Mela B3');
@@ -627,14 +633,17 @@ function weekSummary(w){
   return {am:am,gel:gel};
 }
 
-window.__plan={buildDay:buildDay,nightType:nightType,gelNight:gelNight,useAze:useAze,useMela:useMela,sandwich:sandwich,weekSummary:weekSummary,T:T,WEEKINTRO:WEEKINTRO,WEEKNEW:WEEKNEW,TYPELABEL:TYPELABEL,DAYN:DAYN,W:W};
+window.__plan={buildDay:buildDay,nightType:nightType,gelNight:gelNight,useAze:useAze,useMela:useMela,sandwich:sandwich,weekSummary:weekSummary,T:T,WEEKINTRO:WEEKINTRO,WEEKNEW:WEEKNEW,TYPELABEL:TYPELABEL,DAYN:DAYN,W:W,SK:SK};
 })();
 </script>
 
 <script id="ui">
 (function(){
 'use strict';
-var CFG=window.PP_CONFIG||{}, P=window.__plan, W=P.W, ND=W*7, DAYN=P.DAYN;
+var CFG=window.PP_CONFIG||{}, P=window.__plan, W=P.W, ND=W*7, SK=P.SK, DAYN=P.DAYN;
+function wStart(w){return Math.max(SK,(w-1)*7)}
+function wDays(w){return 7*w-wStart(w)}
+function NEED(w){return w===1?4:5}
 var NAME='Brenda';
 var DAYL=['L','M','M','J','V','S','D'];
 var MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
@@ -668,15 +677,15 @@ function save(){lsSet('v2',JSON.stringify(ST))}
 /* ---------- reloj (hora verificada) ---------- */
 var clock={off:+lsGet('off')||0,known:lsGet('off')!==null};
 var demoNow=null;
-function nowMs(){return DEMO?(demoNow!==null?demoNow:START_UTC+9*3600e3):Date.now()+clock.off}
+function nowMs(){return DEMO?(demoNow!==null?demoNow:START_UTC+SK*DAY+9*3600e3):Date.now()+clock.off}
 var EFF=0;
 function calcEff(){return Math.floor((nowMs()-GRACE-START_UTC)/DAY)}
 function dateOf(idx){return new Date(Date.UTC(2026,9,26+idx))}
 function fmt(idx){var d=dateOf(idx);return d.getUTCDate()+' '+MES[d.getUTCMonth()]}
 function fmtLong(idx){var d=dateOf(idx);return DAYN[(idx%7+7)%7].toLowerCase()+' '+d.getUTCDate()+' de '+MESL[d.getUTCMonth()]}
-function inPlan(i){return i>=0&&i<ND}
+function inPlan(i){return i>=SK&&i<ND}
 function weekOpen(w){return FREE||w===1||EFF>=7*(w-1)}
-function curWeek(){return EFF<0?1:(EFF>=ND?W:Math.floor(EFF/7)+1)}
+function curWeek(){return EFF<SK?1:(EFF>=ND?W:Math.floor(EFF/7)+1)}
 
 /* ---------- datos de cada día ---------- */
 var DM={};
@@ -734,7 +743,7 @@ function derive(){
     if(!closed[7*w-1]){break}
     weeksClosed=w;
     var g=0;for(i=7*(w-1);i<7*w;i++) if(goodFlag[i]) g++;
-    var earned=g>=5;if(earned)prizes++;
+    var earned=g>=NEED(w);if(earned)prizes++;
     wk[w]={good:g,earned:earned,prizeNo:earned?prizes:0};
   }
   var last=-1;for(i=0;i<ND;i++) if(closed[i]) last=i;
@@ -743,14 +752,14 @@ function derive(){
     if(goodFlag[i]){streak++;gap=0}else{gap++;if(gap>=2)break}
   }
   var gifts=[0,0,0,0];for(i=0;i<perfect.length;i++)gifts[i%4]++;
-  return {credits:credits,perfect:perfect,closed:closed,weeksClosed:weeksClosed,prizes:prizes,wk:wk,streak:streak,f:Math.min(1,credits/ND),gifts:gifts};
+  return {credits:credits,perfect:perfect,closed:closed,weeksClosed:weeksClosed,prizes:prizes,wk:wk,streak:streak,f:Math.min(1,credits/(ND-SK)),gifts:gifts};
 }
 var M=null;
 function goodSoFar(w){var g=0,from=7*(w-1);for(var i=from;i<from+7;i++) if(M.closed[i]&&pct(i)>=0.7) g++;return g}
 
 /* ---------- estado de la tortuga ---------- */
 function todayMood(){
-  if(WD()<0) return 'sleep';
+  if(WD()<SK) return 'sleep';
   if(WD()>=ND) return 'done';
   var r=rec(WD());
   if(r&&r.c) return 'done';
@@ -956,7 +965,7 @@ function renderPet(opts){
   renderPetText(mood);
   var s1,s2={sleep:'Dormida',awake:'Despierta',done:'Contenta'}[mood];
   if(OV) s1='Etapa '+wk+' de '+W;
-  else if(WD()<0) s1='Empieza el 26 de octubre';
+  else if(WD()<SK) s1='Empieza el 28 de octubre';
   else if(WD()>=ND) s1='Plan terminado';
   else s1=cntOf(WD())+' de '+dayMeta(WD()).tot+' pasos';
   $('sI1').textContent=s1;$('sI2').textContent=s2;
@@ -982,7 +991,7 @@ function renderPetText(mood){
   var msg=msgOverride;
   if(!msg){
     if(OV) msg={sleep:'Dormida: así empieza cada día.',awake:'Despierta: nada más rápido.',done:'Contenta: día terminado.'}[mood];
-    else if(WD()<0) msg='Tu tortuga duerme hasta que empiece el plan: lunes 26 de octubre.';
+    else if(WD()<SK) msg='Tu tortuga duerme hasta que empiece el plan: miércoles 28 de octubre.';
     else if(WD()>=ND) msg=NAME+', terminaste las 12 semanas. Tu tortuga llegó a su tamaño final.';
     else {
       var m=dayMeta(WD()),c=cntOf(WD()),p=c/m.tot;
@@ -1005,10 +1014,10 @@ function renderPetText(mood){
   var nx;
   if(M.prizes>=W) nx='Completaste todos los premios grandes.';
   else if(M.weeksClosed>=W) nx='Completaste todas las semanas.';
-  else if(WD()<0) nx='Tu primer premio grande: «'+STAGES[1]+'».';
+  else if(WD()<SK) nx='Tu primer premio grande: «'+STAGES[1]+'».';
   else {
     var w=M.weeksClosed+1,g=goodSoFar(w),nm=STAGES[Math.min(W,M.prizes+1)];
-    nx=g>=5?'Semana '+w+': ya aseguraste tu premio grande «'+nm+'». Se entrega al cerrar la semana.':'Semana '+w+': llevas '+g+' de 5 días buenos para el premio grande «'+nm+'».';
+    nx=g>=NEED(w)?'Semana '+w+': ya aseguraste tu premio grande «'+nm+'». Se entrega al cerrar la semana.':'Semana '+w+': llevas '+g+' de '+NEED(w)+' días buenos para el premio grande «'+nm+'».';
   }
   $('petnext').textContent=nx;
 }
@@ -1100,7 +1109,7 @@ function welcome(){
     {icon:'🌟',kind:'gold',title:'Premios y regalos',sub:'Lo que ganas con la constancia',html:
      '<ul><li><b>Día perfecto</b> (todos los pasos): baile especial y un <b>regalo</b> para el estanque: una estrella de mar, un pasto marino, una almeja o una perla.</li>'+
      '<li><b>Buen día</b> (70% o más): la tortuga crece y tu racha sigue.</li>'+
-     '<li><b>Semana con 5 días buenos</b>: <b>premio grande</b>. El estanque cambia: amigos nuevos, corales, luz… y al final su caparazón lleva <b>la constelación de Cáncer</b>.</li>'+
+     '<li><b>Semana con 5 días buenos</b> (4 en la semana 1, que es más corta): <b>premio grande</b>. El estanque cambia: amigos nuevos, corales, luz… y al final su caparazón lleva <b>la constelación de Cáncer</b>.</li>'+
      '<li>La <b>racha</b> perdona un día fallado.</li></ul>'},
     {icon:'☀️',kind:'night',title:'Cómo se usa',sub:'Cada día',html:
      '<ol><li>Cada día tiene su lista: <b>mañana</b>, <b>después del almuerzo</b> y <b>noche</b>. Marca cada paso cuando lo hagas (puedes desmarcar si te equivocas).</li>'+
@@ -1116,7 +1125,7 @@ function weekOpenModal(w){
   var nw=P.WEEKNEW[w],h='<p>'+esc(P.WEEKINTRO[w])+'</p>';
   if(nw&&nw.length){h+='<p><b>Novedades de esta semana</b></p><ul>';nw.forEach(function(x){h+='<li>'+esc(x)+'</li>'});h+='</ul>'}
   else h+='<p class="mnote">Sin cambios en los productos: es la misma rutina de la semana anterior.</p>';
-  modal({icon:'🗓️',title:'Se abrió la semana '+w,sub:fmt((w-1)*7)+' al '+fmt(w*7-1),html:h,buttons:[{t:'Ver la semana',fn:function(){goToday();renderAll()}}]});
+  modal({icon:'🗓️',title:'Se abrió la semana '+w,sub:fmt(wStart(w))+' al '+fmt(w*7-1),html:h,buttons:[{t:'Ver la semana',fn:function(){goToday();renderAll()}}]});
 }
 function dayModal(idx,c,tot,lv,giftType,prevStreak){
   var p=c/tot,pc=Math.round(p*100),h='',o;
@@ -1141,7 +1150,7 @@ function dayModal(idx,c,tot,lv,giftType,prevStreak){
 function prizeModal(w,info,demoPrize){
   var no=demoPrize||info.prizeNo,cat=CAT[no-1],perfect=true,i;
   if(!demoPrize) for(i=7*(w-1);i<7*w;i++) if(pct(i)<1) perfect=false;
-  var h='<div class="mstats"><div class="mstat"><b>'+info.good+'/7</b><small>días buenos</small></div><div class="mstat"><b>'+no+'/12</b><small>premios grandes</small></div></div>';
+  var h='<div class="mstats"><div class="mstat"><b>'+info.good+'/'+wDays(w)+'</b><small>días buenos</small></div><div class="mstat"><b>'+no+'/12</b><small>premios grandes</small></div></div>';
   h+='<div class="mgift"><div class="gi">'+cat.i+'</div><div><b>'+esc(cat.n)+'</b><small>'+esc(cat.d)+'</small></div></div>';
   if(w>=W) h+='<p>'+NAME+', lo lograste: <b>12 semanas de constancia</b>. Tu tortuga lleva la constelación de Cáncer y una corona dorada.</p>';
   else {
@@ -1160,7 +1169,7 @@ function renderWeeks(){
   var h='';
   for(var w=1;w<=W;w++){
     var open=weekOpen(w),info=M.wk[w],cls='chip'+(info?(info.earned?' prize':' done'):'')+(open?'':' locked');
-    h+='<button class="'+cls+'" data-w="'+w+'" aria-current="'+(sel.w===w)+'">S'+w+(open&&info?(info.earned?' ★':' ✓'):'')+'<small>'+(open?'':'🔒 ')+fmt((w-1)*7)+'</small></button>';
+    h+='<button class="'+cls+'" data-w="'+w+'" aria-current="'+(sel.w===w)+'">S'+w+(open&&info?(info.earned?' ★':' ✓'):'')+'<small>'+(open?'':'🔒 ')+fmt(wStart(w))+'</small></button>';
   }
   $('weeks').innerHTML=h;
 }
@@ -1171,7 +1180,7 @@ function renderWeekNote(){
     $('days').hidden=true;$('day').hidden=true;return;
   }
   $('days').hidden=false;$('day').hidden=false;
-  var s=P.weekSummary(w),h='<h3>Semana '+w+' · '+fmt((w-1)*7)+' al '+fmt(w*7-1)+'</h3><p class="lead">'+esc(P.WEEKINTRO[w])+'</p><div class="wrows">';
+  var s=P.weekSummary(w),h='<h3>Semana '+w+' · '+fmt(wStart(w))+' al '+fmt(w*7-1)+'</h3><p class="lead">'+esc(P.WEEKINTRO[w])+'</p><div class="wrows">';
   h+='<div class="wrow"><span class="ic">☀️</span><div><span class="lb">Mañana</span>'+s.am.map(function(x,i){return '<span class="nw">'+(i?'<span class="arw">›</span> ':'')+'<span class="pill">'+esc(x)+'</span></span> '}).join('')+'</div></div>';
   h+='<div class="wrow"><span class="ic">🌙</span><div><span class="lb">Gel de la EPS, por la noche</span>'+esc(lista(s.gel))+'</div></div>';
   h+='<div class="wrow"><span class="ic">🏊</span><div><span class="lb">Piscina</span>martes a viernes</div></div>';
@@ -1180,10 +1189,11 @@ function renderWeekNote(){
   el.innerHTML=h+'</div>';
 }
 function renderDays(){
+  /* (los días sin plan se ven atenuados) */
   var h='';
   for(var d=1;d<=7;d++){
     var idx=(sel.w-1)*7+d-1,type=P.nightType(sel.w,d);
-    h+='<button class="dt'+(idx===EFF?' today':'')+(isClosed(idx)?' closed':'')+'" data-d="'+d+'" aria-current="'+(sel.d===d)+'">'+DAYL[d-1]+'<small>'+dateOf(idx).getUTCDate()+'</small><i class="t-'+type+'"></i></button>';
+    h+='<button class="dt'+(idx===EFF?' today':'')+(isClosed(idx)?' closed':'')+(inPlan(idx)?'':' off')+'" data-d="'+d+'" aria-current="'+(sel.d===d)+'">'+DAYL[d-1]+'<small>'+dateOf(idx).getUTCDate()+'</small><i class="t-'+type+'"></i></button>';
   }
   $('days').innerHTML=h;
 }
@@ -1196,9 +1206,10 @@ function renderDay(){
     h+='<div class="dayinfo lock">🔒 Día cerrado: <b>'+cntOf(idx)+' de '+m.tot+' pasos</b> ('+Math.round(p*100)+'%) · '+LVL[level(p)]+'. Ya no se puede cambiar.</div>';
   } else if(idx===EFF&&!clock.known){
     h+='<div class="dayinfo">Conéctate a internet una vez para verificar la fecha y poder marcar.</div>';
-  } else if(!FREE&&(idx>EFF||EFF<0)){
+  } else if(!FREE&&(idx>EFF||EFF<SK)){
     h+='<div class="dayinfo">Este día todavía no llega. Solo puedes mirarlo.</div>';
   }
+  if(!inPlan(idx)){$('day').innerHTML='<h2>'+DAYN[d-1]+' '+fmt(idx)+'</h2><div class="dayinfo">Este día no hace parte del plan. El plan empieza el <b>miércoles 28 de octubre</b>.</div>';return}
   var bit=0;
   info.blocks.forEach(function(b){
     h+='<section class="block" data-name="'+esc(b.short)+'" data-ic="'+esc(b.name.split(' ')[0])+'"><h3>'+b.name+(b.sub?'<span>'+b.sub+'</span>':'')+'</h3>';
@@ -1220,9 +1231,10 @@ function renderMap(){
   for(var w=1;w<=W;w++){
     var open=weekOpen(w),s=P.weekSummary(w);
     if(!open){h+='<div class="wk locked"><h4>🔒 Semana '+w+' · se abre el '+esc(fmtLong(7*(w-1)))+'</h4></div>';continue}
-    h+='<div class="wk"><h4>Semana '+w+' · '+fmt((w-1)*7)+' al '+fmt(w*7-1)+'</h4><p>Mañana: '+esc(s.am.join(' + '))+'</p><div class="strip">';
+    h+='<div class="wk"><h4>Semana '+w+' · '+fmt(wStart(w))+' al '+fmt(w*7-1)+'</h4><p>Mañana: '+esc(s.am.join(' + '))+'</p><div class="strip">';
     for(var d=1;d<=7;d++){
       var t=P.nightType(w,d),tag=[];
+      if(t==='off'){h+='<button class="cell t-off" data-w="'+w+'" data-d="'+d+'"><b>'+DAYL[d-1]+'</b>—</button>';continue}
       if(P.useAze(w,d)) tag.push('Az');
       if(P.useMela(w)) tag.push('M');
       h+='<button class="cell t-'+t+'" data-w="'+w+'" data-d="'+d+'"><b>'+DAYL[d-1]+'</b>'+({gel:'Gel',pool:'Piscina',poolgel:'Pisc.+Gel',rest:'Reposo'})[t]+(tag.length?'<small>'+tag.join('+')+'</small>':'')+'</button>';
@@ -1238,7 +1250,7 @@ function renderEvo(){
   for(i=1;i<=W;i++){
     var c=CAT[i-1],won=i<=M.prizes,nxt=i===M.prizes+1,cls='gc'+(won?' won':(nxt?' nxt':' lock')),sub;
     if(won) sub='Semana '+earnedWeek[i]+' · '+c.d;
-    else if(nxt&&M.weeksClosed<W){var wk=M.weeksClosed+1,g=weekOpen(wk)?goodSoFar(wk):0;sub='Te faltan '+Math.max(0,5-g)+' día'+(5-g===1?'':'s')+' bueno'+(5-g===1?'':'s')+' en la semana '+wk}
+    else if(nxt&&M.weeksClosed<W){var wk=M.weeksClosed+1,g=weekOpen(wk)?goodSoFar(wk):0;sub='Te faltan '+Math.max(0,NEED(wk)-g)+' día'+(NEED(wk)-g===1?'':'s')+' bueno'+(NEED(wk)-g===1?'':'s')+' en la semana '+wk}
     else sub='Aún bloqueado';
     h+='<div class="'+cls+'"><span class="ic">'+c.i+'</span><div><b>'+i+'. '+esc(c.n)+'</b><small>'+esc(sub)+'</small></div></div>';
   }
@@ -1250,7 +1262,7 @@ function renderEvo(){
 }
 function renderBanner(){
   var b=$('banner'),t='';
-  if(EFF<0) t='El plan empieza el lunes 26 de octubre. Mientras tanto puedes mirar cómo es la primera semana.';
+  if(EFF<SK) t='El plan empieza el miércoles 28 de octubre. Mientras tanto puedes mirar cómo es la primera semana.';
   else if(EFF>=ND) t='Terminaste las 12 semanas. Felicitaciones.';
   else if(!clock.known&&SERVER) t='Conéctate a internet una vez para verificar la fecha y poder marcar.';
   b.hidden=!t;b.textContent=t;
@@ -1275,7 +1287,7 @@ function setSel(w,d,scroll){
   if(scroll){try{window.scrollTo({top:0,behavior:'smooth'})}catch(e){window.scrollTo(0,0)}}
 }
 function goToday(){
-  var t=Math.max(0,Math.min(ND-1,EFF));
+  var t=Math.max(SK,Math.min(ND-1,EFF));
   sel.w=Math.floor(t/7)+1;sel.d=t%7+1;
 }
 
@@ -1362,7 +1374,7 @@ function doFinish(){
 /* ---------- avisos (semanas cerradas, días que se cerraron solos, hitos) ---------- */
 function announce(){
   var catchup=[],i;
-  for(i=ST.seen.closed+1;i<EFF&&i<ND;i++) if(i>=0) catchup.push(i);
+  for(i=ST.seen.closed+1;i<EFF&&i<ND;i++) if(i>=SK) catchup.push(i);
   if(catchup.length&&!Object.keys(ST.days).length){ST.seen.closed=Math.min(ND-1,EFF-1);catchup=[]}
   if(catchup.length){
     var show=catchup.slice(-5),h='<p>Mientras no estabas, se cerraron solos estos días (a la 1:00 a.m.):</p><ul>',np=0;
@@ -1379,7 +1391,7 @@ function announce(){
   while(ST.seen.weeks<M.weeksClosed){
     var w=++ST.seen.weeks,info=M.wk[w];
     if(info.earned) prizeModal(w,info);
-    else modal({kind:'soft',icon:'🌊',title:'Semana '+w+' cerrada',sub:info.good+' de 7 días buenos',html:'<p>Para el premio grande se necesitan al menos 5 días buenos. Esta vez no llegó.</p><p>Tu tortuga conserva todo y la próxima semana tienes otra oportunidad.</p>'});
+    else modal({kind:'soft',icon:'🌊',title:'Semana '+w+' cerrada',sub:info.good+' de '+wDays(w)+' días buenos',html:'<p>Para el premio grande se necesitan al menos '+NEED(w)+' días buenos. Esta vez no llegó.</p><p>Tu tortuga conserva todo y la próxima semana tienes otra oportunidad.</p>'});
   }
   /* racha */
   if(M.streak<ST.seen.mil) ST.seen.mil=0;
@@ -1543,7 +1555,7 @@ function demoSetup(){
   $('dGo').addEventListener('click',function(){ac();apply()});
   function fill(mode){
     var ed=calcEff(),seq=[1,1,.85,1,.6,1,.9,1,.5,1,1,.95];
-    for(var i=0;i<ed&&i<ND;i++){
+    for(var i=SK;i<ed&&i<ND;i++){
       var tot=dayMeta(i).tot,p=mode==='perfect'?1:(mode==='mix'?seq[(i*5)%seq.length]:(i%3===0?.9:.35));
       var n=Math.round(tot*p),m=0;for(var b=0;b<n;b++)m|=(1<<b);
       ST.days[i]={m:m,c:1,u:1};
