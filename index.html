@@ -90,15 +90,36 @@ h1{font-size:1.35rem;margin:4px 0 2px;color:var(--accent)}
 .seg2 button{flex:1;min-width:0;min-height:50px;border:0;border-radius:12px;background:transparent;color:var(--ink);font:inherit;font-weight:700;font-size:clamp(.78rem,3.7vw,.9rem);white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:7px;padding:0 6px;cursor:pointer;touch-action:manipulation;transition:background .15s,color .15s}
 .seg2 button[aria-pressed=true]{background:var(--accent);color:#fff;box-shadow:0 1px 3px rgba(11,40,66,.25)}
 .seg2 svg{width:22px;height:22px;flex:none}
+.poolsel.off .seg2 button{cursor:default;opacity:.6}
+.poolsel.off .seg2 button[aria-pressed=true]{opacity:.85}
 .poolsel .pd{margin:10px 2px 6px;font-size:.84rem;color:var(--muted);line-height:1.45}
 .block.nt.hs{background:color-mix(in srgb,var(--accent) 6%,var(--card));border:1px solid var(--line);border-radius:16px;padding:14px 14px 6px;margin-top:14px}
 .block.hs .seg2{background:var(--card);border:1px solid var(--line)}
 @media (prefers-color-scheme:dark){.seg2 button[aria-pressed=true]{color:#06121c}}
 /* ---- cielo y clima ---- */
-.skyline{display:flex;align-items:center;gap:7px;margin:0 0 7px;font-size:.78rem;color:var(--muted)}
+.skyline{margin:0 0 8px;font-size:.8rem}
 .skyline[hidden]{display:none}
-.skyline .tag{border:1px solid var(--line);background:color-mix(in srgb,var(--accent) 9%,var(--card));color:var(--accent);border-radius:999px;padding:1px 10px;font-weight:600;font-size:.74rem;letter-spacing:.02em;line-height:1.5}
-.skyline .sp{opacity:.55}
+.skc{display:inline-flex;align-items:stretch;max-width:100%;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--card);box-shadow:0 1px 3px rgba(18,40,59,.12)}
+.skc .tag{display:flex;align-items:center;gap:6px;padding:3px 13px 3px 5px;color:#16324a;background:linear-gradient(90deg,#e4e9fc,#ffe9d9)}
+.skc .tag b{font-weight:700;letter-spacing:.01em}
+.skc .sp{width:1px;flex:none;background:var(--line)}
+.skc .wx{display:flex;align-items:center;gap:5px;padding:3px 13px 3px 6px;color:var(--ink);font-weight:500;min-width:0}
+.skc .wx>span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.skc .ei{width:22px;height:22px;vertical-align:middle}
+.skc[data-ph=dawn] .tag{background:linear-gradient(90deg,#e7def8,#ffdcc8)}
+.skc[data-ph=noon] .tag{background:linear-gradient(90deg,#d9efff,#c8e6ff)}
+.skc[data-ph=afternoon] .tag{background:linear-gradient(90deg,#fff1d2,#ffe0b0)}
+.skc[data-ph=dusk] .tag{background:linear-gradient(90deg,#e4d9f6,#ffd2c0)}
+.skc[data-ph=night] .tag{background:linear-gradient(90deg,#1e2c58,#33497f);color:#eaf1ff}
+.skc[data-ph=night] .tag .ei{background:#d9edf9;border-radius:30%;padding:.1em;box-sizing:border-box}
+@media (prefers-color-scheme:dark){
+.skc .tag{color:var(--ink);background:linear-gradient(90deg,#34406e,#5a4a50)}
+.skc[data-ph=dawn] .tag{background:linear-gradient(90deg,#3b3460,#5a3f48)}
+.skc[data-ph=noon] .tag{background:linear-gradient(90deg,#1f4668,#235a82)}
+.skc[data-ph=afternoon] .tag{background:linear-gradient(90deg,#5a4a2a,#6b4f2b)}
+.skc[data-ph=dusk] .tag{background:linear-gradient(90deg,#3d3262,#63393f)}
+.skc[data-ph=night] .tag{background:linear-gradient(90deg,#101b3a,#1c2d57);color:#eaf1ff}
+.skc{box-shadow:0 1px 3px rgba(0,0,0,.4)}}
 .skybtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 .skybtns .btn{flex:1 1 auto}
 #skt,#skb{transition:stop-color 2.5s}
@@ -1267,6 +1288,9 @@ var ICO={
  speaker:sh('M6 18h8l9-8v28l-9-8H6a1 1 0 0 1-1-1V19a1 1 0 0 1 1-1Z','#6fc8fb')+ln('M30 17a9 9 0 0 1 0 14',2.800)+ln('M35 11a16 16 0 0 1 0 26',2.800),
  mute:sh('M6 18h8l9-8v28l-9-8H6a1 1 0 0 1-1-1V19a1 1 0 0 1 1-1Z','#b9c7d2')+ln('M30 18l11 12M41 18L30 30',3.200)
 };
+ICO.cloudy=cloud('#d5e0ea','translate(9,-5) scale(.78 .78)')+cloud('#fff','translate(-1,3)');
+ICO.drizzle=cloud('#f4f9ff','translate(0,-4)')+ol('M18 38l-1.500 4','#6fc8fb',2.400)+ol('M30 38l-1.500 4','#6fc8fb',2.400);
+ICO.heavy=cloud('#c4cfdc','translate(0,-6)')+ol('M13 35l-3 7','#4aa8ee',2.600)+ol('M22 35l-3 7','#4aa8ee',2.600)+ol('M31 35l-3 7','#4aa8ee',2.600)+ol('M40 35l-3 7','#4aa8ee',2.600);
 ICO.plate=ci(24,26,15,'#fff')+ci(24,26,9,'#eef5fa',2)+ln('M5 8v9a3 3 0 0 0 6 0V8M8 8v34',2.600)+ln('M43 8c-4 2-5 7-5 12h5v22',2.600);
 
 var TTL_VB="0 0 945 698";
@@ -1473,19 +1497,25 @@ function renderDays(){
   }
   $('days').innerHTML=h;
 }
-/* selector «¿Fuiste a la piscina hoy?» (martes a viernes, mientras el día esté abierto) */
+/* selector «¿Fuiste a la piscina hoy?»: se ve en todas las noches de piscina (martes a viernes); solo se puede tocar hoy, mientras el día esté abierto */
 var SVGA='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
 var ICP='<path d="M8 17V6a3 3 0 0 0-3-3"/><path d="M16 17V6a3 3 0 0 1 3-3"/><path d="M8 9h8M8 13h8"/><path d="M3 19c1.5 0 1.5-1.2 3-1.2s1.5 1.2 3 1.2 1.5-1.2 3-1.2 1.5 1.2 3 1.2 1.5-1.2 3-1.2 1.5 1.2 3 1.2"/><path d="M3 22.5c1.5 0 1.5-1.2 3-1.2s1.5 1.2 3 1.2 1.5-1.2 3-1.2 1.5 1.2 3 1.2 1.5-1.2 3-1.2 1.5 1.2 3 1.2"/>';
 var IC_POOL=SVGA+ICP+'</svg>';
 var IC_NOPOOL=SVGA+'<mask id="pcut" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect width="24" height="24" fill="#fff"/><path d="M3.5 3.5l17 17" stroke="#000" stroke-width="5"/></mask><g mask="url(#pcut)">'+ICP+'</g><path d="M3.5 3.5l17 17"/></svg>';
-function poolCard(m,idx){
-  var np=!!m.np,t0=baseType(idx),detail;
-  if(!np) detail=m.tot+' pasos: incluye los de al salir de la piscina'+(t0==='poolgel'?', y luego el gel de la EPS.':'.');
+function poolCard(m,idx,edit,closed){
+  var np=!!m.np,t0=baseType(idx),detail,yes=!np,no=np;
+  if(!edit){
+    if(closed) detail='Día cerrado: ya no se puede cambiar.';
+    else if(idx>EFF){detail='Este día todavía no llega. Ese día podrás elegir aquí si fuiste a la piscina o no.';yes=no=false}
+    else detail='Conéctate a internet una vez para poder cambiar esto.';
+  }
+  else if(!np) detail=m.tot+' pasos: incluye los de al salir de la piscina'+(t0==='poolgel'?', y luego el gel de la EPS.':'.');
   else if(m.info.type==='gel') detail=m.tot+' pasos: el gel de la EPS sigue, sin enjuague ni secado antes del casco.';
   else detail=m.tot+' pasos: rutina de descanso, sin enjuague ni segunda capa de Hydro Boost.';
-  return '<div class="poolsel" role="group" aria-label="¿Fuiste a la piscina hoy?"><p class="q">¿Fuiste a la piscina hoy?</p><div class="seg2">'+
-    '<button type="button" id="poolYes" aria-pressed="'+(!np)+'">'+IC_POOL+'Fui a la piscina</button>'+
-    '<button type="button" id="poolNo" aria-pressed="'+np+'">'+IC_NOPOOL+'Sin piscina</button></div>'+
+  var dis=edit?'':' disabled';
+  return '<div class="poolsel'+(edit?'':' off')+'" role="group" aria-label="¿Fuiste a la piscina hoy?"><p class="q">¿Fuiste a la piscina hoy?</p><div class="seg2">'+
+    '<button type="button" id="poolYes" aria-pressed="'+yes+'"'+dis+'>'+IC_POOL+'Fui a la piscina</button>'+
+    '<button type="button" id="poolNo" aria-pressed="'+no+'"'+dis+'>'+IC_NOPOOL+'Sin piscina</button></div>'+
     '<p class="pd">'+detail+'</p></div>';
 }
 function renderDay(){
@@ -1503,8 +1533,8 @@ function renderDay(){
   if(!inPlan(idx)){$('day').innerHTML='<h2>'+DAYN[d-1]+' '+fmt(idx)+'</h2><div class="dayinfo">Este día no hace parte del plan. El plan empieza el <b>miércoles 28 de octubre</b>.</div>';return}
   var bit=0;
   info.blocks.forEach(function(b){
-    var hasSel=b.id==='nt'&&edit&&P.isPoolType(baseType(idx));
-    h+='<section class="block'+(b.id==='nt'?' nt':'')+(hasSel?' hs':'')+'" data-name="'+esc(b.short)+'" data-ic="'+esc(b.name.split(' ')[0])+'"><h3><span class="hn">'+b.name+'</span>'+(b.sub?'<span>'+b.sub+'</span>':'')+'</h3>'+(hasSel?poolCard(m,idx):'');
+    var hasSel=b.id==='nt'&&P.isPoolType(baseType(idx));
+    h+='<section class="block'+(b.id==='nt'?' nt':'')+(hasSel?' hs':'')+'" data-name="'+esc(b.short)+'" data-ic="'+esc(b.name.split(' ')[0])+'"><h3><span class="hn">'+b.name+'</span>'+(b.sub?'<span>'+b.sub+'</span>':'')+'</h3>'+(hasSel?poolCard(m,idx,edit,closed):'');
     b.steps.forEach(function(s){
       if(s.h){h+='<div class="sh">'+esc(s.h)+'</div>';return}
       var on=(mask>>>bit)&1;
@@ -2043,9 +2073,13 @@ function skyRender(){
   var cls=(dk<.35?' nl':'')+(s.wl>=2?' wind wind2':(s.wl===1?' wind':''));
   if(cls!==skyCls){skyCls=cls;applyClass()}
   var line=skyLine(s);
-  var wx=skyWx(s);
+  var wx=skyWx(s),nt=(s.ph==='night'),k0=s.kind;
+  var wic=({clear:nt?'moon':'sun',partly:nt?'cloudy':'partly',cloudy:'cloudy',mist:'mist',fog:'mist',drizzle:'drizzle',rain:'rain',heavy:'heavy',storm:'storm'})[k0]||'';
+  if(k0==='clear'&&s.wl>=2) wic='wind';
+  var h2='<span class="skc" data-ph="'+s.ph+'"><span class="tag">'+icoSpan(({dawn:'sunset',dusk:'sunset',night:'moon'})[s.ph]||'sun')+'<b>'+PHN[s.ph]+'</b></span>'+
+    (wx?'<span class="sp" aria-hidden="true"></span><span class="wx">'+icoSpan(wic)+((s.wl>=2&&k0!=='clear')?icoSpan('wind'):'')+'<span>'+wx+'</span></span>':'')+'</span>';
   $('skyline').setAttribute('data-line',line);
-  $('skyline').innerHTML='<span class="tag">'+PHN[s.ph]+'</span>'+(wx?'<span class="sp" aria-hidden="true">·</span><span class="wx">'+wx+'</span>':'');
+  if($('skyline').getAttribute('data-h')!==h2){$('skyline').setAttribute('data-h',h2);$('skyline').innerHTML=h2}
   $('pond').setAttribute('aria-label','Tu tortuga en el estanque. '+line+'. Tócala para saludarla.');
   skyPanel();
 }
@@ -2151,8 +2185,8 @@ document.addEventListener('click',function(e){
   var cell=t.closest('.cell');
   if(cell){setSel(+cell.getAttribute('data-w'),+cell.getAttribute('data-d'),true);return}
   if(t.closest('#finish')){ac();askFinish();return}
-  if(t.closest('#poolYes')){ac();askPool(false);return}
-  if(t.closest('#poolNo')){ac();askPool(true);return}
+  if(t.closest('#poolYes')){if(t.closest('.poolsel.off'))return;ac();askPool(false);return}
+  if(t.closest('#poolNo')){if(t.closest('.poolsel.off'))return;ac();askPool(true);return}
   if(t.closest('#geoOn')){ac();enableGeo();return}
   if(t.closest('#geoOff')){ac();setGeo('off');toast('Solo cielo por la hora.','🌤️');return}
   if(t.closest('#snd')){muted=!muted;lsSet('mute',muted?'1':'0');renderSnd();if(!muted){ac();sound('pop')}return}
