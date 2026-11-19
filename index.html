@@ -63,6 +63,8 @@ h1{font-size:1.35rem;margin:4px 0 2px;color:var(--accent)}
 .meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:.85rem;margin:4px 0 10px}
 .badge{display:inline-block;padding:2px 10px;border-radius:999px;color:#fff;font-size:.8rem;font-weight:600}
 .dayinfo{border-radius:12px;padding:8px 12px;margin:0 0 8px;font-size:.9rem;background:color-mix(in srgb,var(--accent) 9%,var(--card))}
+.dayinfo.pausa{background:color-mix(in srgb,var(--pool) 12%,var(--card));border:1px solid var(--line)}
+.badge.pz{background:var(--rest)}
 .dayinfo.lock{background:color-mix(in srgb,var(--ok) 13%,var(--card))}
 .block{border-top:1px solid var(--line);padding-top:8px;margin-top:8px}
 .block h3{font-size:1rem;margin:0 0 4px;display:flex;justify-content:space-between;gap:8px}
@@ -628,7 +630,7 @@ body.demo-on #demo{grid-area:ctl;display:block;background:var(--card);border:1px
   </div>
   <div class="dpane" data-p="win">
     <label>Ventanas y avisos</label>
-    <div class="row"><button class="btn alt" id="dWelcome" type="button">Bienvenida</button><button class="btn alt" id="dPrizeM" type="button">Premio semanal</button><button class="btn alt" id="dDayM" type="button">Día perfecto</button><button class="btn alt" id="dWeekM" type="button">Semana nueva</button><button class="btn alt" id="dUpdM" type="button">Novedades</button><button class="btn alt" id="dSkyM" type="button">Tiempo y climas</button></div>
+    <div class="row"><button class="btn alt" id="dWelcome" type="button">Bienvenida</button><button class="btn alt" id="dPrizeM" type="button">Premio semanal</button><button class="btn alt" id="dDayM" type="button">Día perfecto</button><button class="btn alt" id="dWeekM" type="button">Semana nueva</button><button class="btn alt" id="dUpdM" type="button">Novedades</button><button class="btn alt" id="dPauseM" type="button">Pausa de la piel</button><button class="btn alt" id="dSkyM" type="button">Tiempo y climas</button></div>
   </div>
   <div class="dpane" data-p="snd">
     <label>Probar sonidos</label>
@@ -779,6 +781,39 @@ function buildDay(w,d,np){
   ]};
 }
 
+/* ---- Pausa de la piel ----
+   Un día en pausa es el día normal con menos pasos: los pasos que sobran se OCULTAN pero conservan su lugar
+   (así lo que ya se marcó antes no se descuadra) y no cuentan. Solo se quitan pasos o se simplifica su texto:
+   nunca se agrega tratamiento. Lo médico lo decide la EPS. */
+var PZ={
+ am:'Enjuaga la cara con agua fresca y sécate a toques con una toalla limpia.',
+ sol:'Pon Heliocare en cara y cuello (la cantidad de dos dedos: índice y corazón). Si vas a estar al sol: vuelve a ponértelo a las 12:00 m. y a las 2:00 p.m., y usa sombrero o gorra.',
+ nt:'Lava la cara con suavidad con el Limpiador Effaclar durante 30 segundos, enjuaga con agua fresca y sécate a toques con una toalla limpia.'
+};
+function pausar(info){
+  var HIDE=[T.seca,T.mela,T.aze,T.hb2,T.noGel,T.wait20,T.wait30,T.wait5,T.gel,T.hands,T.funda,T.casco,T.s1,T.s2,T.s3];
+  info.blocks.forEach(function(b){
+    var hbDone=false,i;
+    b.steps.forEach(function(st){
+      if(!st.t) return;
+      var t=st.t;
+      if(t===T.limp) st.t=(b.id==='nt')?PZ.nt:PZ.am;
+      else if(t===T.sol) st.t=PZ.sol;
+      else if(t===T.hb||t===T.hbw||t===T.hbThin||t===T.hbEnd){ if(hbDone) st.hide=true; else {st.t=T.hb;hbDone=true} }
+      else if(HIDE.indexOf(t)>=0) st.hide=true;
+    });
+    /* un subtítulo se oculta si ya no le queda ningún paso visible */
+    for(i=0;i<b.steps.length;i++){
+      if(!b.steps[i].h) continue;
+      var vis=false,j;
+      for(j=i+1;j<b.steps.length&&!b.steps[j].h;j++) if(b.steps[j].t&&!b.steps[j].hide) vis=true;
+      if(!vis) b.steps[i].hide=true;
+    }
+  });
+  info.type='rest';info.pausa=true;
+  return info;
+}
+
 /* Texto de cada semana: cercano y fácil de leer */
 var WEEKINTRO={
  1:'Esta primera semana es más corta: empieza el miércoles 28. El gel de la EPS entra solo una noche, el sábado, para que tu piel se acostumbre; el resto de los días es limpiar, hidratar y proteger.',
@@ -817,7 +852,7 @@ function weekSummary(w){
   return {am:am,gel:gel};
 }
 
-window.__plan={buildDay:buildDay,nightType:nightType,isPoolType:isPoolType,backupType:backupType,gelNight:gelNight,useAze:useAze,useMela:useMela,sandwich:sandwich,weekSummary:weekSummary,T:T,WEEKINTRO:WEEKINTRO,WEEKNEW:WEEKNEW,TYPELABEL:TYPELABEL,DAYN:DAYN,W:W,SK:SK};
+window.__plan={buildDay:buildDay,pausar:pausar,nightType:nightType,isPoolType:isPoolType,backupType:backupType,gelNight:gelNight,useAze:useAze,useMela:useMela,sandwich:sandwich,weekSummary:weekSummary,T:T,WEEKINTRO:WEEKINTRO,WEEKNEW:WEEKNEW,TYPELABEL:TYPELABEL,DAYN:DAYN,W:W,SK:SK};
 })();
 </script>
 
@@ -872,6 +907,11 @@ function inPlan(i){return i>=SK&&i<ND}
 function weekOpen(w){return FREE||w===1||EFF>=7*(w-1)}
 function curWeek(){return EFF<SK?1:(EFF>=ND?W:Math.floor(EFF/7)+1)}
 
+/* ---------- pausa de la piel: miércoles 18 a domingo 22 de noviembre (días 23 a 27 del plan) ----------
+   Para alargarla o acortarla, cambiar estos dos números (día 0 = lunes 26 de octubre). Para quitarla: PAUSA_A=1, PAUSA_B=0. */
+var PAUSA_A=23, PAUSA_B=27;
+function inPause(idx){return idx>=PAUSA_A&&idx<=PAUSA_B}
+
 /* ---------- datos de cada día ---------- */
 var DM={};
 /* La máscara guarda las casillas en los bits 0..20 y, en el bit 30, la marca «noche sin piscina».
@@ -882,9 +922,10 @@ function npOf(idx){var r=ST.days[idx];return !!(r&&(r.m&NPF))&&P.isPoolType(base
 function dayMeta(idx){
   var np=npOf(idx),key=idx+(np?'n':'');
   if(DM[key]) return DM[key];
-  var w=Math.floor(idx/7)+1,d=idx%7+1,info=P.buildDay(w,d,np),tot=0;
-  info.blocks.forEach(function(b){b.steps.forEach(function(s){if(s.t)tot++})});
-  return DM[key]={w:w,d:d,info:info,tot:tot,np:np};
+  var w=Math.floor(idx/7)+1,d=idx%7+1,info=P.buildDay(w,d,np),tot=0,hm=0,slot=0;
+  if(inPause(idx)) P.pausar(info);
+  info.blocks.forEach(function(b){b.steps.forEach(function(s){if(s.t){if(s.hide) hm|=(1<<slot); else tot++; slot++}})});
+  return DM[key]={w:w,d:d,info:info,tot:tot,np:np,hm:hm,pausa:!!info.pausa};
 }
 /* cuántas casillas hay antes de la noche (mañana + almuerzo): no cambian con la piscina */
 function nightStart(idx){
@@ -894,9 +935,12 @@ function nightStart(idx){
 }
 function pop(m){var n=0;m=m&STEPM;while(m){n+=m&1;m=m>>>1}return n}
 function rec(idx){return ST.days[idx]||null}
-function cntOf(idx){var r=rec(idx);return r?pop(r.m):0}
+function cntOf(idx){var r=rec(idx);return r?pop(r.m&~dayMeta(idx).hm):0}
 function isClosed(idx){if(!inPlan(idx))return false;var r=rec(idx);return !!(r&&r.c)||(!FREE&&idx<EFF)}
 function pct(idx){return cntOf(idx)/dayMeta(idx).tot}
+/* para premios, racha y crecimiento: un día de pausa cuenta como bueno (mínimo 70 %) aunque se marque poco; perfecto solo si de verdad se marca todo */
+function effP(idx,p){return inPause(idx)?Math.max(p,.7):p}
+function pctE(idx){return effP(idx,pct(idx))}
 function canEdit(idx){return (FREE||idx===EFF)&&inPlan(idx)&&!(rec(idx)&&rec(idx).c)&&clock.known}
 function WD(){return FREE?(sel.w-1)*7+sel.d-1:EFF}
 function level(p){return p>=1?'perfect':(p>=0.7?'good':'low')}
@@ -933,7 +977,7 @@ function derive(){
   var credits=0,perfect=[],closed=[],goodFlag=[],i;
   for(i=0;i<ND;i++){
     var c=isClosed(i);closed[i]=c;
-    if(c){var p=pct(i);credits+=p;if(p>=1)perfect.push(i);goodFlag[i]=p>=0.7}
+    if(c){var p=pctE(i);credits+=p;if(p>=1)perfect.push(i);goodFlag[i]=p>=0.7}
   }
   var weeksClosed=0,prizes=0,wk=[],w;
   for(w=1;w<=W;w++){
@@ -952,7 +996,7 @@ function derive(){
   return {credits:credits,perfect:perfect,closed:closed,weeksClosed:weeksClosed,prizes:prizes,wk:wk,streak:streak,f:Math.min(1,credits/(ND-SK)),gifts:gifts};
 }
 var M=null;
-function goodSoFar(w){var g=0,from=7*(w-1);for(var i=from;i<from+7;i++) if(M.closed[i]&&pct(i)>=0.7) g++;return g}
+function goodSoFar(w){var g=0,from=7*(w-1);for(var i=from;i<from+7;i++) if(M.closed[i]&&pctE(i)>=0.7) g++;return g}
 
 /* ---------- estado de la tortuga ---------- */
 function todayMood(){
@@ -1197,7 +1241,7 @@ function renderPetText(mood){
       if(mood==='sleep') msg=MSG_SLEEP[m.d];
       else if(mood==='awake'){var b=p>=1?3:(p>=.67?2:(p>=.34?1:0));msg='Llevas '+c+' de '+m.tot+' pasos. '+pick(MSG_AW[b],WD()+c)}
       else {
-        var lv=level(p);
+        var lv=level(effP(WD(),p));
         if(lv==='perfect') msg=pick(['Día perfecto. Tu tortuga descansa.','Todos los pasos hechos. Tu tortuga está celebrando.','Día perfecto. Mañana seguimos.'],WD());
         else if(lv==='good') msg='Buen día: '+c+' de '+m.tot+' pasos.';
         else msg='Día cerrado con '+c+' de '+m.tot+' pasos. Mañana empieza uno nuevo.';
@@ -1436,7 +1480,7 @@ function dayModal(idx,c,tot,lv,giftType,prevStreak){
     else h+='<p>'+pick(['Todos los pasos, sin saltarte ninguno.','Así se construye el resultado: un día a la vez.','Otro día completo.'],idx)+'</p>';
     o={kind:'teal',icon:'🌟',title:'Día perfecto',sub:'Hiciste los '+tot+' pasos',snd:'gift'};
   } else if(lv==='good'){
-    h+=stats+'<p>Pasaste el 70%: tu tortuga creció y la racha sigue. El regalo del estanque pide el 100%; mañana tienes otra oportunidad.</p>';
+    h+=stats+(inPause(idx)?'<p>Día de pausa: cuenta como bueno aunque marques poco. Tu tortuga creció y la racha sigue. Si marcas todos los pasos, el día es perfecto y trae regalo.</p>':'<p>Pasaste el 70%: tu tortuga creció y la racha sigue. El regalo del estanque pide el 100%; mañana tienes otra oportunidad.</p>');
     o={icon:'👍',title:'Buen día',sub:c+' de '+tot+' pasos ('+pc+'%)'};
   } else {
     h+=stats+'<p>Hoy no llegaste al 70%. Tu tortuga no pierde nada, solo crece más despacio. Mañana sigue con la rutina que toque, sin compensar.</p>';
@@ -1480,7 +1524,8 @@ function renderWeekNote(){
     $('days').hidden=true;$('day').hidden=true;return;
   }
   $('days').hidden=false;$('day').hidden=false;
-  var s=P.weekSummary(w),h='<h3>Semana '+w+' · '+fmt(wStart(w))+' al '+fmt(w*7-1)+'</h3><p class="lead">'+esc(P.WEEKINTRO[w])+'</p><div class="wrows">';
+  var s=P.weekSummary(w),h='<h3>Semana '+w+' · '+fmt(wStart(w))+' al '+fmt(w*7-1)+'</h3><p class="lead">'+esc(P.WEEKINTRO[w])+'</p>'+
+    ((PAUSA_A<=w*7-1&&PAUSA_B>=(w-1)*7)?'<div class="dayinfo pausa"><b>Pausa de la piel del '+fmt(Math.max(PAUSA_A,(w-1)*7))+' al '+fmt(Math.min(PAUSA_B,w*7-1))+'.</b> Esos días la rutina es solo lavado suave, hidratación y protector solar. Lo de abajo describe la semana normal.</div>':'')+'<div class="wrows">';
   h+='<div class="wrow"><span class="ic">☀️</span><div><span class="lb">Mañana</span>'+s.am.map(function(x,i){return '<span class="nw">'+(i?'<span class="arw">›</span> ':'')+'<span class="pill">'+esc(x)+'</span></span> '}).join('')+'</div></div>';
   h+='<div class="wrow"><span class="ic">🌙</span><div><span class="lb">Gel de la EPS, por la noche</span>'+esc(lista(s.gel))+'</div></div>';
   h+='<div class="wrow"><span class="ic">🏊</span><div><span class="lb">Piscina</span>martes a viernes. Si un día no vas, usa el botón de la noche de ese día.</div></div>';
@@ -1521,14 +1566,18 @@ function poolCard(m,idx,edit,closed){
 function renderDay(){
   if(!weekOpen(sel.w)){$('day').innerHTML='';return}
   var w=sel.w,d=sel.d,idx=(w-1)*7+d-1,m=dayMeta(idx),info=m.info,closed=isClosed(idx),edit=canEdit(idx),r=rec(idx),mask=r?r.m:0;
-  var h='<h2>'+DAYN[d-1]+' '+fmt(idx)+'</h2><div class="meta"><span class="badge t-'+info.type+'">'+P.TYPELABEL[info.type]+'</span>'+(m.np?'<span class="badge np">Sin piscina</span>':'')+'<span>Semana '+w+'</span><span id="cnt">'+cntOf(idx)+' de '+m.tot+' pasos</span></div>';
+  var h='<h2>'+DAYN[d-1]+' '+fmt(idx)+'</h2><div class="meta"><span class="badge t-'+info.type+'">'+P.TYPELABEL[info.type]+'</span>'+(m.pausa?'<span class="badge pz">Pausa</span>':'')+(m.np?'<span class="badge np">Sin piscina</span>':'')+'<span>Semana '+w+'</span><span id="cnt">'+cntOf(idx)+' de '+m.tot+' pasos</span></div>';
   if(closed){
     var p=pct(idx);
-    h+='<div class="dayinfo lock">🔒 Día cerrado: <b>'+cntOf(idx)+' de '+m.tot+' pasos</b> ('+Math.round(p*100)+'%) · '+LVL[level(p)]+'. Ya no se puede cambiar.</div>';
+    h+='<div class="dayinfo lock">🔒 Día cerrado: <b>'+cntOf(idx)+' de '+m.tot+' pasos</b> ('+Math.round(p*100)+'%) · '+(m.pausa?'Día de pausa: cuenta como bueno':LVL[level(p)])+'. Ya no se puede cambiar.</div>';
   } else if(idx===EFF&&!clock.known){
     h+='<div class="dayinfo">Conéctate a internet una vez para verificar la fecha y poder marcar.</div>';
   } else if(!FREE&&(idx>EFF||EFF<SK)){
     h+='<div class="dayinfo">Este día todavía no llega. Solo puedes mirarlo.</div>';
+  }
+  if(m.pausa){
+    h+='<div class="dayinfo pausa"><b>Pausa de la piel.</b> Estos días no se aplican el gel de la EPS ni el ácido azelaico. Si algo sigue ardiendo, consulta en la EPS.'+
+      (idx===PAUSA_B?'<br>El lunes la rutina vuelve a la normal solo si la piel ya no arde; si no, consulta en la EPS.':'')+'</div>';
   }
   if(!inPlan(idx)){$('day').innerHTML='<h2>'+DAYN[d-1]+' '+fmt(idx)+'</h2><div class="dayinfo">Este día no hace parte del plan. El plan empieza el <b>miércoles 28 de octubre</b>.</div>';return}
   var bit=0;
@@ -1536,7 +1585,8 @@ function renderDay(){
     var hasSel=b.id==='nt'&&P.isPoolType(baseType(idx));
     h+='<section class="block'+(b.id==='nt'?' nt':'')+(hasSel?' hs':'')+'" data-name="'+esc(b.short)+'" data-ic="'+esc(b.name.split(' ')[0])+'"><h3><span class="hn">'+b.name+'</span>'+(b.sub?'<span>'+b.sub+'</span>':'')+'</h3>'+(hasSel?poolCard(m,idx,edit,closed):'');
     b.steps.forEach(function(s){
-      if(s.h){h+='<div class="sh">'+esc(s.h)+'</div>';return}
+      if(s.h){if(!s.hide) h+='<div class="sh">'+esc(s.h)+'</div>';return}
+      if(s.hide){bit++;return}
       var on=(mask>>>bit)&1;
       h+='<div class="step"><label><input type="checkbox" data-bit="'+bit+'"'+(on?' checked':'')+(edit?'':' disabled')+'><span>'+esc(s.t)+'</span></label></div>';
       bit++;
@@ -1646,10 +1696,10 @@ function onToggle(t){
   var idx=(sel.w-1)*7+sel.d-1,bit=+t.getAttribute('data-bit');
   if(!canEdit(idx)){t.checked=!t.checked;toast('Este día ya no se puede cambiar.','🔒');return}
   var r=ST.days[idx]||(ST.days[idx]={m:0,c:0,u:0});
-  var had=pop(r.m)>0;
+  var had=cntOf(idx)>0;
   if(t.checked) r.m|=(1<<bit); else r.m&=~(1<<bit);
   r.u=nowMs();ST.dirty[idx]=1;save();
-  var c=pop(r.m),tot=dayMeta(idx).tot;
+  var c=cntOf(idx),tot=dayMeta(idx).tot;
   $('cnt').textContent=c+' de '+tot+' pasos';
   M=derive();
   renderPet({wake:!had&&c>0});
@@ -1696,6 +1746,13 @@ function askPool(want){
 }
 
 /* ---------- aviso de novedades (una sola vez por dispositivo) ---------- */
+function pausaModal(){
+  modal({kind:'soft',icon:'🌊',title:'Semana de pausa',sub:'Del miércoles 18 al domingo 22',
+   html:'<p>Por la irritación, tu piel descansa hasta el domingo. Estos días la rutina es más corta: lavado suave, hidratación y protector solar. La pastilla del almuerzo sigue igual.</p>'+
+    '<p>Esos días no te restan: cada uno cuenta como bueno aunque marques poco, tu racha sigue y el premio de esta semana es más tolerante. Si marcas todos los pasos, el día igual cuenta como perfecto.</p>'+
+    '<p>El gel de la EPS y el ácido azelaico quedan en pausa. Si algo sigue ardiendo, consulta en la EPS.</p>',
+   buttons:[{t:'Entendido'}]});
+}
 function updateModal(){
   modal({kind:'teal',icon:'🏊',title:'Novedad en la página',sub:'Noches sin piscina',
    html:'<p>Hay días en que no se puede ir a la piscina: llueve, no hay clase o queda lejos. Ya no tienes que dejar pasos sin marcar.</p>'+
@@ -1708,8 +1765,8 @@ function updateModal(){
 
 function askFinish(){
   var idx=WD();if(!canEdit(idx))return;
-  var c=cntOf(idx),tot=dayMeta(idx).tot,p=c/tot;
-  var extra=p>=1?'Hiciste todos los pasos.':(p>=0.7?'Es un buen día.':'Te faltan varios pasos. Si todavía puedes hacerlos, vuelve y márcalos.');
+  var c=cntOf(idx),tot=dayMeta(idx).tot,p=c/tot,pe=effP(idx,p);
+  var extra=p>=1?'Hiciste todos los pasos.':(pe>=0.7?(inPause(idx)?'Es un día de pausa: cuenta como bueno aunque marques poco.':'Es un buen día.'):'Te faltan varios pasos. Si todavía puedes hacerlos, vuelve y márcalos.');
   modal({quiet:true,kind:'night',icon:'🌙',title:'¿Terminar el día?',sub:c+' de '+tot+' pasos ('+Math.round(p*100)+'%)',html:'<p>'+extra+'</p><p>Después de terminar, ya <b>no podrás cambiar nada</b> de este día.</p>',
    buttons:[{t:'Seguir revisando',cls:'alt'},{t:'Terminar día',fn:doFinish}]});
 }
@@ -1718,7 +1775,7 @@ function doFinish(){
   var r=ST.days[idx]||(ST.days[idx]={m:0,c:0,u:0});
   var prevStreak=M.streak;
   r.c=1;r.u=nowMs();ST.dirty[idx]=1;
-  var c=pop(r.m),tot=dayMeta(idx).tot,p=c/tot,lv=level(p);
+  var c=cntOf(idx),tot=dayMeta(idx).tot,p=c/tot,lv=level(effP(idx,p));
   ST.seen.closed=Math.max(ST.seen.closed,idx);save();
   schedulePush(0);
   try{window.scrollTo({top:0,behavior:'smooth'})}catch(e){window.scrollTo(0,0)}
@@ -1779,6 +1836,7 @@ function announce(){
   /* novedades de la página: cada una, una sola vez */
   if(!(ST.seen.upd>=UPD_POOL)){ST.seen.upd=UPD_POOL;updateModal()}
   if(skyOn()&&!(ST.seen.upd>=UPD_SKY)){ST.seen.upd=UPD_SKY;skyModal()}
+  if(!DEMO&&!ST.seen.pz&&EFF>=PAUSA_A&&EFF<=PAUSA_B){ST.seen.pz=1;pausaModal()}
   save();
 }
 
@@ -1814,7 +1872,7 @@ function pull(){
 function pushOne(idx){
   var r=ST.days[idx];if(!r){delete ST.dirty[idx];return Promise.resolve()}
   var u=r.u;
-  return api({action:'save',token:CFG.TOKEN,day:idx,mask:r.m.toString(36),n:pop(r.m),t:dayMeta(idx).tot,c:r.c?1:0}).then(function(res){
+  return api({action:'save',token:CFG.TOKEN,day:idx,mask:r.m.toString(36),n:cntOf(idx),t:dayMeta(idx).tot,c:r.c?1:0}).then(function(res){
     if(res&&res.ok){
       if(ST.days[idx]&&ST.days[idx].u===u) delete ST.dirty[idx];
       mergeServer(res);
@@ -2316,6 +2374,7 @@ function demoSetup(){
   $('dWeekM').addEventListener('click',function(){ac();weekOpenModal(7)});
   $('dUpdM').addEventListener('click',function(){ac();updateModal()});
   $('dSkyM').addEventListener('click',function(){ac();skyModal()});
+  $('dPauseM').addEventListener('click',function(){ac();pausaModal()});
   function applySky(){OVS={ph:$('dSky').value,wx:$('dWx').value};SKYSIG='';skyRender()}
   $('dSky').addEventListener('change',applySky);$('dWx').addEventListener('change',applySky);
 }
