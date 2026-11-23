@@ -3,7 +3,7 @@
    - Pide siempre la versión más reciente de la página (así no se queda una copia vieja) y,
      si no hay internet, abre la última copia guardada.
    - No toca las peticiones a otros sitios (la hoja de cálculo y el clima). */
-var V = 'plan-piel-v1';
+var V = 'plan-piel-v2-8-1';
 var BASE = ['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'];
 
 self.addEventListener('install', function (e) {
